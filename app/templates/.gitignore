@@ -1,0 +1,10 @@
+# common
+.DS_Store
+# node dependencies
+node_modules
+npm-debug.log
+# bower dependencies
+client/source/vendor
+
+# build file
+client/build
