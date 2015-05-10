@@ -1,0 +1,12 @@
+.login-view
+    form.card(name="vm.loginForm", ng-submit="vm.login(vm.credential)")
+        .card__header(class="p+")
+            | Please sign in first
+        .card__body(class="p++")
+            lx-text-field(label="Email", fixed-label="true", icon="email")
+                input(type="text", ng-model="vm.credential.email", ng-required)
+            lx-text-field(label="Password", fixed-label="true", icon="key")
+                input(type="password", ng-model="vm.credential.password", ng-required)
+        .card__actions.text-center(class="p+")
+            button.btn.btn--l.btn--blue.btn--raised(type="submit",
+                ng-disable="!vm.loginForm.$valid", ng-class="{'btn--is-disabled': !vm.loginForm.$valid}") Sign In
