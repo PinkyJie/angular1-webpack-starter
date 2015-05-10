@@ -1,0 +1,16 @@
+body
+    font-family Helvetica, arial
+
+.content
+    position relative
+    padding-top 64px
+    min-height 500px
+    .main-view
+        padding 20px 40px
+        &.ng-enter, &.ng-leave
+            position absolute
+            width 100%
+        &.ng-enter
+            animation flipInX .8s
+        &.ng-leave
+            animation flipOutX .8s

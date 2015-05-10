@@ -1,0 +1,21 @@
+.header
+    .card.bgc-indigo-500.tc-white
+        .toolbar
+            .toolbar__left.mr
+                button.btn.btn--l.btn--white.btn--icon(class="mr+", lx-ripple)
+                    i.mdi.mdi-menu
+                img.logo(src="/static/images/layout/logo.png")
+            .toolbar__label.fs-title
+                a.tc-white(ui-sref="root.home") AIO Angular
+            .toolbar__right
+                button.btn.btn--l.btn--white.btn--icon(ng-click="vm.go('root.login')", lx-ripple="white", ng-if="!vm.isLoggedIn")
+                    i.mdi.mdi-login
+                lx-dropdown(position="right", from-top, ng-if="vm.isLoggedIn")
+                    button.btn.btn--xl.btn--white.btn--icon(lx-ripple, lx-dropdown-toggle)
+                        i.mdi.mdi-dots-vertical
+                    lx-dropdown-menu
+                        ul
+                            li
+                                a.dropdown-link(ui-sref="root.login({action: 'logout'})")
+                                    i.mdi.mdi-logout
+                                    | Logout
