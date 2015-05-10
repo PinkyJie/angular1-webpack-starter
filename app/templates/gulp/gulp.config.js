@@ -8,15 +8,16 @@ module.exports = function() {
     var gIf = require('gulp-if');
     var gOrder = require('gulp-order');
     // base folder
-    var _root = '../';
+    var _root = './';
     var _clientBase = _root + 'client/';
     var _serverBase = _root + 'server/';
+    var _buildBase = _clientBase + 'build/';
     // client folder
     var client = {
         base: _clientBase,
-        source: this.base + 'source/',
-        test: this.source + 'test/',
-        app: this.source + 'app/'
+        source: _clientBase + 'source/',
+        test: _clientBase + 'source/test/',
+        app: _clientBase + 'source/app/'
     };
     // server folder
     var server = {
@@ -24,10 +25,10 @@ module.exports = function() {
     };
     // build folder
     var build = {
-        base: client.base + 'build/',
-        dev: this.base + 'dev/',
-        temp: this.base + '.temp/',
-        prod: this.base + 'prod/'
+        base: _buildBase,
+        dev: _buildBase + 'dev/',
+        temp: _buildBase + '.temp/',
+        prod: _buildBase + 'prod/'
     };
     // node dependency
     var nodeModules = _root + 'node_modules/';
@@ -35,8 +36,9 @@ module.exports = function() {
     var bowerFiles = wiredep({devDependencies: true})['js'];
     var bower = {
         json: bowerJson,
-        directory: client.source + 'vendor',
-        ignorePath: '../..'
+        source: client.source + 'vendor/',
+        target: build.dev + 'static/vendor/',
+        ignorePath: ''
     };
 
     // all configuration which will be returned
@@ -54,27 +56,39 @@ module.exports = function() {
                 _root + 'gulp/**/*.js',
                 _root + '*.js'
             ],
-            app: [
-                client.app + '**/*.module.js',
-                client.app + '**/*.js'
-            ],
+            app: {
+                source: [
+                    client.app + '**/*.js'
+                ],
+                target: [
+                    build.dev + 'static/**/*.js',
+                    '!' + build.dev + 'static/vendor/**/*.*'
+                ],
+            },
+            test: {
+                stubs: [
+                    bower.target + 'angular-mocks/angular-mocks.js',
+                    client.test + 'e2e/mocks/**/e2e.*.js'
+                ],
+                unit: {
+                    specs: [
+                        client.test + 'unit/specs/**/*.spec.js'
+                    ]
+                }
+            },
             order: [
                 '**/app.module.js',
                 '**/*.module.js',
                 '**/*.js'
-            ],
-            stubs: [
-                bower.directory + 'angular-mocks/angular-mocks.js',
-                client.test + 'e2e/mocks/**/*.e2e.js'
-            ],
-            specs: [
-                client.test + 'unit/specs/**/*.spec.js'
             ]
         },
         // css
         css: {
             source: client.app + '**/*.styl',
-            target: build.dev + 'static/**/*.css',
+            target: [
+                build.dev + 'static/**/*.css',
+                '!' + build.dev + 'static/vendor/**/*.*'
+            ],
             singleSource: client.source + 'styles/**/*.styl'
         },
         // html
@@ -93,7 +107,7 @@ module.exports = function() {
         },
         resource: {
             images: client.source + 'images/**/*.*',
-            fonts: client.source + 'fonts/**/*.*',
+            fonts: bower.source + 'mdi/fonts/*.*',
         },
         bower: bower,
         browserSync: {
@@ -129,7 +143,7 @@ module.exports = function() {
     function getWiredepDefaultOptions () {
         return {
             bowerJson: config.bower.json,
-            directory: config.bower.directory,
+            directory: config.bower.target,
             ignorePath: config.bower.ignorePath
         };
     }
@@ -154,7 +168,7 @@ module.exports = function() {
             junit: client.test + 'unit/results/unit-test-results.xml',
             preprocessors: {}
         };
-        options.preprocessors[config.js.specs] = ['coverage'];
+        options.preprocessors[config.js.test.unit.specs] = ['coverage'];
         return options;
     }
 
@@ -187,7 +201,10 @@ module.exports = function() {
 
     // Helper function for gulp-inject
     function inject (src, label, order) {
-        var options = {read: false};
+        var options = {
+            read: false,
+            ignorePath: '/client/build/dev'
+        };
         if (label) {
             options.name = 'inject:' + label;
         }

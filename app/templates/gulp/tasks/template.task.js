@@ -13,21 +13,18 @@ module.exports = function (gulp, config, $, args) {
     });
 
     // Inject all js/css files into the index.html file
-    gulp.task('inject:js:css', function () {
+    gulp.task('inject:js:css', ['copy:js'], function () {
         config.fn.log('Wire up css into the html, after files are ready');
-
-        // Only include mock files if --mock flag is enabled
-        var js = args.mock ? [].concat(config.js.app, config.js.stubs) : config.js.app;
 
         return gulp
             .src(config.html.target)
             .pipe(config.fn.inject(config.css.target))
-            .pipe(config.fn.inject(js, '', config.js.order))
+            .pipe(config.fn.inject(config.js.app.target, '', config.js.order))
             .pipe(gulp.dest(config.build.dev));
     });
 
     // Inject all the bower dependencies
-    gulp.task('inject:bower', function () {
+    gulp.task('inject:bower', ['copy:vendor'], function () {
         config.fn.log('Wiring the bower dependencies into the html');
 
         var wiredep = require('wiredep').stream;
@@ -71,15 +68,13 @@ module.exports = function (gulp, config, $, args) {
 
     function jade (src, dest) {
         // change `app` variable based on --mock parameter
-        var data = {};
-        if (args.mock) {
-            data['app'] = 'appTest';
-        } else {
-            data['app'] = 'app';
-        }
+        var data = {
+            app: args.mock ? 'appTest' : 'app'
+        };
         return gulp
             .src(src)
             .pipe($.jade({
+                pretty: true,
                 locals: data
             }))
             .pipe(gulp.dest(dest));

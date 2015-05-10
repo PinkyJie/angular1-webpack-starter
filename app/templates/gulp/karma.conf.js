@@ -13,5 +13,5 @@ module.exports = function(config) {
         junitReporter: gulpConfig.karma.junit,
         reportSlowerThan: 500,
         browsers: ['chrome']
-  });
+    });
 };

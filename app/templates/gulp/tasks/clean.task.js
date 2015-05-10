@@ -13,13 +13,18 @@ module.exports = function (gulp, config, $, args) {
     });
 
     // Remove all files from the build folder
-    gulp.task('clean:build', function (done) {
+    gulp.task('clean', function (done) {
         clean(config.build.base, done);
     });
 
     // Remove all image files from the build folder
     gulp.task('clean:images', function (done) {
         clean(config.build.dev + 'static/images/**/*.*', done);
+    });
+
+    // Remove all font files from the build folder
+    gulp.task('clean:fonts', function (done) {
+        clean(config.build.dev + 'static/fonts/**/*.*', done);
     });
 
     // Remove all style files from the build folders
@@ -29,7 +34,7 @@ module.exports = function (gulp, config, $, args) {
 
     // Remove all javascript files from the build folders
     gulp.task('clean:js', function (done) {
-        clean(config.build.dev + 'static/**/*.js', done);
+        clean(config.js.app.target, done);
     });
 
     // Remove all html files from the build folders
@@ -48,7 +53,7 @@ module.exports = function (gulp, config, $, args) {
 
     // Remove all bower dependency files from the build folder
     gulp.task('clean:vendor', function (done) {
-        clean(config.build.dev + 'static/vendor');
+        clean(config.build.dev + 'static/vendor', done);
     });
 
     /////////

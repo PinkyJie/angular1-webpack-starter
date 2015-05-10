@@ -1,7 +1,7 @@
 module.exports = function (gulp, config, $, args) {
 
     gulp.task('styles', ['clean:styles'], function() {
-        config.fn.log('Compiling Stylus --> CSS');
+        config.fn.log('Compiling Stylus file to CSS');
 
         return gulp
             .src(config.css.source)

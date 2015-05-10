@@ -2,6 +2,7 @@ module.exports = function (gulp, config, $, args) {
 
     var browserSync = require('browser-sync');
     var port = process.env.PORT || config.browserSync.defaultPort;
+    var historyApiFallback = require('connect-history-api-fallback');
 
     /**
      * serve the development environment
@@ -32,35 +33,33 @@ module.exports = function (gulp, config, $, args) {
 
         // only watch files for development environment
         var watchedFiles = [].concat(
-            config.js.app,
+            config.js.app.source,
             config.css.singleSource,
             config.html.source,
             config.templateCache.source
         );
         if (args.mock) {
-            watchedFiles = watchedFiles.concat(config.js.stubs);
+            watchedFiles = watchedFiles.concat(config.js.test.stubs);
         }
         if (isDev) {
-            gulp.watch(watchedFiles, ['build:dev'])
+            gulp.watch(watchedFiles, ['build:dev', browserSync.reload])
                 .on('change', changeEvent);
         }
 
+        var baseDir = isDev ? config.build.dev : config.build.prod;
         var options = {
-            proxy: config.browserSync.hostName + ':' + port,
             port: port,
-            files: [],
-            ghostMode: { // these are the defaults t,f,t,t
-                clicks: true,
-                location: false,
-                forms: true,
-                scroll: true
-            },
-            injectChanges: true,
-            logFileChanges: true,
-            logLevel: 'debug',
-            logPrefix: 'gulp-patterns',
-            notify: true,
-            reloadDelay: config.browserSync.reloadDelay
+            online: false,
+            logLevel: 'info',
+            logPrefix: '<%= appName %>',
+            reloadDelay: config.browserSync.reloadDelay,
+            server: {
+                baseDir: baseDir,
+                index: 'index.html',
+                middleware: [
+                    historyApiFallback()
+                ]
+            }
         };
 
         browserSync(options);

@@ -4,13 +4,13 @@ module.exports = function (gulp, config, $, args) {
 
     // Build for development environment
     gulp.task('build:dev', ['lint'], function (done) {
-        runSeq('clean:build', 'jade', 'styles', 'inject:bower',
-            'inject:js:css', 'copy');
+        runSeq('clean', 'jade', 'styles', 'inject:bower',
+            'inject:js:css', ['copy:images', 'copy:fonts'], done);
     });
 
     // Build for production environment
     gulp.task('build:prod', function (done) {
-        runSeq('build:dev', 'tmeplatecache', 'optimize', 'copy:images:prod');
+        runSeq('build:dev', 'tmeplatecache', 'optimize', 'copy:images:prod', done);
     });
 
     gulp.task('optimize', function () {
