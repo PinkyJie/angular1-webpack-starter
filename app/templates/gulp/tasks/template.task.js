@@ -30,9 +30,16 @@ module.exports = function (gulp, config, $, args) {
         var wiredep = require('wiredep').stream;
         var options = config.wiredepOption;
 
+        // Also include mock dependencies with --mock flag
+        var mockDeps = [];
+        if (args.mock) {
+            mockDeps = config.bower.mockDeps;
+        }
+
         return gulp
             .src(config.html.target)
             .pipe(wiredep(options))
+            .pipe(config.fn.inject(mockDeps, 'mockDeps'))
             .pipe(gulp.dest(config.build.dev));
     });
 

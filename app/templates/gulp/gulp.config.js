@@ -38,7 +38,9 @@ module.exports = function() {
         json: bowerJson,
         source: client.source + 'vendor/',
         target: build.dev + 'static/vendor/',
-        ignorePath: ''
+        mockDeps: [
+            build.dev + 'static/vendor/angular-mocks/angular-mocks.js'
+        ]
     };
 
     // all configuration which will be returned
@@ -67,7 +69,6 @@ module.exports = function() {
             },
             test: {
                 stubs: [
-                    bower.target + 'angular-mocks/angular-mocks.js',
                     client.test + 'e2e/mocks/**/e2e.*.js'
                 ],
                 unit: {
@@ -143,8 +144,7 @@ module.exports = function() {
     function getWiredepDefaultOptions () {
         return {
             bowerJson: config.bower.json,
-            directory: config.bower.target,
-            ignorePath: config.bower.ignorePath
+            directory: config.bower.target
         };
     }
 
