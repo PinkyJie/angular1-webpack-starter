@@ -1,16 +1,21 @@
 body
     font-family Helvetica, arial
-
+    .wrapper
+        display flex
+        flex-direction column
+        min-height 100vh
 .content
-    position relative
-    padding-top 64px
-    min-height 500px
-    .main-view
-        padding 20px 40px
-        &.ng-enter, &.ng-leave
-            position absolute
-            width 100%
-        &.ng-enter
-            animation flipInX .8s
-        &.ng-leave
-            animation flipOutX .8s
+    margin-top 64px
+    display flex
+    flex 1
+    .main-content
+        flex 1
+        display flex
+        flex-direction column
+        .main-view
+            flex 1
+            display flex
+            justify-content center
+            align-items center
+            &.ng-enter
+                animation flipInX .8s

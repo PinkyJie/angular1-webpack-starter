@@ -24,13 +24,15 @@ html(lang="en", ng-app= app)
 body(ng-class="_class + '-page'")
     //- loading view
     .loading-view(ui-view="loading")
-    //- header/content/footer view
-    section.header-view(ui-view="header")
-    section.sidebar-view(ui-view="sidebar")
-    section.content
-        .breadcrumb-view(ui-view="breadcrumb")
-        .main-view(ui-view="main")
-    section.footer-view(ui-view="footer")
+    .wrapper
+        //- header/content/footer view
+        header.header-view(ui-view="header")
+        .content
+            .sidebar-view(ui-view="sidebar")
+            .main-content
+                .breadcrumb-view(ui-view="breadcrumb")
+                .main-view(ui-view="main")
+        footer.footer-view(ui-view="footer")
 
     // build:js js/lib.js
     // bower:js
