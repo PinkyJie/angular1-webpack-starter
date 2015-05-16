@@ -28,6 +28,8 @@
     "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.10.0",
     "gulp-load-plugins": "^0.10.0",
+    "gulp-minify-html": "^1.0.2",
+    "gulp-ng-annotate": "^0.5.3",
     "gulp-order": "^1.1.1",
     "gulp-plumber": "^1.0.0",
     "gulp-print": "^1.1.0",

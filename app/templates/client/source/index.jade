@@ -11,15 +11,17 @@ html(lang="en", ng-app= app)
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
     base(href="/")
 
-    // build:css styles/lib.css
-    // bower:css
-    // endbower
-    // endbuild
+    //- use HTML native comment syntax cause Jade comment syntax will lose a space
+    // use this to break lines
+    <!-- build:css static/styles/lib.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
 
-    // build:css styles/app.css
-    // inject:css
-    // endinject
-    // endbuild
+    <!-- build:css static/styles/app.css -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- endbuild -->
 
 body(ng-class="_class + '-page'")
     //- loading view
@@ -34,17 +36,18 @@ body(ng-class="_class + '-page'")
                 .main-view(ui-view="main")
         footer.footer-view(ui-view="footer")
 
-    // build:js js/lib.js
-    // bower:js
-    // endbower
-    // inject:mockDeps:js
-    // endinject
-    // endbuild
+    // break line
+    <!-- build:js static/js/lib.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- inject:mockDeps:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
 
-    // build:js js/app.js
-    // inject:js
-    // endinject
+    <!-- build:js static/js/app.js -->
+    <!-- inject:js -->
+    <!-- endinject -->
 
-    // inject:templates:js
-    // endinject
-    // endbuild
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+    <!-- endbuild -->

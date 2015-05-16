@@ -7,7 +7,7 @@ module.exports = function (gulp, config, $, args) {
         config.fn.log('Compiling jade templates to html files');
 
         var indexStream = jade(config.html.source, config.build.dev);
-        var templateStream = jade(config.templateCache.source, config.build.dev + 'static');
+        var templateStream = jade(config.templateCache.sourceJade, config.build.dev + 'static');
 
         return merge(indexStream, templateStream);
     });
@@ -48,7 +48,7 @@ module.exports = function (gulp, config, $, args) {
         config.fn.log('Creating an AngularJS $templateCache');
 
         return gulp
-            .src(config.templateCache.source)
+            .src(config.templateCache.sourceHtml)
             .pipe($.if(args.verbose, $.bytediff.start()))
             .pipe($.minifyHtml({empty: true}))
             .pipe($.if(args.verbose, $.bytediff.stop(bytediffFormatter)))

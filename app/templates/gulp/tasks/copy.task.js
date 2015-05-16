@@ -52,7 +52,7 @@ module.exports = function (gulp, config, $, args) {
 
     // Copy fonts files to prod folder
     gulp.task('copy:fonts:prod', function () {
-        return copy(config.build.dev + 'static/images', config.build.prod + 'static/images');
+        return copy(config.build.dev + 'static/fonts/**/*', config.build.prod + 'static/fonts');
     });
 
     ////////

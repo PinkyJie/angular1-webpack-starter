@@ -98,11 +98,15 @@ module.exports = function() {
             target: build.dev + 'index.html'
         },
         templateCache: {
-            source: client.app + '**/*.jade',
+            sourceJade: client.app + '**/*.jade',
+            sourceHtml: [
+                build.dev + 'static/**/*.html',
+                '!' + build.dev + 'static/vendor/**/*.*',
+            ],
             target: 'templates.js',
             options: {
                 module: 'app.core',
-                root: '/static/app/',
+                root: 'static/',
                 standAlone: false
             }
         },
@@ -122,8 +126,8 @@ module.exports = function() {
             libJS: 'lib.js'
         },
         packages: [
-            './package.json',
-            './bower.json'
+            '../package.json',
+            '../bower.json'
         ]
     };
 
@@ -203,6 +207,7 @@ module.exports = function() {
     function inject (src, label, order) {
         var options = {
             read: false,
+            relative: true,
             ignorePath: '/client/build/dev'
         };
         if (label) {

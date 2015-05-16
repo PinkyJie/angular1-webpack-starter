@@ -10,7 +10,8 @@ module.exports = function (gulp, config, $, args) {
 
     // Build for production environment
     gulp.task('build:prod', function (done) {
-        runSeq('build:dev', 'tmeplatecache', 'optimize', 'copy:images:prod', done);
+        runSeq('build:dev', 'templatecache', 'optimize',
+            'copy:images:prod', 'copy:fonts:prod', 'clean:temp', done);
     });
 
     gulp.task('optimize', function () {
@@ -22,7 +23,7 @@ module.exports = function (gulp, config, $, args) {
         var jsAppFilter = $.filter('**/' + config.optimized.appJS);
         var jslibFilter = $.filter('**/' + config.optimized.libJS);
 
-        var templateCache = config.temp + config.templateCache.target;
+        var templateCache = config.build.temp + config.templateCache.target;
 
         return gulp
             .src(config.html.target)
@@ -56,13 +57,13 @@ module.exports = function (gulp, config, $, args) {
     ///////////
 
     function getHeader () {
-        var pkg = require('./package.json');
+        var pkg = require('../../package.json');
         var template = ['/**',
-            ' * <%%= pkg.name %> - <%%= pkg.description %>',
-            ' * @authors <%%= pkg.authors %>',
-            ' * @version v<%%= pkg.version %>',
-            ' * @link <%%= pkg.homepage %>',
-            ' * @license <%%= pkg.license %>',
+            ' * <%= pkg.name %> - <%= pkg.description %>',
+            ' * @authors <%= pkg.authors %>',
+            ' * @version v<%= pkg.version %>',
+            ' * @link <%= pkg.homepage %>',
+            ' * @license <%= pkg.license %>',
             ' */',
             ''
         ].join('\n');
