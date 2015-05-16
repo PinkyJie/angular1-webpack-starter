@@ -1,8 +1,5 @@
 // simple responsive utility
 
-// screen sizes from https://material.angularjs.org
-sizes = 600 960 1200
-
 // pass (min, max) will generate (min-width) and (max-width)
 // pass (min) will generate (min-width)
 generate-media(args...)
@@ -17,45 +14,21 @@ generate-media(args...)
 
 // small device: 0 ~ 600px
 sm()
-    +generate-media(0, sizes[0])
+    +generate-media(0, $sizes[0])
         {block}
 
 // middle device: 600px ~ 960px
 md()
-    +generate-media(sizes[0], sizes[1])
+    +generate-media($sizes[0], $sizes[1])
         {block}
 
 // large device: 960px ~ 1200px
 lg()
-    +generate-media(sizes[1], sizes[2])
+    +generate-media($sizes[1], $sizes[2])
         {block}
 
 // extra large device: 1200px ~
 xl()
-    +generate-media(sizes[2])
+    +generate-media($sizes[2])
         {block}
 
-// generate handy class for show/hide in different screens
-.hide-sm
-    +sm()
-        display none
-
-.hide-gt-sm
-    +generate-media(sizes[0])
-        display none
-
-.hide-md
-    +md()
-        display none
-
-.hide-gt-md
-    +generate-media(sizes[1])
-        display none
-
-.hide-lg
-    +lg()
-        display none
-
-.hide-gt-lg
-    +generate-media(sizes[2])
-        display none
