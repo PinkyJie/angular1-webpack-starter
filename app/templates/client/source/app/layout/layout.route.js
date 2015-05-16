@@ -35,7 +35,8 @@
                             controller: 'BreadcrumbController as vm'
                         },
                         'footer': {
-                            templateUrl: 'static/layout/footer.html'
+                            templateUrl: 'static/layout/footer.html',
+                            controller: 'FooterController as vm'
                         }
                     }
                 }
@@ -47,6 +48,9 @@
                     views: {
                         'main@': {
                             templateUrl: 'static/layout/404.html'
+                        },
+                        'sidebar@': {
+                            template: ''
                         }
                     },
                     data: {
