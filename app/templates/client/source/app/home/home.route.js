@@ -19,6 +19,12 @@
                     views: {
                         'main@': {
                             templateUrl: 'static/home/home.html'
+                        },
+                        'sidebar@': {
+                            template: ''
+                        },
+                        'breadcrumb@': {
+                            template: ''
                         }
                     },
                     data: {

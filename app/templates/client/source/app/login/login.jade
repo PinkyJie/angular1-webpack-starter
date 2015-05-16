@@ -1,7 +1,7 @@
 .login-view
     form.card(name="vm.loginForm", ng-submit="vm.login(vm.credential)")
         .card__header(class="p+")
-            | Please sign in first
+            | Please sign in with your Email and Password
         .card__body(class="p++")
             lx-text-field(label="Email", fixed-label="true", icon="email")
                 input(type="text", ng-model="vm.credential.email", ng-required)
