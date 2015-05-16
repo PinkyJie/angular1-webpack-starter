@@ -2,7 +2,7 @@
     .card.bgc-blue-500.tc-white
         .toolbar
             .toolbar__left.mr
-                button.btn.btn--l.btn--white.btn--icon.hide-gt-sm(class="mr+", lx-ripple)
+                button.btn.btn--l.btn--white.btn--icon.hide-gt-sm(class="mr+", lx-ripple, ng-if="hasSidebar", ng-click="vm.switchSidebar()")
                     i.mdi.mdi-menu
                 img.logo(src="/static/images/layout/logo.png")
             .toolbar__label.fs-title

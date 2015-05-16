@@ -28,7 +28,7 @@ body(ng-class="_class + '-page'")
         //- header/content/footer view
         header.header-view(ui-view="header")
         .content
-            .sidebar-view(ui-view="sidebar")
+            .sidebar-view(ui-view="sidebar", ng-class="{'show': showSidebar}")
             .main-content
                 .breadcrumb-view(ui-view="breadcrumb")
                 .main-view(ui-view="main")
