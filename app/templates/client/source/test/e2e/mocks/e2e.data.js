@@ -4,9 +4,9 @@
 
     angular
         .module('appTest')
-        .factory('MockData', MockData);
+        .factory('mockData', mockData);
 
-    function MockData () {
+    function mockData () {
         var _loginStatus = false;
         var service = {
             loginStatus: _loginStatus,

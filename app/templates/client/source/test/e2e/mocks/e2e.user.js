@@ -4,22 +4,22 @@
 
     angular
         .module('appTest')
-        .run(UserServiceMock);
+        .run(userServiceMock);
 
-    UserServiceMock.$inject = ['MockData', '$httpBackend'];
+    userServiceMock.$inject = ['mockData', '$httpBackend'];
     /* @ngInject */
-    function UserServiceMock (MockData, $httpBackend) {
-        $httpBackend.whenGET('api/user/loginstatus').respond(LoginStatusHandler);
-        $httpBackend.whenPOST('api/user/login').respond(LoginHandler);
-        $httpBackend.whenPOST('api/user/logout').respond(LogoutHandler);
+    function userServiceMock (mockData, $httpBackend) {
+        $httpBackend.whenGET('api/user/loginstatus').respond(loginStatusHandler);
+        $httpBackend.whenPOST('api/user/login').respond(loginHandler);
+        $httpBackend.whenPOST('api/user/logout').respond(logoutHandler);
 
-        function LoginStatusHandler () {
-            var code = MockData.loginstatus ? 0 : 1;
-            var result = MockData.loginstatus ? {user: MockData.userInfo} : null;
+        function loginStatusHandler () {
+            var code = mockData.loginStatus ? 0 : 1;
+            var result = mockData.loginStatus ? {user: mockData.userInfo} : null;
             return [200, {code: code, message: null, result: result}];
         }
 
-        function LoginHandler (method, url, data) {
+        function loginHandler (method, url, data) {
             var req = JSON.parse(data);
             if (req.email === 'error@error.com') {
                 return [200, {
@@ -34,18 +34,18 @@
                     result: null
                 }];
             } else {
-                MockData.loginStatus = true;
+                mockData.loginStatus = true;
                 return [200, {
                     code: 0, message: null,
                     result: {
-                        user: MockData.userInfo
+                        user: mockData.userInfo
                     }
                 }];
             }
         }
 
-        function LogoutHandler () {
-            MockData.loginStatus = false;
+        function logoutHandler () {
+            mockData.loginStatus = false;
             return [200, {code: 0, message: null, result: null}];
         }
     }

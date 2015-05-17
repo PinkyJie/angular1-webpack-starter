@@ -5,9 +5,9 @@
         .module('app.layout')
         .controller('HeaderController', HeaderController);
 
-    HeaderController.$inject = ['$state', '$rootScope', 'User', 'Event'];
+    HeaderController.$inject = ['$state', '$rootScope', 'Event'];
     /* @ngInject */
-    function HeaderController($state, $rootScope, User, Event) {
+    function HeaderController($state, $rootScope, Event) {
         var vm = this;
 
         vm.go = $state.go;
