@@ -1,6 +1,6 @@
 .sidebar
     ul.sidebar-menu(class="p")
-        li.menu-item(class="p", ng-repeat="nav in ::vm.navs", ui-sref-active="active")
+        li.menu-item.text-center(class="p", ng-repeat="nav in ::vm.navs", ui-sref-active="active")
             a.tc-black.link(ui-sref="{{::nav.link}}")
                 i.icon.icon--s.icon--grey.icon--flat.mdi(class="{{::nav.icon}}")
                 span.ml.text {{::nav.text}}

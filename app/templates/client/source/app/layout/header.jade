@@ -2,7 +2,7 @@
     .card.bgc-blue-500.tc-white
         .toolbar
             .toolbar__left.mr
-                button.btn.btn--l.btn--white.btn--icon.hide-gt-sm(class="mr+", lx-ripple, ng-if="hasSidebar", ng-click="vm.switchSidebar()")
+                button.btn.btn--l.btn--white.btn--icon.hide-gt-sm(lx-ripple, ng-if="hasSidebar", ng-click="vm.switchSidebar()")
                     i.mdi.mdi-menu
                 img.logo(src="/static/images/layout/logo.png")
             .toolbar__label.fs-title
@@ -10,12 +10,15 @@
             .toolbar__right
                 button.btn.btn--l.btn--white.btn--icon(ng-click="vm.go('root.login')", lx-ripple="white", ng-if="!vm.isLoggedIn")
                     i.mdi.mdi-login
-                span(ng-if="vm.isLoggedIn") {{vm.userInfo.name}}
+                span.hide-sm(ng-if="vm.isLoggedIn") {{vm.userInfo.name}}
                 lx-dropdown(position="right", from-top, ng-if="vm.isLoggedIn")
                     button.btn.btn--xl.btn--white.btn--icon(lx-ripple, lx-dropdown-toggle)
                         i.mdi.mdi-dots-vertical
                     lx-dropdown-menu
                         ul
+                            li.hide-gt-sm.text-center.tc-grey-500(ng-if="vm.isLoggedIn")
+                                span {{vm.userInfo.name}}
+                            li.hide-gt-sm.dropdown-divider
                             li
                                 a.dropdown-link(ui-sref="root.login({action: 'logout'})")
                                     i.mdi.mdi-logout.mr
