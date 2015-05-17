@@ -10,6 +10,7 @@
             .toolbar__right
                 button.btn.btn--l.btn--white.btn--icon(ng-click="vm.go('root.login')", lx-ripple="white", ng-if="!vm.isLoggedIn")
                     i.mdi.mdi-login
+                span(ng-if="vm.isLoggedIn") {{vm.userInfo.name}}
                 lx-dropdown(position="right", from-top, ng-if="vm.isLoggedIn")
                     button.btn.btn--xl.btn--white.btn--icon(lx-ripple, lx-dropdown-toggle)
                         i.mdi.mdi-dots-vertical
