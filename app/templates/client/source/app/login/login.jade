@@ -2,11 +2,13 @@
     form.card(name="vm.loginForm", ng-submit="vm.login(vm.credential)")
         .card__header(class="p+")
             | Please sign in with your Email and Password
+        .login-message(class="{{vm.loginError.type}}", ng-if="vm.loginError")
+            p.tc-white {{vm.loginError.text}}
         .card__body(class="p++")
             lx-text-field(label="Email", fixed-label="true", icon="email")
-                input(type="text", ng-model="vm.credential.email", ng-required)
+                input(type="email", ng-model="vm.credential.email", required)
             lx-text-field(label="Password", fixed-label="true", icon="key")
-                input(type="password", ng-model="vm.credential.password", ng-required)
+                input(type="password", ng-model="vm.credential.password", required)
         .card__actions.text-center(class="p+")
             button.btn.btn--l.btn--blue.btn--raised(type="submit",
-                ng-disable="!vm.loginForm.$valid", ng-class="{'btn--is-disabled': !vm.loginForm.$valid}") Sign In
+                ng-disable="vm.loginForm.$invalid", ng-class="{'btn--is-disabled': vm.loginForm.$invalid}") Sign In
