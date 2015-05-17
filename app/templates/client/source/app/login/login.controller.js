@@ -42,7 +42,13 @@
 
             function success (data) {
                 vm.loginError = null;
-                $state.go(_routeAfterLogin);
+                // user was redirect to login page
+                if ($state.prev) {
+                    $state.go($state.prev.state, $state.prev.params);
+                    $state.prev = null;
+                } else {
+                    $state.go(_routeAfterLogin);
+                }
             }
 
             function error (reason) {
