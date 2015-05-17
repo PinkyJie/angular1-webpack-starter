@@ -6,7 +6,7 @@
             p.tc-white {{vm.loginError.text}}
         .card__body(class="p++")
             lx-text-field(label="Email", fixed-label="true", icon="email")
-                input(type="email", ng-model="vm.credential.email", required)
+                input(type="email", ng-model="vm.credential.email", required, aio-focus-me="true")
             lx-text-field(label="Password", fixed-label="true", icon="key")
                 input(type="password", ng-model="vm.credential.password", required)
         .card__actions.text-center(class="p+")
