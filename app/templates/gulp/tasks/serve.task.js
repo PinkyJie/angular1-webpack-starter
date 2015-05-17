@@ -36,7 +36,7 @@ module.exports = function (gulp, config, $, args) {
             config.js.app.source,
             config.css.singleSource,
             config.html.source,
-            config.templateCache.source
+            config.templateCache.sourceJade
         );
         if (args.mock) {
             watchedFiles = watchedFiles.concat(config.js.test.stubs);
