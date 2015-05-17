@@ -11,10 +11,16 @@
 
     .ngplus-overlay-content
         position absolute
-        width 500px
-        height 250px
+        width $loadingImageWidth
+        height $loadingImageHeight
         top 50% !important
         left 50% !important
         margin-left -(@width / 2)
         margin-top -(@height / 2)
         z-index 10000
+
+    .loading-image
+        width $loadingImageWidth
+        height $loadingImageHeight
+        background-image url('/static/images/layout/loading.gif')
+        background-position center
