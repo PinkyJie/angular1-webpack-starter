@@ -19,16 +19,13 @@
                     // all API response will be delayed 1s to simulate real network
                     var delay = 1000;
                     if (response.config.url.match(/^api\//)) {
-                        var defer = $q.defer();
+                        var d = $q.defer();
                         $timeout(function () {
-                            response.then(function (data) {
-                                defer.resolve(data);
-                            });
+                            d.resolve(response);
                         }, delay);
-                        return defer.promise;
-                    } else {
-                        return response;
+                        return d.promise;
                     }
+                    return response;
                 }
             };
         }
