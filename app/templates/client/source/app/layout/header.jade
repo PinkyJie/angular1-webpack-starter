@@ -8,7 +8,7 @@
             .toolbar__label.fs-title
                 a.tc-white(ui-sref="root.home") AIO Angular
             .toolbar__right
-                button.btn.btn--l.btn--white.btn--icon(ng-click="vm.go('root.login')", lx-ripple="white", ng-if="!vm.isLoggedIn")
+                a.btn.btn--l.btn--white.btn--icon(ui-sref="root.login", lx-ripple="white", ng-if="!vm.isLoggedIn")
                     i.mdi.mdi-login
                 span.hide-sm(ng-if="vm.isLoggedIn") {{vm.userInfo.name}}
                 lx-dropdown(position="right", from-top, ng-if="vm.isLoggedIn")

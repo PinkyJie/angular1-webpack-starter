@@ -5,12 +5,11 @@
         .module('app.layout')
         .controller('HeaderController', HeaderController);
 
-    HeaderController.$inject = ['$state', '$rootScope', 'Event'];
+    HeaderController.$inject = ['$rootScope', 'Event'];
     /* @ngInject */
-    function HeaderController($state, $rootScope, Event) {
+    function HeaderController($rootScope, Event) {
         var vm = this;
 
-        vm.go = $state.go;
         vm.switchSidebar = switchSidebar;
 
         init();
