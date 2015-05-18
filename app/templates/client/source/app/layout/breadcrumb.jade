@@ -1,0 +1,9 @@
+ol.breadcrumb(class="p+")
+    li.home-item
+        a.btn.btn--xs.btn--blue.btn--fab.lx-ripple(ui-sref="root.home")
+            i.mdi.mdi-home
+    li.breadcrumb-item(ng-repeat="nav in ::vm.breadcrumbs")
+        i.icon.tc-white.icon--xs.mdi.mdi-chevron-right
+        a.tc-white(ng-if="!$last", ui-sref="::nav.link")
+            | {{::nav.text}}
+        span.tc-white(ng-if="$last") {{::nav.text}}

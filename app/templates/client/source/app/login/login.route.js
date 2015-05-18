@@ -21,6 +21,9 @@
                             templateUrl: 'static/login/login.html',
                             controller: 'LoginController as vm'
                         },
+                        'breadcrumb@': {
+                            template: ''
+                        },
                         'sidebar@': {
                             template: ''
                         }
@@ -28,8 +31,7 @@
                     data: {
                         title: 'Login',
                         _class: 'login'
-                    },
-                    breadcrumb: 'Login'
+                    }
                 }
             }
         ];
