@@ -1,5 +1,5 @@
 .login-view
-    form.card(name="vm.loginForm", ng-submit="vm.login(vm.credential)")
+    form.card(name="vm.loginForm", ng-submit="vm.login(vm.credential)", novalidate)
         .card__header(class="p+")
             | Please sign in with your Email and Password
         .login-message(class="{{vm.loginError.type}}", ng-if="vm.loginError")
