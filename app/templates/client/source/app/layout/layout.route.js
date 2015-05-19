@@ -56,7 +56,8 @@
                     data: {
                         title: '404',
                         _class: 'notfound'
-                    }
+                    },
+                    breadcrumb: '404'
                 }
             }
         ];
