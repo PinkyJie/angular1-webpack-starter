@@ -5,10 +5,18 @@
         .module('app.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = [];
+    DashboardController.$inject = ['user'];
     /* @ngInject */
-    function DashboardController() {
+    function DashboardController(user) {
         var vm = this;
 
+        init();
+
+        //////////////
+
+        function init () {
+            vm.userInfo = user.userInfo();
+            vm.phoneLength = 20;
+        }
     }
 })();

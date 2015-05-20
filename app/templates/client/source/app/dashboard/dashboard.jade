@@ -1,2 +1,8 @@
 .dashboard-view
-    p Dashboard View
+    .card.bgc-blue-100(class="p+")
+        p Welcome {{vm.userInfo.name}}!
+    .boxes
+        a.box.tc-white.bgc-indigo-300(ui-sref="root.phone")
+            i.icon.icon--xl.icon--flat.mdi.mdi-cellphone-android
+            span.count {{vm.phoneLength}}
+            p.name Phones
