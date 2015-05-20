@@ -8,7 +8,7 @@
         'app.home',
         'app.login',
         'app.dashboard',
-        'app.product'
+        'app.phone'
     ]);
 
 })();
