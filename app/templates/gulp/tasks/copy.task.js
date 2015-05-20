@@ -6,10 +6,7 @@ module.exports = function (gulp, config, $, args) {
     gulp.task('copy:images', ['clean:images'], function () {
         config.fn.log('Compressing and copying images');
 
-        return gulp
-            .src(config.resource.images)
-            .pipe($.imagemin({optimizationLevel: 4}))
-            .pipe(gulp.dest(config.build.dev + 'static/images'));
+        return copy(config.resource.images, config.build.dev + 'static/images');
     });
 
     // Copy font files
@@ -45,9 +42,13 @@ module.exports = function (gulp, config, $, args) {
         return copy(config.bower.source + '/**/*', config.bower.target);
     });
 
-    // Copy image files to prod folder
+    // Optimize and Copy image files to prod folder
     gulp.task('copy:images:prod', function () {
-        return copy(config.build.dev + 'static/images/**/*', config.build.prod + 'static/images');
+        return gulp
+            .src(config.build.dev + 'static/images/**/*')
+            .pipe($.imagemin({optimizationLevel: 4}))
+            .pipe(gulp.dest(config.build.prod + 'static/images'));
+
     });
 
     // Copy fonts files to prod folder
