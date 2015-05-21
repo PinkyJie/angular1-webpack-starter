@@ -7,7 +7,7 @@
 
     BreadcrumbController.$inject = ['routerHelper', '$state', '$rootScope'];
     /* @ngInject */
-    function BreadcrumbController(routerHelper, $state, $rootScope) {
+    function BreadcrumbController (routerHelper, $state, $rootScope) {
         var vm = this;
 
         init();

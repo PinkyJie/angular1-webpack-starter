@@ -12,7 +12,7 @@
 
     appConfig.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];
     /* @ngInject */
-    function appConfig($logProvider, routerHelperProvider, exceptionHandlerProvider) {
+    function appConfig ($logProvider, routerHelperProvider, exceptionHandlerProvider) {
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }

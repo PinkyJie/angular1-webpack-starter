@@ -1,4 +1,4 @@
-module.exports = function() {
+module.exports = function () {
     // dependencies used in this file
     var wiredep = require('wiredep');
     var bowerJson = require('../bower.json');

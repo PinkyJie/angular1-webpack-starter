@@ -24,7 +24,7 @@ module.exports = function (gulp, config, $, args) {
 
     ///////////
 
-    function startBrowserSync(isDev) {
+    function startBrowserSync (isDev) {
         if (args.nosync || browserSync.active) {
             return;
         }
@@ -65,7 +65,7 @@ module.exports = function (gulp, config, $, args) {
         browserSync(options);
     }
 
-    function changeEvent(event) {
+    function changeEvent (event) {
         var srcPattern = new RegExp('/.*(?=/' + config.client.source + ')/');
         config.fn.log('File ' + event.path.replace(srcPattern, '') + ' ' + event.type);
     }

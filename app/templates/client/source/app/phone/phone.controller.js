@@ -7,7 +7,7 @@
 
     PhoneController.$inject = [];
     /* @ngInject */
-    function PhoneController() {
+    function PhoneController () {
         var vm = this;
 
     }

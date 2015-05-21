@@ -1,5 +1,5 @@
 // all events
-(function() {
+(function () {
     'use strict';
 
     angular

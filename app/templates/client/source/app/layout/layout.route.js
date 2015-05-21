@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,12 +6,12 @@
         .run(appRun);
 
     /* @ngInject */
-    function appRun(routerHelper) {
+    function appRun (routerHelper) {
         var otherwise = '/404';
         routerHelper.configureStates(getStates(), otherwise);
     }
 
-    function getStates() {
+    function getStates () {
         return [
             {
                 state: 'root',

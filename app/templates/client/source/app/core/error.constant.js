@@ -1,5 +1,5 @@
 // all error messages
-(function() {
+(function () {
     'use strict';
 
     angular

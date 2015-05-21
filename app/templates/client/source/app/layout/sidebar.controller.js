@@ -7,7 +7,7 @@
 
     SidebarController.$inject = ['routerHelper', '$scope', '$rootScope'];
     /* @ngInject */
-    function SidebarController(routerHelper, $scope, $rootScope) {
+    function SidebarController (routerHelper, $scope, $rootScope) {
         var vm = this;
 
         vm.hideSidebar = hideSidebar;

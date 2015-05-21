@@ -7,7 +7,7 @@
 
     FooterController.$inject = [];
     /* @ngInject */
-    function FooterController() {
+    function FooterController () {
         var vm = this;
 
         vm.year = (new Date()).getFullYear();

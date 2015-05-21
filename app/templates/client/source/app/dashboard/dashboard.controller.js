@@ -7,7 +7,7 @@
 
     DashboardController.$inject = ['user'];
     /* @ngInject */
-    function DashboardController(user) {
+    function DashboardController (user) {
         var vm = this;
 
         init();

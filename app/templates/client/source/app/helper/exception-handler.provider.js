@@ -1,5 +1,5 @@
 // Handle app level exception
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8,7 +8,7 @@
         .config(config);
 
     // Configure log prefix for error handling
-    function exceptionHandlerProvider() {
+    function exceptionHandlerProvider () {
         /* jshint validthis:true */
         this.config = {
             appErrorPrefix: undefined
@@ -18,7 +18,7 @@
             this.config.appErrorPrefix = appErrorPrefix;
         };
 
-        this.$get = function() {
+        this.$get = function () {
             return {config: this.config};
         };
     }
@@ -26,7 +26,7 @@
     config.$inject = ['$provide'];
 
     // Use decorator to extend the original $exceptionHandler:
-    function config($provide) {
+    function config ($provide) {
         $provide.decorator('$exceptionHandler', extendExceptionHandler);
     }
 
@@ -35,8 +35,8 @@
     // Extend the original $exceptionHandler service.
     // * add error log prefix using exceptionHandlerProvider
     // * do other thing with error log
-    function extendExceptionHandler($delegate, exceptionHandler, logger) {
-        return function(exception, cause) {
+    function extendExceptionHandler ($delegate, exceptionHandler, logger) {
+        return function (exception, cause) {
             var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
             var errorData = {exception: exception, cause: cause};
             exception.message = appErrorPrefix + exception.message;

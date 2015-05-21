@@ -69,7 +69,7 @@ module.exports = function (gulp, config, $, args) {
             formatPercent(1 - data.percent, 2) + '%' + difference;
     }
 
-    function formatPercent(num, precision) {
+    function formatPercent (num, precision) {
         return (num * 100).toFixed(precision);
     }
 

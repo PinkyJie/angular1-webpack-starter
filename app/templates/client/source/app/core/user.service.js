@@ -7,7 +7,7 @@
 
     userSerivce.$inject = ['$http', '$q', '$rootScope', 'Event'];
     /* @ngInject */
-    function userSerivce($http, $q, $rootScope, Event) {
+    function userSerivce ($http, $q, $rootScope, Event) {
         var _isLoggedIn;
         var _userInfo;
         var service = {

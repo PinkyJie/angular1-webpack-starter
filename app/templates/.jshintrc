@@ -20,9 +20,7 @@
     "unused": false,
     "strict": false,
     "maxparams": 10,
-    "maxdepth": 5,
-    "maxstatements": 40,
-    "maxlen": 120,
+    "maxlen": 100,
 
     "asi": false,
     "boss": false,

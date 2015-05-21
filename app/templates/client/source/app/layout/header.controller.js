@@ -7,7 +7,7 @@
 
     HeaderController.$inject = ['$rootScope', 'Event'];
     /* @ngInject */
-    function HeaderController($rootScope, Event) {
+    function HeaderController ($rootScope, Event) {
         var vm = this;
 
         vm.switchSidebar = switchSidebar;

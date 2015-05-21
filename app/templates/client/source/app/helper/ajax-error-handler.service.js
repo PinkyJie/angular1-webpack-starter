@@ -1,5 +1,5 @@
 // Provide a unify handler to handle $http request failure
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -9,13 +9,13 @@
     ajaxErrorHanlderService.$inject = ['ErrorMessage'];
 
     /* @ngInject */
-    function ajaxErrorHanlderService(Error) {
+    function ajaxErrorHanlderService (Error) {
         var service = {
             getMessage: getMessage
         };
         return service;
 
-        function getMessage(reason) {
+        function getMessage (reason) {
             return Error[reason] || Error['$SERVER'];
         }
     }

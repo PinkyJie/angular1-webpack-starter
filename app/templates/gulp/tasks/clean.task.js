@@ -59,7 +59,7 @@ module.exports = function (gulp, config, $, args) {
     /////////
 
     // Log and delete the path
-    function clean(path, done) {
+    function clean (path, done) {
         config.fn.log('Cleaning: ' + $.util.colors.blue(path));
         del(path, done);
     }

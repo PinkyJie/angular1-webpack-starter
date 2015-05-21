@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,11 +6,11 @@
         .run(appRun);
 
     /* @ngInject */
-    function appRun(routerHelper) {
+    function appRun (routerHelper) {
         routerHelper.configureStates(getStates());
     }
 
-    function getStates() {
+    function getStates () {
         return [
             {
                 state: 'root.phone',

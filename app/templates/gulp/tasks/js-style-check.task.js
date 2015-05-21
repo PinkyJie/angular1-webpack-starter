@@ -1,7 +1,7 @@
 module.exports = function (gulp, config, $, args) {
 
     // jshint/jscs all js files
-    gulp.task('lint', function() {
+    gulp.task('lint', function () {
         config.fn.log('Analyzing source with JSHint and JSCS');
 
         return gulp

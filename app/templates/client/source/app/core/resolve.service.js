@@ -7,7 +7,7 @@
 
     resolve.$inject = ['user', '$q'];
     /* @ngInject */
-    function resolve(user, $q) {
+    function resolve (user, $q) {
         return {
             login: login
         };

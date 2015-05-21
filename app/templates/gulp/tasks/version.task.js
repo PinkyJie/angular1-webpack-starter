@@ -8,7 +8,7 @@ module.exports = function (gulp, config, $, args) {
      * --type=major will bump the major version x.*.*
      * --ver=1.2.3 will bump to a specific version and ignore other flags
      */
-    gulp.task('bump', function() {
+    gulp.task('bump', function () {
         var msg = 'Bumping versions';
         var type = args.type;
         var version = args.ver;

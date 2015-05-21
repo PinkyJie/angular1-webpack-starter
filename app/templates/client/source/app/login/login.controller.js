@@ -7,7 +7,7 @@
 
     LoginController.$inject = ['user', '$state', 'ajaxErrorHanlder'];
     /* @ngInject */
-    function LoginController(user, $state, ajaxErrorHanlder) {
+    function LoginController (user, $state, ajaxErrorHanlder) {
         var vm = this;
 
         vm.login = login;

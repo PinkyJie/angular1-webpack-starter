@@ -27,12 +27,12 @@ module.exports = function (gulp, config, $, args) {
             .pipe(protractor({
                 configFile: __dirname + '../protractor.config.js'
             }))
-            .on('error', function(e) { throw e; });
+            .on('error', function (e) { throw e; });
     });
 
     /////////////
 
-    function startUnitTests(singleRun, done) {
+    function startUnitTests (singleRun, done) {
         var child;
         var excludeFiles = [];
         var fork = require('child_process').fork;
@@ -56,7 +56,7 @@ module.exports = function (gulp, config, $, args) {
 
         ////////////////
 
-        function karmaCompleted(karmaResult) {
+        function karmaCompleted (karmaResult) {
             config.fn.log('Karma completed');
             if (child) {
                 config.fn.log('shutting down the child process');

@@ -1,5 +1,5 @@
 // Help configure the state-base ui.router
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8,7 +8,7 @@
 
     routerHelperProvider.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
     /* @ngInject */
-    function routerHelperProvider($locationProvider, $stateProvider, $urlRouterProvider) {
+    function routerHelperProvider ($locationProvider, $stateProvider, $urlRouterProvider) {
         /* jshint validthis:true */
         var config = {
             mainTitle: undefined,
@@ -17,14 +17,14 @@
 
         $locationProvider.html5Mode(true);
 
-        this.configure = function(cfg) {
+        this.configure = function (cfg) {
             angular.extend(config, cfg);
         };
 
         this.$get = RouterHelper;
         RouterHelper.$inject = ['$location', '$rootScope', '$state', 'logger', 'resolve'];
         /* @ngInject */
-        function RouterHelper($location, $rootScope, $state, logger, resolve) {
+        function RouterHelper ($location, $rootScope, $state, logger, resolve) {
             var handlingStateChangeError = false;
             var hasOtherwise = false;
             var stateCounts = {
@@ -44,8 +44,8 @@
 
             ///////////////
 
-            function configureStates(states, otherwisePath) {
-                states.forEach(function(state) {
+            function configureStates (states, otherwisePath) {
+                states.forEach(function (state) {
                     // add login check if requireLogin is true
                     var data = state.config.data;
                     if (data && data.requireLogin === true) {
@@ -64,12 +64,12 @@
                 }
             }
 
-            function handleRoutingErrors() {
+            function handleRoutingErrors () {
                 // Route cancellation:
                 // On routing error, go to the dashboard.
                 // Provide an exit clause if it tries to do it twice.
                 $rootScope.$on('$stateChangeError',
-                    function(event, toState, toParams, fromState, fromParams, error) {
+                    function (event, toState, toParams, fromState, fromParams, error) {
                         if (handlingStateChangeError) {
                             return;
                         }
@@ -96,16 +96,16 @@
                 );
             }
 
-            function init() {
+            function init () {
                 handleRoutingErrors();
                 updateDocTitle();
             }
 
-            function getStates() { return $state.get(); }
+            function getStates () { return $state.get(); }
 
-            function updateDocTitle() {
+            function updateDocTitle () {
                 $rootScope.$on('$stateChangeSuccess',
-                    function(event, toState, toParams, fromState, fromParams) {
+                    function (event, toState, toParams, fromState, fromParams) {
                         stateCounts.changes++;
                         handlingStateChangeError = false;
                         var title = (toState.data.title + ' - ' || '') + config.mainTitle;
