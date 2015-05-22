@@ -5,10 +5,21 @@
         .module('app.phone')
         .controller('PhoneController', PhoneController);
 
-    PhoneController.$inject = [];
+    PhoneController.$inject = ['phoneAPI'];
     /* @ngInject */
-    function PhoneController () {
+    function PhoneController (phoneAPI) {
         var vm = this;
+
+        init();
+
+        /////////////
+
+        function init () {
+            phoneAPI.getPhones()
+                .then(function (data) {
+                    vm.phones = data;
+                });
+        }
 
     }
 })();
