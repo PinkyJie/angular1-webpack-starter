@@ -5,9 +5,9 @@
         .module('app.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['user'];
+    DashboardController.$inject = ['userAPI'];
     /* @ngInject */
-    function DashboardController (user) {
+    function DashboardController (userAPI) {
         var vm = this;
 
         vm.colors = [
@@ -21,12 +21,12 @@
         //////////////
 
         function init () {
-            vm.userInfo = user.getUserInfo();
+            vm.userInfo = userAPI.getUserInfo();
             _getProductsSummary();
         }
 
         function _getProductsSummary () {
-            user.getProductSummary()
+            userAPI.getProductSummary()
                 .then(function (data) {
                     vm.products = data;
                     vm.products.forEach(function (product) {

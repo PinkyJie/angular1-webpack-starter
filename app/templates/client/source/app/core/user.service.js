@@ -3,7 +3,7 @@
 
     angular
         .module('app.core')
-        .factory('user', userSerivce);
+        .factory('userAPI', userSerivce);
 
     userSerivce.$inject = ['$http', '$q', '$rootScope', 'Event'];
     /* @ngInject */

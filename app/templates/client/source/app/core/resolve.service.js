@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('resolve', resolve);
 
-    resolve.$inject = ['user', '$q'];
+    resolve.$inject = ['userAPI', '$q'];
     /* @ngInject */
-    function resolve (user, $q) {
+    function resolve (userAPI, $q) {
         return {
             login: login
         };
@@ -16,7 +16,7 @@
 
         function login () {
             var d = $q.defer();
-            user.checkLoggedInStatus()
+            userAPI.checkLoggedInStatus()
                 .then(success)
                 .catch(error);
 
