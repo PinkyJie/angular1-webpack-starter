@@ -36,6 +36,9 @@
         }
 
         function login (credential) {
+            if (vm.loginForm.$invalid) {
+                return;
+            }
             user.login(credential.email, credential.password)
                 .then(success)
                 .catch(error);
