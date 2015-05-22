@@ -15,7 +15,8 @@
             checkLoggedInStatus: checkLoggedInStatus,
             login: login,
             logout: logout,
-            userInfo: getUserInfo,
+            getUserInfo: getUserInfo,
+            getProductSummary: getProductSummary
         };
 
         return service;
@@ -105,6 +106,26 @@
 
         function getUserInfo () {
             return _userInfo;
+        }
+
+        function getProductSummary () {
+            var d = $q.defer();
+            $http.get('api/user/products')
+                .success(success)
+                .error(fail);
+            return d.promise;
+
+            function success (response, status) {
+                if (status === 200 && response.code === 0) {
+                    d.resolve(response.result.summary);
+                } else {
+                    d.reject(response.message);
+                }
+            }
+
+            function fail () {
+                d.reject('$SERVER');
+            }
         }
 
         function _setUser (userData) {

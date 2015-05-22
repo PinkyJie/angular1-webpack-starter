@@ -10,13 +10,29 @@
     function DashboardController (user) {
         var vm = this;
 
+        vm.colors = [
+            'bgc-indigo-500',
+            'bgc-red-500',
+            'bgc-pink-500'
+        ];
+
         init();
 
         //////////////
 
         function init () {
-            vm.userInfo = user.userInfo();
-            vm.phoneLength = 20;
+            vm.userInfo = user.getUserInfo();
+            _getProductsSummary();
+        }
+
+        function _getProductsSummary () {
+            user.getProductSummary()
+                .then(function (data) {
+                    vm.products = data;
+                    vm.products.forEach(function (product) {
+                        product.link = 'root.' + product.name;
+                    });
+                });
         }
     }
 })();

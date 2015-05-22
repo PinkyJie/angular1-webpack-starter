@@ -12,6 +12,7 @@
         $httpBackend.whenGET('api/user/loginstatus').respond(loginStatusHandler);
         $httpBackend.whenPOST('api/user/login').respond(loginHandler);
         $httpBackend.whenPOST('api/user/logout').respond(logoutHandler);
+        $httpBackend.whenGET('api/user/products').respond(productsHandler);
 
         function loginStatusHandler () {
             var code = mockData.loginStatus ? 0 : 1;
@@ -47,6 +48,12 @@
         function logoutHandler () {
             mockData.loginStatus = false;
             return [200, {code: 0, message: null, result: null}];
+        }
+
+        function productsHandler () {
+            return [200, {code: 0, message: null, result: {
+                summary: mockData.userProducts
+            }}];
         }
     }
 

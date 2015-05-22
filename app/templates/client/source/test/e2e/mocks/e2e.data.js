@@ -10,7 +10,8 @@
         var _loginStatus = false;
         var service = {
             loginStatus: _loginStatus,
-            userInfo: _userInfo
+            userInfo: _userInfo,
+            userProducts: _userProducts
         };
 
         return service;
@@ -19,5 +20,12 @@
     var _userInfo = {
         'name': 'PinkyJie'
     };
+
+    var _userProducts = [
+        {
+            'name': 'phone',
+            'count': 5
+        }
+    ];
 
 })();
