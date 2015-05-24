@@ -33,6 +33,32 @@
                     },
                     breadcrumb: 'Phone'
                 }
+            },
+            {
+                state: 'root.phone.add',
+                config: {
+                    url: '/add',
+                    views: {
+                        'main@': {
+                            templateUrl: 'static/phone/phone.add.html',
+                            controller: 'PhoneAddController as vm'
+                        }
+                    },
+                    breadcrumb: 'Add'
+                }
+            },
+            {
+                state: 'root.phone.detail',
+                config: {
+                    url: '/:id',
+                    views: {
+                        'main@': {
+                            templateUrl: 'static/phone/phone.detail.html',
+                            controller: 'PhoneDetailController as vm'
+                        }
+                    },
+                    breadcrumb: 'Detail'
+                }
             }
         ];
     }

@@ -1,0 +1,9 @@
+.phone-detail-view.full-width
+    .card
+        .card-header(class="p+")
+            h3 {{vm.phone.model}}
+            .switch
+                input.switch__input(type="checkbox", id="state", ng-model="vm.isEditing")
+                label.switch__label(for="state") Slide to {{vm.isEditing ? 'Save' : 'Edit'}}
+        .card-content
+            aio-phone-form(phone="vm.phone", submit="vm.updatePhone", is-editing="vm.isEditing")
