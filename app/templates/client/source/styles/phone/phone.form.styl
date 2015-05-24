@@ -13,6 +13,9 @@
                 display flex
                 span
                     flex 1
+                .form-value
+                    +sm()
+                        text-align right
             .form-field
                 display none
     .actions
@@ -22,7 +25,8 @@
         text-align center
         button
             width 100px
-            margin-right 50px
+            &.btn-cancel
+                margin-right 50px
 
     .form-group + .form-group
         +sm()
@@ -37,3 +41,10 @@
                 display block
         .actions
             display block
+            flex 1
+            button
+                display block
+                &.btn-cancel
+                    margin auto
+                &.btn-save
+                    margin 10px auto 0
