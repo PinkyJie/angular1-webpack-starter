@@ -23,10 +23,18 @@
         border-top 1px solid rgba(0, 0, 0, 0.12)
         flex 1 100%
         text-align center
+        +sm()
+            flex 1
         button
             width 100px
             &.btn-cancel
                 margin-right 50px
+            +sm()
+               display block
+               &.btn-cancel
+                   margin auto
+               &.btn-save
+                   margin 10px auto 0
 
     .form-group + .form-group
         +sm()
@@ -41,10 +49,4 @@
                 display block
         .actions
             display block
-            flex 1
-            button
-                display block
-                &.btn-cancel
-                    margin auto
-                &.btn-save
-                    margin 10px auto 0
+

@@ -22,3 +22,12 @@
 .hide-gt-lg
     +generate-media($sizes[2])
         display none
+
+// date picker size for small screen
+.lx-date-picker__day
+    +sm()
+        line-height 16px
+        a
+            width 16px
+            height 16px
+            line-height 16px
