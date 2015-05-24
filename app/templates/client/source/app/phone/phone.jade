@@ -15,7 +15,7 @@
             tbody
                 tr.empty-row(ng-if="vm.phones.length === 0")
                     td(colspan="4") No Phones found!
-                tr.data-table__clickable-row(ng-repeat="phone in vm.phones")
+                tr.data-table__clickable-row.phone-item(ng-repeat="phone in vm.phones track by phone.id")
                     td
                         span {{::phone.model}}
                     td.hide-sm
@@ -29,7 +29,7 @@
                         )
                             i.mdi.mdi-information
                         button.btn.btn--m.btn--red.btn--fab(
-                            ng-click="vm.deletePhone(phone.id)",
+                            ng-click="vm.deletePhone(phone.id, phone.model)",
                             lx-ripple, lx-tooltip="Delete"
                         )
                             i.mdi.mdi-delete
