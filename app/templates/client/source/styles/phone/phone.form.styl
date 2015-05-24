@@ -1,5 +1,6 @@
 .form
     display flex
+    flex-flow row wrap
     +sm()
         flex-direction column
     .form-group
@@ -14,6 +15,14 @@
                     flex 1
             .form-field
                 display none
+    .actions
+        display none
+        border-top 1px solid rgba(0, 0, 0, 0.12)
+        flex 1 100%
+        text-align center
+        button
+            width 100px
+            margin-right 50px
 
     .form-group + .form-group
         +sm()
@@ -26,3 +35,5 @@
                 display none
             .form-field
                 display block
+        .actions
+            display block

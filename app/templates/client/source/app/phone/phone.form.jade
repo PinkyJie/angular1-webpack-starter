@@ -1,5 +1,5 @@
-form.form(name="vm.phoneForm", ng-submit="vm.submit(vm.phone)",
-    ng-class="{'editing': vm.isEditing}")
+form.form(name="vm.phoneForm", ng-submit="vm.submitForm(vm.phone)",
+    ng-class="{'editing': vm.state === 'edit', 'adding': vm.state === 'add'}")
     .form-group
         .form-item
             .form-label
@@ -52,4 +52,8 @@ form.form(name="vm.phoneForm", ng-submit="vm.submit(vm.phone)",
             .form-field
                 lx-date-picker(name="releaseDateInput", label="Release Date",
                     model="vm.phone.releaseDate")
+    .actions(class="mt p+")
+        button.btn.btn--m.btn--white.btn--raised.btn-cancel(ng-click="vm.cancel()") Cancel
+        button.btn.btn--m.btn--green.btn--raised.btn-save(type="submit",
+            ng-disabled="vm.phoneForm.$invalid || vm.phoneForm.$pristine") Save
 

@@ -20,6 +20,8 @@
             toSelection: _toSelection
         };
 
+        vm.submitForm = submitForm;
+
         init();
 
         /////////////
@@ -46,6 +48,14 @@
             } else {
                 callback();
             }
+        }
+
+        function submitForm (phone) {
+            if (vm.phoneForm.$invalid) {
+                return;
+            }
+            // call submit method passed in from outer scope
+            vm.submit(phone);
         }
 
     }

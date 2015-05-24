@@ -13,8 +13,9 @@
             transclude: true,
             scope: {
                 phone: '=',
+                state: '=',
                 submit: '=',
-                isEditing: '=',
+                cancel: '='
             },
             controller: 'PhoneFormController',
             controllerAs: 'vm',
