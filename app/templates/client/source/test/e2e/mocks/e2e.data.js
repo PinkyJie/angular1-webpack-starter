@@ -31,45 +31,63 @@
 
     var _phones = [
         {
-            'id': 1,
+            'id': '1',
             'model': 'iPhone 6',
             'os': 'iOS',
-            'price': 6000,
+            'price': 5288,
             'manufacturer': 'Apple',
-            'releaseDate': '2014.06.10'
+            'size': 4.7,
+            'releaseDate': _getTimestamp(2014, 10, 9)
         },
         {
-            'id': 2,
+            'id': '2',
             'model': 'iPhone 6 Plus',
             'os': 'iOS',
-            'price': 6000,
+            'price': 6088,
+            'size': 5.5,
             'manufacturer': 'Apple',
-            'releaseDate': '2014.06.10'
+            'releaseDate': _getTimestamp(2014, 10, 9)
         },
         {
-            'id': 2,
+            'id': '3',
             'model': 'Nexus 6',
             'os': 'Andoird',
-            'price': 6000,
-            'manufacturer': 'Apple',
-            'releaseDate': '2014.06.10'
+            'price': 4400,
+            'size': 5.96,
+            'manufacturer': 'Motorola',
+            'releaseDate': _getTimestamp(2014, 10, 10)
         },
         {
-            'id': 4,
+            'id': '4',
             'model': 'Galaxy S6',
             'os': 'Android',
-            'price': 6000,
+            'price': 5288,
+            'size': 5.1,
             'manufacturer': 'Samsung',
-            'releaseDate': '2014.06.10'
+            'releaseDate': _getTimestamp(2015, 3, 25)
         },
         {
-            'id': 5,
-            'model': 'Mi 4',
+            'id': '5',
+            'model': 'Mi Note',
             'os': 'Andoird',
-            'price': 6000,
+            'price': 2299,
+            'size': 5.7,
             'manufacturer': 'Xiaomi',
-            'releaseDate': '2014.06.10'
+            'releaseDate': _getTimestamp(2015, 1, 18)
         }
     ];
+
+    ///////////////
+
+    function _getTimestamp (year, month, day) {
+        var date = new Date();
+        date.setFullYear(year);
+        date.setMonth(month - 1);
+        date.setDate(day);
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        return date;
+    }
 
 })();
