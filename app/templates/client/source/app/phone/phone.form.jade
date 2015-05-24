@@ -1,0 +1,55 @@
+form.form(name="vm.phoneForm", ng-submit="vm.submit(vm.phone)",
+    ng-class="{'editing': vm.isEditing}")
+    .form-group
+        .form-item
+            .form-label
+                span Model:
+                span {{vm.phone.model}}
+            .form-field
+                lx-text-field(label="Model")
+                    input(name="modelInput", type="text", ng-model="vm.phone.model")
+        .form-item
+            .form-label
+                span OS:
+                span.form-label {{vm.phone.os}}
+            .form-field
+                lx-select(name="osSelct" ng-model="vm.phone.os",
+                    placeholder="OS Type", choices="vm.selects.src", floating-label,
+                    selection-to-model="vm.selects.toModel(data, callback)",
+                    model-to-selection="vm.selects.toSelection(data, callback)"
+                )
+                    lx-select-selected {{$selected.name}}
+                    lx-select-choices {{$choice.name}}
+        .form-item
+            .form-label
+                span Price:
+                span.form-label {{vm.phone.price}}
+            .form-field
+                lx-text-field(label="Price")
+                    input(name="priceInput", type="text", ng-model="vm.phone.price",
+                        aio-validate-number)
+    .form-group
+        .form-item
+            .form-label
+                span Screen Size:
+                span.form-label {{vm.phone.size}}
+            .form-field
+                lx-text-field(label="Screen Size")
+                    input(name="sizeInput", type="text", ng-model="vm.phone.size",
+                        aio-validate-number)
+        .form-item
+            .form-label
+                span Manufacturer:
+                span.form-label {{vm.phone.manufacturer}}
+            .form-field
+                lx-text-field(label="Manufacturer")
+                    input(name="manufacturerInput", type="text",
+                        ng-model="vm.phone.manufacturer")
+        .form-item
+            .form-label
+                span Release Date:
+                span.form-label {{vm.phone.releaseDate | date: 'MMMM d, yyyy'}}
+            .form-field
+                lx-date-picker(name="releaseDateInput", label="Release Date",
+                    model="vm.phone.releaseDate")
+

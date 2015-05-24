@@ -1,0 +1,28 @@
+.form
+    display flex
+    +sm()
+        flex-direction column
+    .form-group
+        flex 1
+        margin 16px
+        .form-item
+            padding 8px
+            border-bottom 1px dashed rgba(0, 0, 0, 0.12)
+            .form-label
+                display flex
+                span
+                    flex 1
+            .form-field
+                display none
+
+    .form-group + .form-group
+        +sm()
+            margin-top 0
+
+    &.editing
+        .form-group > .form-item
+            border-bottom none
+            .form-label
+                display none
+            .form-field
+                display block
