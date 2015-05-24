@@ -1,4 +1,4 @@
-form.form(name="vm.phoneForm", ng-submit="vm.submitForm(vm.phone)",
+form.form(name="vm.phoneForm",
     ng-class="{'editing': vm.state === 'edit', 'adding': vm.state === 'add'}")
     .form-group
         .form-item
@@ -55,5 +55,6 @@ form.form(name="vm.phoneForm", ng-submit="vm.submitForm(vm.phone)",
     .actions(class="mt p+")
         button.btn.btn--m.btn--white.btn--raised.btn-cancel(ng-click="vm.cancel()") Cancel
         button.btn.btn--m.btn--green.btn--raised.btn-save(type="submit",
+            ng-click="vm.submitForm(vm.phone)",
             ng-disabled="vm.phoneForm.$invalid || vm.phoneForm.$pristine") Save
 
