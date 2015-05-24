@@ -51,7 +51,7 @@
         {
             'id': '3',
             'model': 'Nexus 6',
-            'os': 'Andoird',
+            'os': 'Android',
             'price': 4400,
             'size': 5.96,
             'manufacturer': 'Motorola',
@@ -69,7 +69,7 @@
         {
             'id': '5',
             'model': 'Mi Note',
-            'os': 'Andoird',
+            'os': 'Android',
             'price': 2299,
             'size': 5.7,
             'manufacturer': 'Xiaomi',
