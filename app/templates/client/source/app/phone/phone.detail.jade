@@ -1,7 +1,7 @@
 .phone-detail-view.full-width
     .card
         .card-header(class="p+")
-            h3.title {{vm.phone.model}}
+            h3.title {{::vm.phone.model}}
             button.btn.btn--m.btn--blue.btn--fab(ng-show="vm.state === 'view'", ng-click="vm.beginEdit()")
                 i.mdi.mdi-pencil
         .card-content

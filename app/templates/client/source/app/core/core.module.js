@@ -3,7 +3,7 @@
 
     angular
         .module('app.core', [
-            'app.helper', 'ngAnimate',
+            'app.helper', 'ngAnimate', 'ngMessages',
             'ui.router', 'ngplus', 'lumx'
         ]);
 })();

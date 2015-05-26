@@ -31,7 +31,7 @@
                         icon: 'mdi-cellphone-android',
                         text: 'Phones'
                     },
-                    breadcrumb: 'Phone'
+                    breadcrumb: 'Phone List'
                 }
             },
             {
@@ -44,7 +44,7 @@
                             controller: 'PhoneAddController as vm'
                         }
                     },
-                    breadcrumb: 'Add'
+                    breadcrumb: 'Add Phone'
                 }
             },
             {
@@ -57,7 +57,7 @@
                             controller: 'PhoneDetailController as vm'
                         }
                     },
-                    breadcrumb: 'Detail'
+                    breadcrumb: 'Phone Detail'
                 }
             }
         ];
