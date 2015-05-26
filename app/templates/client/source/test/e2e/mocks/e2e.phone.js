@@ -40,7 +40,7 @@
         function addNewPhoneHandler (method, url, data) {
             var req = JSON.parse(data);
             var currentCount = mockData.phones.length;
-            req.phone.id = currentCount + 1;
+            req.phone.id = '' + (currentCount + 1);
             mockData.phones.push(req.phone);
             return [200, {code: 0, message: null, result: {
                 'phone': req.phone

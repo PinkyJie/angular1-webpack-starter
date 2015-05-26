@@ -51,7 +51,7 @@
         }
 
         function submitForm (phone) {
-            if (vm.phoneForm.$invalid) {
+            if (vm.phoneForm.$invalid || !vm.phone.releaseDate) {
                 return;
             }
             // call submit method passed in from outer scope

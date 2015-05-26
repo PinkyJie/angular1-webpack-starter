@@ -93,19 +93,18 @@ form.form(name="vm.phoneForm",
                 span Release Date:
                 span.form-value {{vm.phone.releaseDate | date: 'MMMM d, yyyy'}}
             .form-field
-                .error-message(ng-messages="vm.phoneForm.releaseDateInput.$error",
-                    ng-show="vm.phoneForm.releaseDateInput.showError")
-                    p(ng-message="required") Release Date filed is required!
-                lx-date-picker.form-control(name="releaseDateInput", label="Release Date",
-                    model="vm.phone.releaseDate", required)
-                .error-icon(ng-show="vm.phoneForm.releaseDateInput.$invalid && vm.phoneForm.releaseDateInput.$dirty")
+                .error-message(ng-show="vm.releaseDateError")
+                    p Release Date filed is required!
+                lx-date-picker.form-control(label="Release Date", model="vm.phone.releaseDate",
+                    ng-click="vm.hasClicked = true")
+                .error-icon(ng-show="!vm.phone.releaseDate && vm.hasClicked")
                     i.icon.icon--red.icon--circled.mdi.mdi-minus.icon-breath-animation(
-                        ng-mouseenter="vm.phoneForm.releaseDateInput.showError = true",
-                        ng-mouseleave="vm.phoneForm.releaseDateInput.showError = false"
+                        ng-mouseenter="vm.releaseDateError = true",
+                        ng-mouseleave="vm.releaseDateError = false"
                     )
     .actions(class="mt p+")
         button.btn.btn--m.btn--white.btn--raised.btn-cancel(ng-click="vm.cancel()") Cancel
         button.btn.btn--m.btn--green.btn--raised.btn-save(type="submit",
             ng-click="vm.submitForm(vm.phone)",
-            ng-disabled="vm.phoneForm.$invalid || vm.phoneForm.$pristine") Save
+            ng-disabled="vm.phoneForm.$invalid || vm.phoneForm.$pristine || !vm.phone.releaseDate") Save
 
