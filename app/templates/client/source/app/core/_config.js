@@ -6,8 +6,8 @@
         .config(appConfig);
 
     var config = {
-        appErrorPrefix: '[AIO Angular Error] ',
-        appTitle: 'AIO Angular'
+        appErrorPrefix: '[<%= appName %> Error] ',
+        appTitle: '<%= appName %>'
     };
 
     appConfig.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];

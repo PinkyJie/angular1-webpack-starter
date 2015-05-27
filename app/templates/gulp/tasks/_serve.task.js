@@ -7,7 +7,6 @@ module.exports = function (gulp, config, $, args) {
     /**
      * serve the development environment
      * --mock: inject mock files
-     * --nosync: do not reload browser
      */
     gulp.task('serve:dev', ['build:dev'], function () {
         startBrowserSync(true);
@@ -16,7 +15,6 @@ module.exports = function (gulp, config, $, args) {
     /**
      * serve the production environment
      * --mock: inject mock files
-     * --nosync: do not reload browser
      */
     gulp.task('serve:prod', ['build:prod'], function () {
         startBrowserSync(false);
@@ -25,7 +23,7 @@ module.exports = function (gulp, config, $, args) {
     ///////////
 
     function startBrowserSync (isDev) {
-        if (args.nosync || browserSync.active) {
+        if (browserSync.active) {
             return;
         }
 

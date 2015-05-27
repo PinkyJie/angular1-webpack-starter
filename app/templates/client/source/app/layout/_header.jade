@@ -6,7 +6,7 @@
                     i.mdi.mdi-menu
                 img.logo(src="static/images/layout/logo.png")
             .toolbar__label.fs-title
-                a.tc-white(ui-sref="root.home") AIO Angular
+                a.tc-white(ui-sref="root.home") <%= appName %>
             .toolbar__right
                 a.btn.btn--l.btn--white.btn--icon(ui-sref="root.login", lx-ripple="white", ng-if="!vm.isLoggedIn")
                     i.mdi.mdi-login
