@@ -13,22 +13,23 @@ Check out a [demo site](http://pinkyjie.com/generator-aio-angular/#/) generated 
 ## Feature
 
 * Material Design
-    * Using [LumX](http://ui.lumapps.com/).
-    * Why not [Angular Material](https://material.angularjs.org)? Many common used components are missing, for exmaple, dropdown menu.
-    * Why not [Bootstrap Material](http://fezvrasta.github.io/bootstrap-material-design/)? Many components are not implemented, not pure material design.
+   * Using [LumX](http://ui.lumapps.com/).
+   * Why not [Angular Material](https://material.angularjs.org)? Many common used components are missing, for exmaple, dropdown menu.
+   * Why not [Bootstrap Material](http://fezvrasta.github.io/bootstrap-material-design/)? Many components are not implemented, not pure material design.
 * Flex Layout
-    * Using flex layout for main layout and many other places.
+   * Using flex layout for main layout and many other places.
 * Responsive
-    * Easy responsive implementation, very convenient to support small screen devices. (see [responsive.styl](app/templates/client/source/styles/responsive.styl))
+   * Support mutiple devices with different screen size.
+   * Easy responsive implementation, very convenient to support small screen devices. (see [responsive.styl](app/templates/client/source/styles/responsive.styl))
 * Animation
-    * Using [animate.css](https://daneden.github.io/animate.css/).
-    * All the animation defined by `animate.css` can be used directly as keyfrmae animation. (see [content.styl](app/templates/client/source/styles/layout/content.styl#L28))
+   * Using [animate.css](https://daneden.github.io/animate.css/).
+   * All the animation defined by `animate.css` can be used directly as keyfrmae animation. (see [content.styl](app/templates/client/source/styles/layout/content.styl#L28))
 * Splited Gulp Tasks
-    * Gulp tasks are splited in different files by category. (see [gulp folder](app/templates/gulp))
+   * Gulp tasks are splited in different files by category. (see [gulp folder](app/templates/gulp))
 * More understandable router design
-    * Using [ui-router](https://github.com/angular-ui/ui-router) for main layout. (see [layout.route.js](app/templates/client/source/app/layout/layout.route.js))
+   * Using [ui-router](https://github.com/angular-ui/ui-router) for main layout. (see [layout.route.js](app/templates/client/source/app/layout/layout.route.js))
 * Easy implementation for Sidebar Navigation and Breadcrumb
-    * See [sidebar.controller.js](app/templates/client/source/app/layout/sidebar.controller.js) and [breadcrumb.controller.js](app/templates/client/source/app/layout/breadcrumb.controller.js).
+   * See [sidebar.controller.js](app/templates/client/source/app/layout/sidebar.controller.js) and [breadcrumb.controller.js](app/templates/client/source/app/layout/breadcrumb.controller.js).
 
 ## Getting Started
 
@@ -38,13 +39,14 @@ npm install -g generator-aio-angular
 yo aio-angular
 ```
 
-## Blog Posts related(Chinese)
+## Blog Posts related(written in Chinese)
 * [重构你的gulpfile](http://pinkyjie.com/2015/03/24/refactor-your-gulpfile/)
 
 ## Future Plan
-* Add unit/e2e tests for the app
-* Add unit test for the generateor
-* Add more generators like controller/service/directive...
+* add unit/e2e tests for the app
+* add unit test for the generateor
+* add more generators like controller/service/directive...
+* more blog posts for the techniques used in this repo
 
 ## License
 
