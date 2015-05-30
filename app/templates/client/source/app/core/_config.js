@@ -6,8 +6,8 @@
         .config(appConfig);
 
     var config = {
-        appErrorPrefix: '[<%= appName %> Error] ',
-        appTitle: '<%= appName %>'
+        appErrorPrefix: '[<%= appDesc %> Error] ',
+        appTitle: '<%= appDesc %>'
     };
 
     appConfig.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];

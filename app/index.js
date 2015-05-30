@@ -3,6 +3,7 @@ var generators = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
+var _ = require('underscore.string');
 
 module.exports = generators.Base.extend({
     constructor: function() {
@@ -49,7 +50,8 @@ module.exports = generators.Base.extend({
     writing: {
         templateFiles: function() {
             var context = {
-                'appName': this.appName
+                'appName': this.appName,
+                'appDesc': _(this.appName).humanize().titleize().value()
             };
             var fileList = [
                 '_bower.json',
@@ -57,6 +59,7 @@ module.exports = generators.Base.extend({
                 '_README.md',
                 'client/source/app/core/_config.js',
                 'client/source/app/layout/_header.jade',
+                'client/source/app/home/_home.jade',
                 'gulp/tasks/_serve.task.js'
             ];
             var targetName;

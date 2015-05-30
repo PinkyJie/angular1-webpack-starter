@@ -1,7 +1,7 @@
 {
   "name": "<%= appName %>",
   "version": "0.0.1",
-  "description": "<%= appName %>",
+  "description": "<%= appDesc %>",
   "license": "MIT",
   "ignore": [
     "**/.*",
