@@ -1,28 +1,12 @@
-.loading-view
-    .ngplus-overlay-background
-        position fixed
-        height 100%
-        width 100%
-        top 0
-        left 0
-        z-index 10000
-        background-color #808080
-        opacity 0.8
+body
+    #loading-bar
+        .bar
+            background $loadingColor
+            height 3px
+        .peg
+            box-shadow 0 0 10px $loadingColor, 0 0 5px $loadingColor
 
-    .ngplus-overlay-content
-        position fixed
-        width $loadingImageWidth
-        height $loadingImageHeight
-        top 50% !important
-        left 50% !important
-        margin-left -(@width / 2)
-        margin-top -(@height / 2)
-        z-index 10000
+    #loading-bar-spinner .spinner-icon
+        border-top-color  $loadingColor
+        border-left-color $loadingColor
 
-    .loading-image
-        border-radius 50%
-        width $loadingImageWidth
-        height $loadingImageHeight
-        background-image url('../images/layout/loading.gif')
-        background-position 50% 60%
-        box-shadow 0 0 2px 2px #4CC6EA

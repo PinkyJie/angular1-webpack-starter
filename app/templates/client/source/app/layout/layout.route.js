@@ -19,10 +19,6 @@
                     abstract: true,
                     url: '',
                     views: {
-                        'loading': {
-                            templateUrl: 'static/layout/loading.html',
-                            controller: 'LoadingController as vm'
-                        },
                         'header': {
                             templateUrl: 'static/layout/header.html',
                             controller: 'HeaderController as vm'

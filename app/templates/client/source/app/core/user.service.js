@@ -29,7 +29,7 @@
 
         function checkLoggedInStatus () {
             var d = $q.defer();
-            $http.get('api/user/loginstatus')
+            $http.get('api/user/loginstatus', {ignoreLoadingBar: true})
                 .success(success)
                 .error(fail);
             return d.promise;
