@@ -54,8 +54,18 @@
             if (vm.phoneForm.$invalid || !vm.phone.releaseDate) {
                 return;
             }
+            vm.isRequest = true;
             // call submit method passed in from outer scope
-            vm.submit(phone);
+            vm.submit(phone)
+                .then(function () {
+                    _endRequest();
+                    vm.phoneForm.$setPristine();
+                })
+                .catch(_endRequest);
+        }
+
+        function _endRequest () {
+            vm.isRequest = false;
         }
 
     }

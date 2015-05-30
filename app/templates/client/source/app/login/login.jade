@@ -11,7 +11,8 @@
                 input(type="password", ng-model="vm.credential.password", required)
         .card__actions.text-center(class="p+")
             button.btn.btn--l.btn--blue.btn--raised(type="submit",
-                ng-disable="vm.loginForm.$invalid",
+                ng-disabled="vm.loginForm.$invalid || vm.isRequest",
                 ng-class="{'btn--is-disabled': vm.loginForm.$invalid}",
-                lx-ripple
+                lx-ripple,
+                aio-loading-button="vm.isRequest",
             ) Sign In

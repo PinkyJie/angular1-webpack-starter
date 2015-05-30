@@ -39,6 +39,7 @@
             if (vm.loginForm.$invalid) {
                 return;
             }
+            vm.isRequest = true;
             userAPI.login(credential.email, credential.password)
                 .then(success)
                 .catch(error);
@@ -57,6 +58,7 @@
             function error (reason) {
                 var message = ajaxErrorHanlder.getMessage(reason);
                 _setError('error', message);
+                vm.isRequest = false;
             }
         }
 

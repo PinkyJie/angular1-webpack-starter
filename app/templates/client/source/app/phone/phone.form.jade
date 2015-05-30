@@ -103,8 +103,12 @@ form.form(name="vm.phoneForm",
                         ng-mouseleave="vm.releaseDateError = false"
                     )
     .actions(class="mt p+")
-        button.btn.btn--m.btn--white.btn--raised.btn-cancel(ng-click="vm.cancel()") Cancel
+        button.btn.btn--m.btn--white.btn--raised.btn-cancel(
+            ng-click="vm.cancel()",
+            ng-disabled="vm.isRequest"
+        ) Cancel
         button.btn.btn--m.btn--green.btn--raised.btn-save(type="submit",
             ng-click="vm.submitForm(vm.phone)",
-            ng-disabled="vm.phoneForm.$invalid || vm.phoneForm.$pristine || !vm.phone.releaseDate") Save
-
+            ng-disabled="vm.phoneForm.$invalid || vm.phoneForm.$pristine || !vm.phone.releaseDate || vm.isRequest",
+            aio-loading-button="vm.isRequest",
+        ) Save

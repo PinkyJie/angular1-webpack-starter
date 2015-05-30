@@ -65,7 +65,7 @@
                     req.phone.id = id;
                     mockData.phones[index] = req.phone;
                     return [200, {code: 0, message: null, result: {
-                        'phone': targetPhone[0]
+                        'phone': req.phone
                     }}];
                 }
             }

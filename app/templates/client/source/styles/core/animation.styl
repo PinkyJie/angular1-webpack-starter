@@ -7,8 +7,11 @@
         opacity 0
 
 .icon-breath-animation
-    animation icon-breath 1.5s infinite
-    animation-timing-function ease-in-out
+    animation icon-breath 1.5s ease-in-out infinite
+
+.icon-rotate-animation
+    animation icon-rotate .8s linear infinite
+    margin-right 5px
 
 @keyframes icon-breath
     from
@@ -17,3 +20,9 @@
     to
         box-shadow none
         opacity 1
+
+@keyframes icon-rotate
+    from
+        transform rotate(0deg)
+    to
+        transform rotate(360deg)
