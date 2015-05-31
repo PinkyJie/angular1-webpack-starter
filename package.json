@@ -1,6 +1,6 @@
 {
   "name": "generator-aio-angular",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "All In One AngularJS generator.",
   "license": "MIT",
   "main": "app/index.js",

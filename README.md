@@ -1,4 +1,4 @@
-# generator-aio-angular [![Build Status](https://secure.travis-ci.org/PinkyJie/generator-aio-angular.png?branch=master)](https://travis-ci.org/PinkyJie/generator-aio-angular)
+# generator-aio-angular
 
 All In One [Yeoman](http://yeoman.io) generator for AngularJS 1.3, using `gulp` and `ui-router` with `material design`, based on John Papa's [generator-hottowel](https://github.com/johnpapa/generator-hottowel) and [angular-styleguide](https://github.com/johnpapa/angular-styleguide).
 
