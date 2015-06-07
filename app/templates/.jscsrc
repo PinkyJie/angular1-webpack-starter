@@ -62,7 +62,6 @@
 
     "disallowCommaBeforeLineBreak": null,
     "disallowDanglingUnderscores": null,
-    "disallowEmptyBlocks": null,
     "disallowMultipleLineStrings": null,
     "disallowTrailingComma": null,
     "requireCommaBeforeLineBreak": null,
@@ -76,5 +75,10 @@
     "requireSpacesInFunctionExpression": {
         "beforeOpeningRoundBrace": true,
         "beforeOpeningCurlyBrace": true
-    }
+    },
+    "disallowMultipleSpaces": true,
+    "disallowNewlineBeforeBlockStatements": true,
+    "requireBlocksOnNewline": true,
+    "requireCapitalizedConstructors": true,
+    "disallowEmptyBlocks": true
 }

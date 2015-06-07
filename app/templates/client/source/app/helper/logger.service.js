@@ -11,10 +11,10 @@
     /* @ngInject */
     function loggerService ($log) {
         var service = {
-            error   : error,
-            info    : info,
-            success : success,
-            warning : warning
+            error: error,
+            info: info,
+            success: success,
+            warning: warning
         };
 
         return service;

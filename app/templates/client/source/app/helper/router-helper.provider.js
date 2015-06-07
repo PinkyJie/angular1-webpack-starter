@@ -101,7 +101,9 @@
                 updateDocTitle();
             }
 
-            function getStates () { return $state.get(); }
+            function getStates () {
+                return $state.get();
+            }
 
             function updateDocTitle () {
                 $rootScope.$on('$stateChangeSuccess',
@@ -110,7 +112,7 @@
                         handlingStateChangeError = false;
                         var title = (toState.data.title + ' - ' || '') + config.mainTitle;
                         $rootScope.title = title; // data bind to <title>
-                        $rootScope._class = toState.data._class;  // data bind to <body>
+                        $rootScope._class = toState.data._class; // data bind to <body>
                     }
                 );
             }

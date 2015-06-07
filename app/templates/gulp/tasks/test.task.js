@@ -27,7 +27,9 @@ module.exports = function (gulp, config, $, args) {
             .pipe(protractor({
                 configFile: __dirname + '../protractor.config.js'
             }))
-            .on('error', function (e) { throw e; });
+            .on('error', function (e) {
+                throw e;
+            });
     });
 
     /////////////
