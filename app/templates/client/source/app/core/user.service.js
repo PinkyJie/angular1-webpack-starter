@@ -38,7 +38,7 @@
                 if (status === 200 && response.code === 0) {
                     _setUser(response.result.user);
                     $rootScope.$broadcast(Event.AUTH_SESSION_VALID, response.result.user);
-                    d.resolve();
+                    d.resolve(response.result.user);
                 } else {
                     _clearUser();
                     d.reject();

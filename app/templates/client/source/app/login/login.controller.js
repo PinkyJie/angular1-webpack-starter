@@ -5,9 +5,9 @@
         .module('app.login')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['userAPI', '$state', 'ajaxErrorHanlder'];
+    LoginController.$inject = ['userAPI', '$state', 'ajaxErrorHanlder', '$timeout'];
     /* @ngInject */
-    function LoginController (userAPI, $state, ajaxErrorHanlder) {
+    function LoginController (userAPI, $state, ajaxErrorHanlder, $timeout) {
         var vm = this;
 
         vm.login = login;
@@ -22,15 +22,24 @@
             // handle logout
             var action = $state.params.action;
             if (action === 'logout') {
+                vm.needCheckLogin = false;
                 userAPI.logout()
                     .then(function () {
                         _setError('success', 'You have been successfully logged out!');
                     });
             } else {
+                vm.userInfo = null;
+                vm.needCheckLogin = true;
                 // check login status firstly
                 userAPI.checkLoggedInStatus()
-                    .then(function () {
-                        $state.go(_routeAfterLogin);
+                    .then(function (data) {
+                        vm.userInfo = data;
+                        $timeout(function () {
+                            $state.go(_routeAfterLogin);
+                        }, 1000);
+                    })
+                    .catch(function () {
+                        vm.needCheckLogin = false;
                     });
             }
         }

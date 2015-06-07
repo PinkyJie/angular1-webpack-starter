@@ -1,4 +1,7 @@
 .login-view
+    .login-checking.tc-white(ng-if="vm.needCheckLogin")
+        i.icon.icon--xl.icon--flat.mdi(ng-class="{'mdi-sync icon-rotate-animation': !vm.userInfo, 'mdi-account': vm.userInfo}")
+        p.loading-text {{vm.userInfo ? vm.userInfo.name : 'Checking Login User...'}}
     form.card(name="vm.loginForm", ng-submit="vm.login(vm.credential)", novalidate)
         .card__header(class="p+")
             | Please sign in with your Email and Password
