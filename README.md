@@ -39,6 +39,20 @@ npm install -g generator-aio-angular
 yo aio-angular
 ```
 
+## How to do development
+Many files(prefixed by `_`) under `app/templates` folder include `<%= appNmae %>` tag which needs to be replaced by Yeoman, it's not very convenient to do development under `app/templates` folder. That's the reason why I add a script called `change-env.js`.
+
+* make `app/templates` ready for developent:
+```bash
+npm run-script env dev
+```
+> This will rename all files prefixed by `_` to normal name and replace the placeholder tag to normal content.
+
+* change back from development:
+```bash
+npm run-script env prod
+```
+
 ## Blog Posts related(written in Chinese)
 * [重构你的gulpfile](http://pinkyjie.com/2015/03/24/refactor-your-gulpfile/)
 

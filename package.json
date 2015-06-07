@@ -11,6 +11,7 @@
     "url": "https://github.com/PinkyJie"
   },
   "scripts": {
+    "env": "node change-env.js",
     "test": "mocha"
   },
   "files": [
