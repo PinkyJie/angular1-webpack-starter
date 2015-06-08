@@ -8,3 +8,7 @@ client/source/vendor
 
 # build file
 client/build
+
+# test folder
+client/source/test/e2e/screenshots/*
+!client/source/test/e2e/screenshots/.gitkeep

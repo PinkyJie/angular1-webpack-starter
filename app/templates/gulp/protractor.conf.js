@@ -8,12 +8,16 @@ exports.config = {
         showColors: true,
         defaultTimeoutInterval: 30000
     },
-    specs: gulpConfig.protractor.specs,
-    suites: gulpConfig.protractor.suites,
+    specs: gulpConfig.protractorOption.specs,
+    suites: gulpConfig.protractorOption.suites,
+    capabilities: {
+        'browserName': 'chrome'
+    },
     onPrepare: function () {
-        browser._ = require(gulpConfig.protractor.helper);
+        browser._ = require(gulpConfig.protractorOption.helper)();
     },
     params: {
-        timeout: 10000
+        timeout: 10000,
+        screenshotDir: gulpConfig.protractorOption.screenshotDir
     }
 };

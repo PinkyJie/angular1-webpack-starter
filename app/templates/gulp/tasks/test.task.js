@@ -10,23 +10,21 @@ module.exports = function (gulp, config, $, args) {
         startUnitTests(false , done);
     });
 
-    // Download web driver if it's required
-    /* jshint camelcase: false */
-    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-    var webdriverStandalone = require('gulp-protractor').webdriver_standalone;
-    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
-    /* jshint camelcase: false */
-    gulp.task('webdriverUpdate', webdriverStandalone);
-
     // Run e2e test
-    gulp.task('test:e2e', ['webdriverUpdate'], function (done) {
-        var protractor = require('gulp-protractor').protractor;
+    // support --suite
+    gulp.task('test:e2e', function (done) {
+        var protractor = $.protractor.protractor;
+        var options = {
+            // debug: true,
+            configFile: __dirname + '/../protractor.conf.js'
+        };
+        if (args.suite) {
+            options['args'] = ['--suite', args.suite];
+        }
 
         return gulp
-            .src(config.protractor.specs)
-            .pipe(protractor({
-                configFile: __dirname + '../protractor.config.js'
-            }))
+            .src(config.protractorOption.specs)
+            .pipe(protractor(options))
             .on('error', function (e) {
                 throw e;
             });

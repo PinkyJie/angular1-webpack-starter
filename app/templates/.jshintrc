@@ -48,8 +48,13 @@
         "angular": false,
         "browser": false,
         "module": false,
-        "describe": false,
         "jasmine": false,
-        "it": false
+        "describe": false,
+        "it": false,
+        "element": false,
+        "by": false,
+        "beforeEach": false,
+        "afterEach": false,
+        "$$": false
     }
 }

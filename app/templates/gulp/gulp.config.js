@@ -178,15 +178,17 @@ module.exports = function () {
 
     // Options for protractor
     function getProtractorOptions () {
+        // options used in protractor.conf.js need to be based on it's own path
         return {
             specs: [client.test + 'e2e/specs/*.spec.js'],
             suites: {
-                home: client.test + 'e2e/specs/home.spec.js',
-                login: client.test + 'e2e/specs/login.spec.js',
-                dashboard: client.test + 'e2e/specs/dashboard.spec.js',
-                product: client.test + 'e2e/specs/product.spec.js'
+                home: '.' + client.test + 'e2e/specs/home.spec.js',
+                login: '.' + client.test + 'e2e/specs/login.spec.js',
+                dashboard: '.' + client.test + 'e2e/specs/dashboard.spec.js',
+                phone: '.' + client.test + 'e2e/specs/phone.spec.js'
             },
-            helper: client.test + 'e2e/helper.js'
+            helper: '.' + client.test + 'e2e/helper',
+            screenshotDir: '.' + client.test + 'e2e/screenshots/'
         };
     }
 
