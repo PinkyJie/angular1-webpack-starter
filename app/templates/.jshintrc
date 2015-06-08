@@ -49,6 +49,7 @@
         "browser": false,
         "module": false,
         "jasmine": false,
+        "expect": false,
         "describe": false,
         "it": false,
         "element": false,

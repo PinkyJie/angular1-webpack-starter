@@ -188,7 +188,7 @@ module.exports = function () {
                 phone: '.' + client.test + 'e2e/specs/phone.spec.js'
             },
             helper: '.' + client.test + 'e2e/helper',
-            screenshotDir: '.' + client.test + 'e2e/screenshots/'
+            screenshotDir: client.test + 'e2e/screenshots/'
         };
     }
 
