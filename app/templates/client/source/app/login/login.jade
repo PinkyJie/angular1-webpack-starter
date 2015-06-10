@@ -13,7 +13,7 @@
             lx-text-field(label="Password", fixed-label="true", icon="key")
                 input(type="password", ng-model="vm.credential.password", required)
         .card__actions.text-center(class="p+")
-            button.btn.btn--l.btn--blue.btn--raised(type="submit",
+            button.btn.btn--l.btn--blue.btn--raised.btn-login(type="submit",
                 ng-disabled="vm.loginForm.$invalid || vm.isRequest",
                 ng-class="{'btn--is-disabled': vm.loginForm.$invalid}",
                 lx-ripple,

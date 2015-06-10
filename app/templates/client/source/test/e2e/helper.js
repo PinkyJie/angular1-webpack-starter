@@ -5,7 +5,9 @@ module.exports = function () {
     return {
         gotoUrl: gotoUrl,
         getHeader: getHeader,
-        takeScreenshotIfFail: takeScreenshotIfFail
+        takeScreenshotIfFail: takeScreenshotIfFail,
+        waitForPromiseTest: waitForPromiseTest,
+        expectUrlToMatch: expectUrlToMatch
     };
 
     //////////
@@ -43,4 +45,19 @@ module.exports = function () {
             });
         }
     }
+
+    function waitForPromiseTest (promiseFn, testFn) {
+        browser.wait(function () {
+            var deferred = protractor.promise.defer();
+            promiseFn.then(function (data) {
+                deferred.fulfill(testFn(data));
+            });
+            return deferred.promise;
+        }, browser.params.timeout);
+    }
+
+    function expectUrlToMatch (url) {
+        expect(browser.getCurrentUrl()).toMatch(new RegExp(url));
+    }
+
 };

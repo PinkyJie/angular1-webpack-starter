@@ -7,6 +7,7 @@ var HomePage = function () {
 
     self.url = '';
     self.ele = _getAllElements();
+
     self.load = load;
 
     ////////
@@ -27,7 +28,7 @@ var HomePage = function () {
     }
 };
 
-module.exports = HomePage;
+module.exports = new HomePage();
 
 // test scenarios
 describe('Home Page:', function () {
@@ -54,7 +55,7 @@ describe('Home Page:', function () {
 
     it('should go to login page if click get started', function () {
         page.ele.getStartedBtn.click();
-        expect(browser.getCurrentUrl()).toMatch(/login/);
+        browser._.expectUrlToMatch('login');
     });
 
 });
