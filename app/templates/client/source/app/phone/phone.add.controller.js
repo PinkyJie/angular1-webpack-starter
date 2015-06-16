@@ -24,23 +24,20 @@
         }
 
         function addNewPhone (phone) {
-            var d = $q.defer();
-            phoneAPI.addNewPhone(phone)
+            // return promise here to let the phone form controller know the response status
+            return phoneAPI.addNewPhone(phone)
                 .then(success)
                 .catch(error);
-            // return promise here to let the phone form controller know
-            // the response status
-            return d.promise;
 
             function success (data) {
                 $state.go('root.phone');
-                d.resolve();
+                return;
             }
 
             function error (reason) {
                 var message = ajaxErrorHanlder.getMessage(reason);
                 LxNotificationService.alert('Add phone error', message, 'OK');
-                d.reject();
+                return $q.reject();
             }
         }
 

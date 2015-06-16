@@ -21,108 +21,103 @@
         /////////////
 
         function getPhones () {
-            var d = $q.defer();
-            $http.get('api/phones')
-                .success(success)
-                .error(fail);
-            return d.promise;
+            return $http.get('api/phones')
+                .then(success)
+                .catch(fail);
 
-            function success (response, status) {
-                if (status === 200 && response.code === 0) {
-                    d.resolve(response.result.phones);
+            function success (response) {
+                var data = response.data;
+                if (response.status === 200 && data.code === 0) {
+                    return data.result.phones;
                 } else {
-                    d.reject(response.message);
+                    return $q.reject(data.message);
                 }
             }
 
             function fail () {
-                d.reject('$SERVER');
+                return $q.reject('$SERVER');
             }
         }
 
         function getPhoneDetail (id) {
-            var d = $q.defer();
-            $http.get('api/phones/' + id)
-                .success(success)
-                .error(fail);
-            return d.promise;
+            return $http.get('api/phones/' + id)
+                .then(success)
+                .catch(fail);
 
-            function success (response, status) {
-                if (status === 200 && response.code === 0) {
-                    d.resolve(response.result.phone);
+            function success (response) {
+                var data = response.data;
+                if (response.status === 200 && data.code === 0) {
+                    return data.result.phone;
                 } else {
-                    d.reject(response.message);
+                    return $q.reject(data.message);
                 }
             }
 
             function fail () {
-                d.reject('$SERVER');
+                return $q.reject('$SERVER');
             }
         }
 
         function addNewPhone (phone) {
-            var d = $q.defer();
             var req = {
                 'phone': phone
             };
-            $http.post('api/phones', req)
-                .success(success)
-                .error(fail);
-            return d.promise;
+            return $http.post('api/phones', req)
+                .then(success)
+                .catch(fail);
 
-            function success (response, status) {
-                if (status === 200 && response.code === 0) {
-                    d.resolve(response.result.phone);
+            function success (response) {
+                var data = response.data;
+                if (response.status === 200 && data.code === 0) {
+                    return data.result.phone;
                 } else {
-                    d.reject(response.message);
+                    return $q.reject(data.message);
                 }
             }
 
             function fail () {
-                d.reject('$SERVER');
+                return $q.reject('$SERVER');
             }
         }
 
         function updatePhone (id, phone) {
-            var d = $q.defer();
             var req = {
                 'phone': phone
             };
-            $http.put('api/phones/' + id, req)
-                .success(success)
-                .error(fail);
-            return d.promise;
+            return $http.put('api/phones/' + id, req)
+                .then(success)
+                .catch(fail);
 
-            function success (response, status) {
-                if (status === 200 && response.code === 0) {
-                    d.resolve(response.result.phone);
+            function success (response) {
+                var data = response.data;
+                if (response.status === 200 && data.code === 0) {
+                    return data.result.phone;
                 } else {
-                    d.reject(response.message);
+                    return $q.reject(data.message);
                 }
             }
 
             function fail () {
-                d.reject('$SERVER');
+                return $q.reject('$SERVER');
             }
         }
 
         function removePhone (id) {
-            var d = $q.defer();
-            $http.delete('api/phones/' + id)
-                .success(success)
-                .error(fail);
-            return d.promise;
+            return $http.delete('api/phones/' + id)
+                .then(success)
+                .catch(fail);
 
-            function success (response, status) {
-                if (status === 200 && response.code === 0) {
-                    d.resolve(response.result.phone);
+            function success (response) {
+                var data = response.data;
+                if (response.status === 200 && data.code === 0) {
+                    return data.result.phone;
                 } else {
-                    d.reject(response.message);
+                    return $q.reject(data.message);
                 }
             }
 
             function fail () {
-                d.reject('$SERVER');
+                return $q.reject('$SERVER');
             }
         }
 

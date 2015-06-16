@@ -48,18 +48,15 @@
         }
 
         function updatePhone (phone) {
-            var d = $q.defer();
-            phoneAPI.updatePhone(phone.id, phone)
+            // return promise here to let the phone form controller know the response status
+            return phoneAPI.updatePhone(phone.id, phone)
                 .then(success)
                 .catch(error);
-            // return promise here to let the phone form controller know
-            // the response status
-            return d.promise;
 
             function success (data) {
                 vm.state = 'view';
                 vm.phone = data;
-                d.resolve();
+                return;
             }
 
             function error (reason) {
@@ -67,7 +64,7 @@
                 LxNotificationService.alert('Update phone error', message, 'OK', function () {
                     cancelUpdate();
                 });
-                d.reject();
+                return $q.reject();
             }
         }
 

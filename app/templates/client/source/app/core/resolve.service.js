@@ -15,19 +15,11 @@
         ///////////
 
         function login () {
-            var d = $q.defer();
-            userAPI.checkLoggedInStatus()
-                .then(success)
+            return userAPI.checkLoggedInStatus()
                 .catch(error);
 
-            return d.promise;
-
-            function success () {
-                d.resolve();
-            }
-
             function error () {
-                d.reject('requireLogin');
+                return $q.reject('requireLogin');
             }
         }
     }
