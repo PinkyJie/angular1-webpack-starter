@@ -4,12 +4,12 @@
 
     angular
         .module('app.helper')
-        .factory('ajaxErrorHanlder', ajaxErrorHanlderService);
+        .factory('ajaxErrorHandler', ajaxErrorHandlerService);
 
-    ajaxErrorHanlderService.$inject = ['ErrorMessage'];
+    ajaxErrorHandlerService.$inject = ['ErrorMessage'];
 
     /* @ngInject */
-    function ajaxErrorHanlderService (Error) {
+    function ajaxErrorHandlerService (Error) {
         var service = {
             getMessage: getMessage
         };

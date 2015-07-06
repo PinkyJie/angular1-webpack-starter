@@ -5,10 +5,10 @@
         .module('app.phone')
         .controller('PhoneDetailController', PhoneDetailController);
 
-    PhoneDetailController.$inject = ['phoneAPI', '$stateParams', 'ajaxErrorHanlder',
+    PhoneDetailController.$inject = ['phoneAPI', '$stateParams', 'ajaxErrorHandler',
         'LxNotificationService', '$q'];
     /* @ngInject */
-    function PhoneDetailController (phoneAPI, $stateParams, ajaxErrorHanlder,
+    function PhoneDetailController (phoneAPI, $stateParams, ajaxErrorHandler,
         LxNotificationService, $q) {
         var vm = this;
 
@@ -60,7 +60,7 @@
             }
 
             function _error (reason) {
-                var message = ajaxErrorHanlder.getMessage(reason);
+                var message = ajaxErrorHandler.getMessage(reason);
                 LxNotificationService.alert('Update phone error', message, 'OK', function () {
                     cancelUpdate();
                 });
