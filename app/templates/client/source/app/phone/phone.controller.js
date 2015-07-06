@@ -41,14 +41,14 @@
 
         function _doDelete (id) {
             phoneAPI.removePhone(id)
-                .then(success)
-                .catch(error);
+                .then(_success)
+                .catch(_error);
 
-            function success (data) {
+            function _success (data) {
                 _getPhoneList();
             }
 
-            function error (reason) {
+            function _error (reason) {
                 var message = ajaxErrorHanlder.getMessage(reason);
                 LxNotificationService.alert('Delete phone error', message, 'OK', function () {
                     _getPhoneList();

@@ -26,15 +26,15 @@
         function addNewPhone (phone) {
             // return promise here to let the phone form controller know the response status
             return phoneAPI.addNewPhone(phone)
-                .then(success)
-                .catch(error);
+                .then(_success)
+                .catch(_error);
 
-            function success (data) {
+            function _success (data) {
                 $state.go('root.phone');
                 return;
             }
 
-            function error (reason) {
+            function _error (reason) {
                 var message = ajaxErrorHanlder.getMessage(reason);
                 LxNotificationService.alert('Add phone error', message, 'OK');
                 return $q.reject();

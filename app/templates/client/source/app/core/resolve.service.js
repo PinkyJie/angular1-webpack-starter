@@ -16,9 +16,9 @@
 
         function login () {
             return userAPI.checkLoggedInStatus()
-                .catch(error);
+                .catch(_error);
 
-            function error () {
+            function _error () {
                 return $q.reject('requireLogin');
             }
         }

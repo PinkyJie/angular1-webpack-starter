@@ -22,10 +22,10 @@
 
         function getPhones () {
             return $http.get('api/phones')
-                .then(success)
-                .catch(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 if (response.status === 200 && data.code === 0) {
                     return data.result.phones;
@@ -34,17 +34,17 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 return $q.reject('$SERVER');
             }
         }
 
         function getPhoneDetail (id) {
             return $http.get('api/phones/' + id)
-                .then(success)
-                .catch(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 if (response.status === 200 && data.code === 0) {
                     return data.result.phone;
@@ -53,7 +53,7 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 return $q.reject('$SERVER');
             }
         }
@@ -63,10 +63,10 @@
                 'phone': phone
             };
             return $http.post('api/phones', req)
-                .then(success)
-                .catch(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 if (response.status === 200 && data.code === 0) {
                     return data.result.phone;
@@ -75,7 +75,7 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 return $q.reject('$SERVER');
             }
         }
@@ -85,10 +85,10 @@
                 'phone': phone
             };
             return $http.put('api/phones/' + id, req)
-                .then(success)
-                .catch(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 if (response.status === 200 && data.code === 0) {
                     return data.result.phone;
@@ -97,17 +97,17 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 return $q.reject('$SERVER');
             }
         }
 
         function removePhone (id) {
             return $http.delete('api/phones/' + id)
-                .then(success)
-                .catch(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 if (response.status === 200 && data.code === 0) {
                     return data.result.phone;
@@ -116,7 +116,7 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 return $q.reject('$SERVER');
             }
         }

@@ -50,16 +50,16 @@
         function updatePhone (phone) {
             // return promise here to let the phone form controller know the response status
             return phoneAPI.updatePhone(phone.id, phone)
-                .then(success)
-                .catch(error);
+                .then(_success)
+                .catch(_error);
 
-            function success (data) {
+            function _success (data) {
                 vm.state = 'view';
                 vm.phone = data;
                 return;
             }
 
-            function error (reason) {
+            function _error (reason) {
                 var message = ajaxErrorHanlder.getMessage(reason);
                 LxNotificationService.alert('Update phone error', message, 'OK', function () {
                     cancelUpdate();

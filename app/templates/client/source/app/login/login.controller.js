@@ -50,10 +50,10 @@
             }
             vm.isRequest = true;
             userAPI.login(credential.email, credential.password)
-                .then(success)
-                .catch(error);
+                .then(_success)
+                .catch(_error);
 
-            function success (data) {
+            function _success (data) {
                 vm.loginError = null;
                 // user was redirect to login page
                 if ($state.prev) {
@@ -64,7 +64,7 @@
                 }
             }
 
-            function error (reason) {
+            function _error (reason) {
                 var message = ajaxErrorHanlder.getMessage(reason);
                 _setError('error', message);
                 vm.isRequest = false;

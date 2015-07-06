@@ -29,10 +29,10 @@
 
         function checkLoggedInStatus () {
             return $http.get('api/user/loginstatus', {ignoreLoadingBar: true})
-                .then(success)
-                .catch(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 if (response.status === 200 && data.code === 0) {
                     _setUser(data.result.user);
@@ -44,7 +44,7 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 _clearUser();
                 return $q.reject();
             }
@@ -56,10 +56,10 @@
                 password: password
             };
             return $http.post('api/user/login', req)
-                .then(success)
-                .catch(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 if (response.status === 200 && data.code === 0) {
                     _setUser(data.result.user);
@@ -71,7 +71,7 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 _clearUser();
                 return $q.reject('$SERVER');
             }
@@ -80,10 +80,10 @@
 
         function logout () {
             return $http.post('api/user/logout')
-                .success(success)
-                .error(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 _clearUser();
                 if (response.status === 200 && data.code === 0) {
@@ -94,7 +94,7 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 _clearUser();
                 return $q.reject('$SERVER');
             }
@@ -106,10 +106,10 @@
 
         function getProductSummary () {
             return $http.get('api/user/products')
-                .then(success)
-                .catch(fail);
+                .then(_success)
+                .catch(_error);
 
-            function success (response) {
+            function _success (response) {
                 var data = response.data;
                 if (response.status === 200 && data.code === 0) {
                     return data.result.summary;
@@ -118,7 +118,7 @@
                 }
             }
 
-            function fail () {
+            function _error () {
                 return $q.reject('$SERVER');
             }
         }
