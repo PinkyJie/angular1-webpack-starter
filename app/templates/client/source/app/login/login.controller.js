@@ -5,9 +5,9 @@
         .module('app.login')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['userAPI', '$state', 'ajaxErrorHandler', '$timeout'];
+    LoginController.$inject = ['userAPI', '$state', '$timeout'];
     /* @ngInject */
-    function LoginController (userAPI, $state, ajaxErrorHandler, $timeout) {
+    function LoginController (userAPI, $state, $timeout) {
         var vm = this;
 
         vm.login = login;
@@ -64,8 +64,7 @@
                 }
             }
 
-            function _error (reason) {
-                var message = ajaxErrorHandler.getMessage(reason);
+            function _error (message) {
                 _setError('error', message);
                 vm.isRequest = false;
             }

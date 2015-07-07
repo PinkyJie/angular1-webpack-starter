@@ -5,9 +5,9 @@
         .module('app.phone')
         .controller('PhoneController', PhoneController);
 
-    PhoneController.$inject = ['phoneAPI', 'ajaxErrorHandler', 'LxNotificationService'];
+    PhoneController.$inject = ['phoneAPI', 'LxNotificationService'];
     /* @ngInject */
-    function PhoneController (phoneAPI, ajaxErrorHandler, LxNotificationService) {
+    function PhoneController (phoneAPI, LxNotificationService) {
         var vm = this;
 
         vm.deletePhone = deletePhone;
@@ -48,8 +48,7 @@
                 _getPhoneList();
             }
 
-            function _error (reason) {
-                var message = ajaxErrorHandler.getMessage(reason);
+            function _error (message) {
                 LxNotificationService.alert('Delete phone error', message, 'OK', function () {
                     _getPhoneList();
                 });

@@ -5,9 +5,9 @@
         .module('app.phone')
         .factory('phoneAPI', phoneSerivce);
 
-    phoneSerivce.$inject = ['$http', '$q'];
+    phoneSerivce.$inject = ['$http', '$q', 'ajaxErrorHandler'];
     /* @ngInject */
-    function phoneSerivce ($http, $q) {
+    function phoneSerivce ($http, $q, ajaxError) {
         var service = {
             getPhones: getPhones,
             getPhoneDetail: getPhoneDetail,
@@ -23,7 +23,7 @@
         function getPhones () {
             return $http.get('api/phones')
                 .then(_success)
-                .catch(_error);
+                .catch(ajaxError.catcher);
 
             function _success (response) {
                 var data = response.data;
@@ -33,16 +33,12 @@
                     return $q.reject(data.message);
                 }
             }
-
-            function _error () {
-                return $q.reject('$SERVER');
-            }
         }
 
         function getPhoneDetail (id) {
             return $http.get('api/phones/' + id)
                 .then(_success)
-                .catch(_error);
+                .catch(ajaxError.catcher);
 
             function _success (response) {
                 var data = response.data;
@@ -51,10 +47,6 @@
                 } else {
                     return $q.reject(data.message);
                 }
-            }
-
-            function _error () {
-                return $q.reject('$SERVER');
             }
         }
 
@@ -64,7 +56,7 @@
             };
             return $http.post('api/phones', req)
                 .then(_success)
-                .catch(_error);
+                .catch(ajaxError.catcher);
 
             function _success (response) {
                 var data = response.data;
@@ -73,10 +65,6 @@
                 } else {
                     return $q.reject(data.message);
                 }
-            }
-
-            function _error () {
-                return $q.reject('$SERVER');
             }
         }
 
@@ -86,7 +74,7 @@
             };
             return $http.put('api/phones/' + id, req)
                 .then(_success)
-                .catch(_error);
+                .catch(ajaxError.catcher);
 
             function _success (response) {
                 var data = response.data;
@@ -95,17 +83,13 @@
                 } else {
                     return $q.reject(data.message);
                 }
-            }
-
-            function _error () {
-                return $q.reject('$SERVER');
             }
         }
 
         function removePhone (id) {
             return $http.delete('api/phones/' + id)
                 .then(_success)
-                .catch(_error);
+                .catch(ajaxError.catcher);
 
             function _success (response) {
                 var data = response.data;
@@ -114,10 +98,6 @@
                 } else {
                     return $q.reject(data.message);
                 }
-            }
-
-            function _error () {
-                return $q.reject('$SERVER');
             }
         }
 

@@ -5,9 +5,9 @@
         .module('app.core')
         .factory('userAPI', userSerivce);
 
-    userSerivce.$inject = ['$http', '$q', '$rootScope', 'Event'];
+    userSerivce.$inject = ['$http', '$q', '$rootScope', 'Event', 'ajaxErrorHandler'];
     /* @ngInject */
-    function userSerivce ($http, $q, $rootScope, Event) {
+    function userSerivce ($http, $q, $rootScope, Event, ajaxError) {
         var _isLoggedIn;
         var _userInfo;
         var service = {
@@ -39,14 +39,13 @@
                     $rootScope.$broadcast(Event.AUTH_SESSION_VALID, data.result.user);
                     return data.result.user;
                 } else {
-                    _clearUser();
-                    return $q.reject();
+                    return $q.reject(data.message);
                 }
             }
 
-            function _error () {
+            function _error (reason) {
                 _clearUser();
-                return $q.reject();
+                return ajaxError.catcher(reason);
             }
         }
 
@@ -66,14 +65,13 @@
                     $rootScope.$broadcast(Event.AUTH_LOGIN, data.result.user);
                     return data.result.user;
                 } else {
-                    _clearUser();
                     return $q.reject(data.message);
                 }
             }
 
-            function _error () {
+            function _error (reason) {
                 _clearUser();
-                return $q.reject('$SERVER');
+                return ajaxError.catcher(reason);
             }
 
         }
@@ -88,15 +86,14 @@
                 _clearUser();
                 if (response.status === 200 && data.code === 0) {
                     $rootScope.$broadcast(Event.AUTH_LOGOUT);
-                    return;
                 } else {
-                    return $q.reject();
+                    return $q.reject(data.message);
                 }
             }
 
-            function _error () {
+            function _error (reason) {
                 _clearUser();
-                return $q.reject('$SERVER');
+                return ajaxError.catcher(reason);
             }
         }
 
@@ -107,7 +104,7 @@
         function getProductSummary () {
             return $http.get('api/user/products')
                 .then(_success)
-                .catch(_error);
+                .catch(ajaxError.catcher);
 
             function _success (response) {
                 var data = response.data;
@@ -116,10 +113,6 @@
                 } else {
                     return $q.reject(data.message);
                 }
-            }
-
-            function _error () {
-                return $q.reject('$SERVER');
             }
         }
 

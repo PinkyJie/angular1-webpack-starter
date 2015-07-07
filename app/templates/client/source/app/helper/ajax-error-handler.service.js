@@ -6,17 +6,28 @@
         .module('app.helper')
         .factory('ajaxErrorHandler', ajaxErrorHandlerService);
 
-    ajaxErrorHandlerService.$inject = ['ErrorMessage'];
+    ajaxErrorHandlerService.$inject = ['ErrorMessage', '$q'];
 
     /* @ngInject */
-    function ajaxErrorHandlerService (Error) {
+    function ajaxErrorHandlerService (Error, $q) {
         var service = {
-            getMessage: getMessage
+            catcher: catcher
         };
         return service;
 
-        function getMessage (reason) {
-            return Error[reason] || Error['$SERVER'];
+        // directly reject the human readable error message
+        function catcher (reason) {
+            // reason is:
+            // 1. either an error $http response
+            // 2. or an error message returned by _success
+            var _type = typeof reason;
+            var message = '$SERVER';
+            if (reason && _type === 'object') {
+                message = reason.message;
+            } else if (reason && _type === 'string') {
+                message = reason;
+            }
+            return $q.reject(Error[message]);
         }
     }
 })();
