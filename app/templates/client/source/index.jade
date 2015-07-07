@@ -1,6 +1,6 @@
 doctype html
 //- variable `app` here is used by gulp
-html(lang="en", ng-app= app)
+html(lang="en", ng-app= app, ng-strict-di)
     //- This helps the ng-show/ng-hide animations start at the right place.
     //- Since Angular has this but needs to load, this gives us the class early.
     style

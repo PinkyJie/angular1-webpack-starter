@@ -5,6 +5,8 @@
         .module('app.layout')
         .run(appRun);
 
+    appRun.$inject = ['routerHelper'];
+
     /* @ngInject */
     function appRun (routerHelper) {
         var otherwise = '/404';
