@@ -10,6 +10,8 @@ module.exports = function (gulp, config, $, args) {
 
     // Build for production environment
     gulp.task('build:prod', function (done) {
+        // set a flag on args so sub task can know it is production build
+        args.prod = true;
         runSeq('build:dev', 'templatecache', 'optimize',
             'copy:images:prod', 'copy:fonts:prod', 'clean:temp', done);
     });

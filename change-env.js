@@ -15,6 +15,7 @@ var fileList = [
     '_package.json',
     '_README.md',
     'client/source/app/core/_config.js',
+    'client/source/app/core/production/_production.config.js',
     'client/source/app/layout/_header.jade',
     'client/source/app/home/_home.jade',
     'gulp/tasks/_serve.task.js',

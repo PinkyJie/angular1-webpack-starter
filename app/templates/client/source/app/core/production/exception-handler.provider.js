@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.helper')
+        .module('app.core')
         .provider('exceptionHandler', exceptionHandlerProvider)
         .config(config);
 
@@ -36,11 +36,11 @@
     // * add error log prefix using exceptionHandlerProvider
     // * do other thing with error log
     function extendExceptionHandler ($delegate, exceptionHandler, logger) {
-        return function (exception, cause) {
+        $delegate = function (exception, cause) {
             var appErrorPrefix = exceptionHandler.config.appErrorPrefix || '';
             var errorData = {exception: exception, cause: cause};
             exception.message = appErrorPrefix + exception.message;
-            $delegate(exception, cause);
+            // $delegate(exception, cause);
             /**
              * Could add the error to a service's collection,
              * add errors to $rootScope, log errors to remote web server,
@@ -52,5 +52,6 @@
              */
             logger.error(exception.message, errorData);
         };
+        return $delegate;
     }
 })();

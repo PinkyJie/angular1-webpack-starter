@@ -20,8 +20,14 @@ module.exports = function (gulp, config, $, args) {
     gulp.task('copy:js', ['clean:js'], function () {
         config.fn.log('Copying all javascript files');
 
+        // ignore production files when building for dev
+        var productionJS = config.js.app.production.map(function (js) {
+            return '!' + js;
+        });
+        var excludes = args.prod ? [] : productionJS;
+
         var jsStream = gulp
-            .src(config.js.app.source)
+            .src(config.js.app.source.concat(excludes))
             .pipe(gulp.dest(config.build.dev + 'static'));
 
         // Also copy mock files if --mock is on

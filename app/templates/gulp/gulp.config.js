@@ -66,6 +66,9 @@ module.exports = function () {
                     build.dev + 'static/**/*.js',
                     '!' + build.dev + 'static/vendor/**/*.*'
                 ],
+                production: [
+                    client.app + '**/production/*.js'
+                ]
             },
             test: {
                 stubs: [

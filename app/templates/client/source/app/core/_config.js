@@ -10,13 +10,9 @@
         appTitle: '<%= appDesc %>'
     };
 
-    appConfig.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];
+    appConfig.$inject = ['routerHelperProvider'];
     /* @ngInject */
-    function appConfig ($logProvider, routerHelperProvider, exceptionHandlerProvider) {
-        if ($logProvider.debugEnabled) {
-            $logProvider.debugEnabled(true);
-        }
-        exceptionHandlerProvider.configure(config.appErrorPrefix);
+    function appConfig (routerHelperProvider) {
         routerHelperProvider.configure({mainTitle: config.appTitle});
     }
 
