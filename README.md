@@ -54,7 +54,7 @@ npm run-script env prod
 ```
 
 ## Blog Posts related(written in Chinese)
-* [重构你的gulpfile](http://pinkyjie.com/2015/03/24/refactor-your-gulpfile/)
+* [相关博文](http://pinkyjie.com/tags/generator-aio-angular/)
 
 ## Future Plan
 * add unit/e2e tests for the app
