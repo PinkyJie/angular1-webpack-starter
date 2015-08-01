@@ -6,7 +6,6 @@ module.exports = function () {
         gotoUrl: gotoUrl,
         getHeader: getHeader,
         takeScreenshotIfFail: takeScreenshotIfFail,
-        waitForPromiseTest: waitForPromiseTest,
         expectUrlToMatch: expectUrlToMatch
     };
 
@@ -44,16 +43,6 @@ module.exports = function () {
                 });
             });
         }
-    }
-
-    function waitForPromiseTest (promiseFn, testFn) {
-        browser.wait(function () {
-            var deferred = protractor.promise.defer();
-            promiseFn.then(function (data) {
-                deferred.fulfill(testFn(data));
-            });
-            return deferred.promise;
-        }, browser.params.timeout);
     }
 
     function expectUrlToMatch (url) {
