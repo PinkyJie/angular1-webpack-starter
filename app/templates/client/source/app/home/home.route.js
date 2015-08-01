@@ -22,12 +22,8 @@
                         'main@': {
                             templateUrl: 'static/home/home.html'
                         },
-                        'sidebar@': {
-                            template: ''
-                        },
-                        'breadcrumb@': {
-                            template: ''
-                        }
+                        'sidebar@': {},
+                        'breadcrumb@': {}
                     },
                     data: {
                         title: 'Home',

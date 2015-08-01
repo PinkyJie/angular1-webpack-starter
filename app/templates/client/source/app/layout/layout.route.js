@@ -48,9 +48,7 @@
                         'main@': {
                             templateUrl: 'static/layout/404.html'
                         },
-                        'sidebar@': {
-                            template: ''
-                        }
+                        'sidebar@': {}
                     },
                     data: {
                         title: '404',

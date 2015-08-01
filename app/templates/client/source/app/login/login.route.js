@@ -23,12 +23,8 @@
                             templateUrl: 'static/login/login.html',
                             controller: 'LoginController as vm'
                         },
-                        'breadcrumb@': {
-                            template: ''
-                        },
-                        'sidebar@': {
-                            template: ''
-                        }
+                        'breadcrumb@': {},
+                        'sidebar@': {}
                     },
                     data: {
                         title: 'Login',
