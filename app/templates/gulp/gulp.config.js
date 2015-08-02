@@ -129,8 +129,8 @@ module.exports = function () {
             libJS: 'lib.js'
         },
         packages: [
-            '../package.json',
-            '../bower.json'
+            _root + 'package.json',
+            _root + 'bower.json'
         ]
     };
 
