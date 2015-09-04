@@ -57,10 +57,7 @@ npm run-script env prod
 * [相关博文](http://pinkyjie.com/tags/generator-aio-angular/)
 
 ## Future Plan
-* add unit/e2e tests for the app
-* add unit test for the generateor
-* add more generators like controller/service/directive...
-* more blog posts for the techniques used in this repo
+Check the [issues](https://github.com/PinkyJie/generator-aio-angular/issues/created_by/PinkyJie)
 
 ## License
 
