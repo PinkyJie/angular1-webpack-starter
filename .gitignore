@@ -3,7 +3,7 @@
 # node module
 node_modules/
 npm-debug.log
-# files need to be ignored in tempaltes folder
+# files need to be ignored in templates folder
 app/templates/client/source/vendor
 app/templates/client/build
 app/templates/client/source/test/e2e/screenshots/*
