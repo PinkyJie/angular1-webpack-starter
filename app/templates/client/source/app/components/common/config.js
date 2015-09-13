@@ -6,8 +6,8 @@
         .config(appConfig);
 
     var config = {
-        appErrorPrefix: '[<%= appDesc %> Error] ',
-        appTitle: '<%= appDesc %>'
+        appErrorPrefix: '[Aio Angular App Error] ',
+        appTitle: 'Aio Angular App'
     };
 
     appConfig.$inject = ['routerHelperProvider'];

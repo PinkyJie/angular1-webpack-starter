@@ -6,7 +6,7 @@
         .config(appProductionConfig);
 
     var config = {
-        appErrorPrefix: '[<%= appDesc %> Error] ',
+        appErrorPrefix: '[Aio Angular App Error] ',
     };
 
     appProductionConfig.$inject = ['$logProvider', '$compileProvider',

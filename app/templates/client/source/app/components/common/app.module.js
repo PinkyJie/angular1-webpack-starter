@@ -1,6 +1,4 @@
-(function () {
-    'use strict';
-
+(function bar () {
     angular.module('app', [
         'app.core',
         'app.helper',
@@ -10,5 +8,4 @@
         'app.dashboard',
         'app.phone'
     ]);
-
 })();
