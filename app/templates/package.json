@@ -1,0 +1,43 @@
+{
+  "name": "aio-angular-app",
+  "version": "0.0.1",
+  "description": "Aio Angular App",
+  "repository": "",
+  "scripts": {
+    "start": "gulp serve:dev --mock",
+    "test": "gulp test:unit"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "angular-mocks": "^1.4.5",
+    "css-loader": "^0.17.0",
+    "eslint": "^1.4.1",
+    "file-loader": "^0.8.4",
+    "jade": "^1.11.0",
+    "jade-loader": "^0.7.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.8",
+    "karma-coverage": "^0.3.1",
+    "karma-jasmine": "^0.3.5",
+    "karma-junit-reporter": "^0.2.2",
+    "karma-mocha-reporter": "^1.0.2",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "phantomjs": "^1.9.16",
+    "protractor": "^2.0.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.12.3",
+    "stylus-loader": "^1.2.1",
+    "webpack": "^1.12.1",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "dependencies": {
+    "angular": "^1.4.5",
+    "angular-animate": "^1.4.5",
+    "angular-loading-bar": "^0.8.0",
+    "angular-messages": "^1.4.5",
+    "angular-ui-router": "^0.2.15",
+    "animate.css": "^3.4.0",
+    "materialize-css": "^0.96.1"
+  }
+}
