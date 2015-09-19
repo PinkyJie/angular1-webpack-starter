@@ -1,36 +1,30 @@
-(function () {
-    'use strict';
+import homeHtml from './home.jade';
 
-    angular
-        .module('app.home')
-        .run(appRun);
+appHomeRun.$inject = ['RouterHelper'];
+function appHomeRun (routerHelper) {
+    routerHelper.configureStates(getStates());
+}
 
-    appRun.$inject = ['routerHelper'];
-
-    /* @ngInject */
-    function appRun (routerHelper) {
-        routerHelper.configureStates(getStates());
-    }
-
-    function getStates () {
-        return [
-            {
-                state: 'root.home',
-                config: {
-                    url: '/',
-                    views: {
-                        'main@': {
-                            templateUrl: 'static/home/home.html'
-                        },
-                        'sidebar@': {},
-                        'breadcrumb@': {}
+function getStates () {
+    return [
+        {
+            state: 'root.layout.home',
+            config: {
+                url: '/',
+                views: {
+                    main: {
+                        template: homeHtml
                     },
-                    data: {
-                        title: 'Home',
-                        _class: 'home'
-                    }
+                    sidebar: {},
+                    breadcrumb: {}
+                },
+                data: {
+                    title: 'Home',
+                    _class: 'home'
                 }
             }
-        ];
-    }
-})();
+        }
+    ];
+}
+
+export default appHomeRun;

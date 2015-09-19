@@ -1,40 +1,29 @@
-(function () {
-    'use strict';
+class HeaderController {
+    constructor ($rootScope, Event) {
+        this.$rootScope = $rootScope;
+        this.Event = Event;
 
-    angular
-        .module('app.layout')
-        .controller('HeaderController', HeaderController);
+        // udpate header based on auth event
+        this.$rootScope.$on(this.Event.AUTH_LOGIN, this.updateHeader);
+        this.$rootScope.$on(this.Event.AUTH_LOGOUT, this.updateHeader);
+        this.$rootScope.$on(this.Event.AUTH_SESSION_VALID, this.updateHeader);
+    }
 
-    HeaderController.$inject = ['$rootScope', 'Event'];
-    /* @ngInject */
-    function HeaderController ($rootScope, Event) {
-        var vm = this;
-
-        vm.switchSidebar = switchSidebar;
-
-        init();
-
-        ////////////
-
-        function init () {
-            // udpate header based on auth event
-            $rootScope.$on(Event.AUTH_LOGIN, _updateHeader);
-            $rootScope.$on(Event.AUTH_LOGOUT, _updateHeader);
-            $rootScope.$on(Event.AUTH_SESSION_VALID, _updateHeader);
-        }
-
-        function _updateHeader (e, userInfo) {
-            if (userInfo) {
-                vm.isLoggedIn = true;
-                vm.userInfo = userInfo;
-            } else {
-                vm.isLoggedIn = false;
-                vm.userInfo = null;
-            }
-        }
-
-        function switchSidebar () {
-            $rootScope.showSidebar = !$rootScope.showSidebar;
+    updateHeader (e, userInfo) {
+        if (userInfo) {
+            this.isLoggedIn = true;
+            this.userInfo = userInfo;
+        } else {
+            this.isLoggedIn = false;
+            this.userInfo = null;
         }
     }
-})();
+
+    switchSidebar () {
+        this.$rootScope.showSidebar = !this.$rootScope.showSidebar;
+    }
+}
+
+HeaderController.$inject = ['$rootScope', 'Event'];
+
+export default HeaderController;

@@ -1,10 +1,12 @@
+- require('./header.styl')
+- var logoPng = require('../_layout/logo.png')
 .header
     .card.bgc-blue-500.tc-white
         .toolbar
             .toolbar__left.mr
                 button.btn.btn--l.btn--white.btn--icon.hide-gt-sm(lx-ripple, ng-if="hasSidebar", ng-click="vm.switchSidebar()")
                     i.mdi.mdi-menu
-                img.logo(src="static/images/layout/logo.png")
+                img.logo(src= logoPng)
             .toolbar__label.fs-title.header-title
                 a.tc-white(ui-sref="root.home") Aio Angular App
             .toolbar__right

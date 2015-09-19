@@ -1,46 +1,36 @@
-(function () {
-    'use strict';
+class SidebarController {
+    constructor (RouterHelper, $scope, $rootScope) {
+        this.RouterHelper = RouterHelper;
+        this.$scope = $scope;
+        this.$rootScope = $rootScope;
 
-    angular
-        .module('app.layout')
-        .controller('SidebarController', SidebarController);
-
-    SidebarController.$inject = ['routerHelper', '$scope', '$rootScope'];
-    /* @ngInject */
-    function SidebarController (routerHelper, $scope, $rootScope) {
-        var vm = this;
-
-        vm.hideSidebar = hideSidebar;
-
-        init();
-
-        ///////////////
-
-        function init () {
-            // generate sidebar nav menus
-            vm.navs = _getNavMenus();
-            // tell others we have sidebar
-            $rootScope.hasSidebar = true;
-            $scope.$on('$destroy', function () {
-                $rootScope.hasSidebar = false;
-            });
-        }
-
-        function hideSidebar () {
-            $rootScope.showSidebar = false;
-        }
-
-        function _getNavMenus () {
-            var navs = [];
-            var allStates = routerHelper.getStates();
-            allStates.forEach(function (state) {
-                if (state.sidebar) {
-                    var nav = state.sidebar;
-                    nav.link = state.name;
-                    navs.push(nav);
-                }
-            });
-            return navs;
-        }
+        // generate sidebar nav menus
+        this.navs = this._getNavMenus();
+        // tell others we have sidebar
+        this.$rootScope.hasSidebar = true;
+        this.$scope.$on('$destroy', () => {
+            this.$rootScope.hasSidebar = false;
+        });
     }
-})();
+
+    hideSidebar () {
+        this.$rootScope.showSidebar = false;
+    }
+
+    _getNavMenus () {
+        const navs = [];
+        const allStates = this.RouterHelper.getStates();
+        allStates.forEach((state) => {
+            if (state.sidebar) {
+                const nav = state.sidebar;
+                nav.link = state.name;
+                navs.push(nav);
+            }
+        });
+        return navs;
+    }
+}
+
+SidebarController.$inject = ['RouterHelper', '$scope', '$rootScope'];
+
+export default SidebarController;

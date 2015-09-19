@@ -1,54 +1,46 @@
-(function () {
-    'use strict';
+class BreadcrumbController {
+    constructor (RouterHelper, $state, $rootScope) {
+        this.RouterHelper = RouterHelper;
+        this.$state = $state;
+        this.$rootScope = $rootScope;
 
-    angular
-        .module('app.layout')
-        .controller('BreadcrumbController', BreadcrumbController);
-
-    BreadcrumbController.$inject = ['routerHelper', '$state', '$rootScope'];
-    /* @ngInject */
-    function BreadcrumbController (routerHelper, $state, $rootScope) {
-        var vm = this;
-
-        init();
-
-        ////////////
-
-        function init () {
-            _applyNewBreadcrumb($state.current, $state.params);
-            $rootScope.$on('$stateChangeSuccess',
-                function (event, toState, toParams, fromState, fromParams) {
-                    _applyNewBreadcrumb(toState, toParams);
-                });
-        }
-
-        function _applyNewBreadcrumb (state, params) {
-            vm.breadcrumbs = [];
-            var name = state.name;
-            var stateNames = _getAncestorStates(name);
-            stateNames.forEach(function (name) {
-                var stateConfig = $state.get(name);
-                var breadcrumb = {
-                    link: name,
-                    text: stateConfig.breadcrumb
-                };
-                if (params) {
-                    breadcrumb.link = name + '(' + JSON.stringify(params) + ')';
-                }
-                vm.breadcrumbs.push(breadcrumb);
+        this._applyNewBreadcrumb(this.$state.current, this.$state.params);
+        this.$rootScope.$on('$stateChangeSuccess',
+            (event, toState, toParams) => {
+                this._applyNewBreadcrumb(toState, toParams);
             });
-        }
-
-        function _getAncestorStates (stateName) {
-            var ancestors = [];
-            var pieces = stateName.split('.');
-            if (pieces.length > 1) {
-                for (var i = 1; i < pieces.length; i++) {
-                    var name = pieces.slice(0, i + 1);
-                    ancestors.push(name.join('.'));
-                }
-            }
-            return ancestors;
-        }
     }
-})();
+
+    _applyNewBreadcrumb (state, params) {
+        this.breadcrumbs = [];
+        const curName = state.name;
+        const parentStateNames = this._getAncestorStates(curName);
+        parentStateNames.forEach((name) => {
+            const stateConfig = this.$state.get(name);
+            const breadcrumb = {
+                link: name,
+                text: stateConfig.breadcrumb
+            };
+            if (params) {
+                breadcrumb.link = `name(${JSON.stringify(params)})`;
+            }
+            this.breadcrumbs.push(breadcrumb);
+        });
+    }
+
+    _getAncestorStates (stateName) {
+        const ancestors = [];
+        const pieces = stateName.split('.');
+        if (pieces.length > 1) {
+            for (let i = 1; i < pieces.length; i++) {
+                const name = pieces.slice(0, i + 1);
+                ancestors.push(name.join('.'));
+            }
+        }
+        return ancestors;
+    }
+}
+
+BreadcrumbController.$inject = ['RouterHelper', '$state', '$rootScope'];
+
+export default BreadcrumbController;

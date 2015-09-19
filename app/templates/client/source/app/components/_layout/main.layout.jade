@@ -1,0 +1,11 @@
+- require('../_common/styles/animation.styl')
+- require('../_common/styles/fonts.styl')
+//- header/content/footer view
+header.header-view(ui-view="header")
+.content
+    .sidebar-view(ui-view="sidebar", ng-class="{'show': showSidebar}")
+    .main-content
+        .breadcrumb-view(ui-view="breadcrumb")
+        .main-view(ui-view="main")
+footer.footer-view(ui-view="footer")
+.sidebar-backdrop.hide-gt-sm(ng-show="showSidebar", ng-click="hideSidebar()")
