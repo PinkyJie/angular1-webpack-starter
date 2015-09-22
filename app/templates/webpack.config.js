@@ -1,11 +1,18 @@
 /*eslint-disable */
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var args = require('yargs').argv;
+
+var entryJs = args.mock ?
+    './client/source/test/e2e/mocks/index.js' :
+    './client/source/app/index.js';
+var appName = args.mock ? 'appTest' : 'app';
 
 module.exports = {
     entry: [
-        './client/source/app/index.js',
-        'file?name=index.html!jade-html!./client/source/app/index.jade'
+        entryJs,
+        'file?name=index.html!jade-html?app=' + appName +
+            '!./client/source/app/index.jade'
     ],
     output: {
         path: './client/build',
@@ -16,7 +23,7 @@ module.exports = {
         preLoaders: [
             {
                 test: /\.js$/,
-                loader: "eslint-loader",
+                loader: "eslint",
                 exclude: /node_modules/
             }
         ],
@@ -45,7 +52,7 @@ module.exports = {
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?]?.*)?$/,
-                loader : 'file?name=res/[name].[ext]?[hash]'
+                loader : 'file?name=assets/[name].[ext]?[hash]'
             },
             {
                 test: /\.(png|jpg)$/,
@@ -59,13 +66,16 @@ module.exports = {
             jQuery: "jquery"
         }),
         new webpack.DefinePlugin({
-            __DEV__: JSON.stringify(JSON.parse(process.env.DEV || 'true')),
-            __PRODUCTION__: JSON.stringify(JSON.parse(process.env.PRODUCTION || 'false'))
+            __DEV__: args.dev,
+            __BUILD__: args.build,
+            __MOCK__: args.mock
         })
     ],
+    debug: true,
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './client/build',
+        historyApiFallback: true,
         stats: {
             modules: false,
             cached: false,
@@ -73,5 +83,4 @@ module.exports = {
             chunk: false
         }
     }
-
 };

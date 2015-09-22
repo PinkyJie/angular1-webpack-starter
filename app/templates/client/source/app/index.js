@@ -10,18 +10,17 @@ import ngAnimate from 'angular-animate';
 import ngMessage from 'angular-messages';
 import ngLoadingBar from 'angular-loading-bar';
 
-import common from './components/_common';
 import layout from './components/_layout';
 
 // pages
 import home from './pages/home';
+import login from './pages/login';
 
-angular.module('app', [
+export default angular.module('app', [
     uiRouter,
     ngAnimate,
     ngMessage,
     ngLoadingBar,
-    common.name,
     layout.name,
     home.name
 ]);

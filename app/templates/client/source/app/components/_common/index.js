@@ -35,7 +35,7 @@ common
     .directive('aioValidateNumber', ValidateNumber)
     .config(appConfig);
 
-if (__PRODUCTION__) { // eslint-disable-line no-undef
+if (__BUILD__) { // eslint-disable-line no-undef
     common
         .provider('ExceptionHandler', ExceptionHandlerProvider)
         .config(exceptionHandlerConfig)

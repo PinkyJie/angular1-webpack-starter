@@ -4,8 +4,7 @@
   "description": "Aio Angular App",
   "repository": "",
   "scripts": {
-    "start": "gulp serve:dev --mock",
-    "test": "gulp test:unit"
+    "start": "webpack-dev-server --dev --mock"
   },
   "license": "MIT",
   "devDependencies": {
@@ -35,7 +34,8 @@
     "stylus-loader": "^1.2.1",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.1",
-    "webpack-dev-server": "^1.10.1"
+    "webpack-dev-server": "^1.10.1",
+    "yargs": "^3.25.0"
   },
   "dependencies": {
     "angular": "^1.4.5",
@@ -46,6 +46,6 @@
     "animate.css": "^3.4.0",
     "hammerjs": "^2.0.4",
     "jquery": "^2.1.4",
-    "materialize-css": "^0.96.1"
+    "materialize-css": "^0.97.1"
   }
 }
