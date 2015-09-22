@@ -1,7 +1,3 @@
 - require('./home.styl')
 .home-view
-    .card.bgc-blue-800.text-center.tc-white(class="p+++")
-        h2.title Aio Angular App
-        h3.subtitle
-            | Awesome web app built on AngularJS &amp; Material Design.
-        a.btn.btn--green.btn--l.btn--raised(class="mt+", ui-sref="root.login", lx-ripple="white") Get Started
+    div(ui-view="hero")

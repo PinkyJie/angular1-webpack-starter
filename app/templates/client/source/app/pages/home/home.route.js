@@ -1,4 +1,5 @@
 import homeHtml from './home.jade';
+import {homeHeroHtml} from '../../components/home-hero';
 
 appHomeRun.$inject = ['RouterHelper'];
 function appHomeRun (routerHelper) {
@@ -10,17 +11,29 @@ function getStates () {
         {
             state: 'root.layout.home',
             config: {
+                abstract: true,
                 url: '/',
                 views: {
-                    main: {
+                    'main@root': {
                         template: homeHtml
                     },
-                    sidebar: {},
-                    breadcrumb: {}
+                    'sidebar@root': {},
+                    'breadcrumb@root': {}
                 },
                 data: {
                     title: 'Home',
                     _class: 'home'
+                }
+            }
+        },
+        {
+            state: 'root.layout.home.all',
+            config: {
+                url: '',
+                views: {
+                    hero: {
+                        template: homeHeroHtml
+                    }
                 }
             }
         }
