@@ -1,5 +1,5 @@
-ValidateNumber.$inject = [];
-function ValidateNumber () {
+ValidateNumberDirective.$inject = [];
+function ValidateNumberDirective () {
     return {
         require: 'ngModel',
         restrict: 'A',
@@ -17,4 +17,4 @@ function ValidateNumber () {
     }
 }
 
-export default ValidateNumber;
+export default ValidateNumberDirective;

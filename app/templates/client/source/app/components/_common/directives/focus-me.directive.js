@@ -1,5 +1,5 @@
-FocusMe.$inject = ['$timeout'];
-function FocusMe ($timeout) {
+FocusMeDirective.$inject = ['$timeout'];
+function FocusMeDirective ($timeout) {
     return {
         restrict: 'A',
         link
@@ -16,4 +16,4 @@ function FocusMe ($timeout) {
     }
 }
 
-export default FocusMe;
+export default FocusMeDirective;
