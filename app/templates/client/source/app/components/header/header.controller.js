@@ -4,9 +4,9 @@ class HeaderController {
         this.Event = Event;
 
         // udpate header based on auth event
-        this.$rootScope.$on(this.Event.AUTH_LOGIN, this.updateHeader);
-        this.$rootScope.$on(this.Event.AUTH_LOGOUT, this.updateHeader);
-        this.$rootScope.$on(this.Event.AUTH_SESSION_VALID, this.updateHeader);
+        this.$rootScope.$on(this.Event.AUTH_LOGIN, this.updateHeader.bind(this));
+        this.$rootScope.$on(this.Event.AUTH_LOGOUT, this.updateHeader.bind(this));
+        this.$rootScope.$on(this.Event.AUTH_SESSION_VALID, this.updateHeader.bind(this));
     }
 
     updateHeader (e, userInfo) {
