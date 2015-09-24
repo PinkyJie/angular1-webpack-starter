@@ -1,37 +1,32 @@
-(function () {
-    'use strict';
+import loginHtml from './login.jade';
+import LoginController from './login.controller';
 
-    angular
-        .module('app.login')
-        .run(appRun);
+appLoginRun.$inject = ['RouterHelper'];
+function appLoginRun (RouterHelper) {
+    RouterHelper.configureStates(getStates());
+}
 
-    appRun.$inject = ['routerHelper'];
-
-    /* @ngInject */
-    function appRun (routerHelper) {
-        routerHelper.configureStates(getStates());
-    }
-
-    function getStates () {
-        return [
-            {
-                state: 'root.login',
-                config: {
-                    url: '/login?action',
-                    views: {
-                        'main@': {
-                            templateUrl: 'static/login/login.html',
-                            controller: 'LoginController as vm'
-                        },
-                        'breadcrumb@': {},
-                        'sidebar@': {}
+function getStates () {
+    return [
+        {
+            state: 'root.layout.login',
+            config: {
+                url: '/login?action',
+                views: {
+                    'main@root': {
+                        template: loginHtml,
+                        controller: `${LoginController.name} as vm`
                     },
-                    data: {
-                        title: 'Login',
-                        _class: 'login'
-                    }
+                    'breadcrumb@root': {},
+                    'sidebar@root': {}
+                },
+                data: {
+                    title: 'Login',
+                    _class: 'login'
                 }
             }
-        ];
-    }
-})();
+        }
+    ];
+}
+
+export default appLoginRun;

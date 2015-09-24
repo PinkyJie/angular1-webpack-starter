@@ -22,5 +22,6 @@ export default angular.module('app', [
     ngMessage,
     ngLoadingBar,
     layout.name,
-    home.name
+    home.name,
+    login.name,
 ]);
