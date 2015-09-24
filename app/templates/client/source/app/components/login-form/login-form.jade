@@ -1,0 +1,26 @@
+- require('./login-form.styl')
+.login-form-view
+    .login-checking.white-text(ng-if="form.needCheckLogin")
+        i.medium(ng-class="{'mdi-notification-sync icon-rotate-animation': !form.userInfo, 'mdi-action-account-box': form.userInfo}")
+        p.loading-text {{form.userInfo ? form.userInfo.name : 'Checking Login User...'}}
+
+    form.card(name="form.loginForm", ng-submit="form.login(form.credential)", novalidate)
+        .card-title.black-text.p2
+            | Please sign in with your Email and Password
+        .login-message.p1(class="{{form.loginError.type}}", ng-if="form.loginError")
+            p.white-text {{form.loginError.text}}
+        .card-content.p3
+            .input-field
+                i.mdi-communication-email.prefix
+                input(name="email", type="email", ng-model="form.credential.email", required, aio-focus-me="true")
+                label(for="email") Email
+            .input-field
+                i.mdi-communication-vpn-key.prefix
+                input(name="password" type="password", ng-model="form.credential.password", required)
+                label(for="password") Password
+        .card-actions.center-align.p2
+            button.btn.btn-large.blue.waves-effect.waves-light.btn-login(type="submit",
+                ng-disabled="form.loginForm.$invalid || form.isRequest",
+                ng-class="{'disabled': form.loginForm.$invalid || form.isRequest}",
+                aio-loading-button="form.isRequest"
+            ) Sign In
