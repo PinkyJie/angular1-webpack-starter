@@ -21,8 +21,11 @@ class BreadcrumbController {
                 link: name,
                 text: stateConfig.breadcrumb
             };
+            if (stateConfig.abstract) {
+                return;
+            }
             if (params) {
-                breadcrumb.link = `name(${JSON.stringify(params)})`;
+                breadcrumb.link = `${name}(${JSON.stringify(params)})`;
             }
             this.breadcrumbs.push(breadcrumb);
         });

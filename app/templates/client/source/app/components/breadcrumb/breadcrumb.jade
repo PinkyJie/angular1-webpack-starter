@@ -1,10 +1,10 @@
 - require('./breadcrumb.styl')
-ol.breadcrumb(class="p+")
+ol.breadcrumb.p1
     li.home-item
-        a.btn.btn--xs.btn--white.btn--fab(ui-sref="root.home", lx-ripple)
-            i.mdi.mdi-home
+        a.btn-floating.white.waves-effect.waves-light(ui-sref="root.layout.home.all")
+            i.mdi-action-home.black-text
     li.breadcrumb-item(ng-repeat="nav in vm.breadcrumbs")
-        i.icon.tc-white.icon--xs.mdi.mdi-chevron-right
-        a.btn.btn--xs.btn--white.btn--raised(ng-if="!$last", ui-sref="{{nav.link}}")
+        i.mdi-navigation-chevron-right.small.white-text
+        a.btn.white.black-text.waves-effect.waves-light(ng-if="!$last", ui-sref="{{nav.link}}")
             | {{nav.text}}
-        span.tc-white(ng-if="$last") {{nav.text}}
+        span.white-text.nav-text(ng-if="$last") {{nav.text}}
