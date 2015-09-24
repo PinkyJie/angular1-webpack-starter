@@ -16,6 +16,7 @@ class UserSerivce {
     }
 
     checkLoggedInStatus () {
+        const self = this;
         return this.$http.get('api/user/loginstatus')
             .then(_success)
             .catch(_error);
@@ -23,20 +24,21 @@ class UserSerivce {
         function _success (response) {
             const data = response.data;
             if (response.status === 200 && data.code === 0) {
-                this._setUser(data.result.user);
-                this.$rootScope.$broadcast(Event.AUTH_SESSION_VALID, data.result.user);
+                self._setUser(data.result.user);
+                self.$rootScope.$broadcast(self.Event.AUTH_SESSION_VALID, data.result.user);
                 return data.result.user;
             }
-            return this.$q.reject(data.message);
+            return self.$q.reject(data.message);
         }
 
         function _error (reason) {
-            this._clearUser();
-            return this.AjaxError.catcher(reason);
+            self._clearUser();
+            return self.AjaxError.catcher(reason);
         }
     }
 
     login (email, password) {
+        const self = this;
         const req = {
             email,
             password
@@ -48,37 +50,38 @@ class UserSerivce {
         function _success (response) {
             const data = response.data;
             if (response.status === 200 && data.code === 0) {
-                this._setUser(data.result.user);
-                this.$rootScope.$broadcast(Event.AUTH_LOGIN, data.result.user);
+                self._setUser(data.result.user);
+                self.$rootScope.$broadcast(self.Event.AUTH_LOGIN, data.result.user);
                 return data.result.user;
             }
-            return this.$q.reject(data.message);
+            return self.$q.reject(data.message);
         }
 
         function _error (reason) {
-            this._clearUser();
-            return this.AjaxError.catcher(reason);
+            self._clearUser();
+            return self.AjaxError.catcher(reason);
         }
     }
 
     logout () {
+        const self = this;
         return this.$http.post('api/user/logout')
             .then(_success)
             .catch(_error);
 
         function _success (response) {
             const data = response.data;
-            this._clearUser();
+            self._clearUser();
             if (response.status === 200 && data.code === 0) {
-                this.$rootScope.$broadcast(this.Event.AUTH_LOGOUT);
+                self.$rootScope.$broadcast(self.Event.AUTH_LOGOUT);
             } else {
-                return this.$q.reject(data.message);
+                return self.$q.reject(data.message);
             }
         }
 
         function _error (reason) {
-            this._clearUser();
-            return this.AjaxError.catcher(reason);
+            self._clearUser();
+            return self.AjaxError.catcher(reason);
         }
     }
 
@@ -87,6 +90,7 @@ class UserSerivce {
     }
 
     getProductSummary () {
+        const self = this;
         return this.$http.get('api/user/products')
             .then(_success)
             .catch(this.AjaxError.catcher);
@@ -96,7 +100,7 @@ class UserSerivce {
             if (response.status === 200 && data.code === 0) {
                 return data.result.summary;
             }
-            return this.$q.reject(data.message);
+            return self.$q.reject(data.message);
         }
     }
 

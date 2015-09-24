@@ -28,17 +28,18 @@ class RouterHelper {
     }
 
     configureStates (states, otherwisePath) {
+        const self = this;
         states.forEach((state) => {
             // add login check if requireLogin is true
             const data = state.config.data;
             if (data && data.requireLogin === true) {
                 state.config.resolve = angular.extend(
                     state.config.resolve || {},
-                    {loginResolve: this.Resolve.login}
+                    {loginResolve: self.Resolve.login}
                 );
             }
             state.config.resolve =
-                angular.extend(state.config.resolve || {}, this.config.resolveAlways);
+                angular.extend(state.config.resolve || {}, self.config.resolveAlways);
             this.$stateProvider.state(state.state, state.config);
         });
         if (otherwisePath && !this[hasOtherwise]) {
@@ -61,19 +62,17 @@ class RouterHelper {
                 const destination = (toState &&
                     (toState.title || toState.name || toState.loadedTemplateUrl)) ||
                     'unknown target';
-                const msg = `
-                    Error routing to ${destination}. ${error.data}. <br/>
-                    ${error.statusText}: ${error.status}`;
-                this.Logger.warning(msg, [toState]);
+                const msg = `Error routing to ${destination}.\nReason: ${error.message || error}.`;
+                this.Logger.warning(msg);
                 // handle requireLogin issue
                 if (error === 'requireLogin') {
                     this.$state.prev = {
                         state: toState.name,
                         params: toParams
                     };
-                    this.$state.go('root.login');
+                    this.$state.go('root.layout.login');
                 } else {
-                    this.$state.go('root.home');
+                    this.$state.go('root.layout.home.all');
                 }
             }
         );

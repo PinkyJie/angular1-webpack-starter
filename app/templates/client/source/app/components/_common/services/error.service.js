@@ -1,5 +1,7 @@
 // all error messages
 const ERROR_MESSAGE = {
+    // unexpected
+    $UNEXPECTED: 'Server issue, please try later!',
     // login
     LOGIN_WRONG_EMAIL_PASSWORD_PAIR: 'Incorrect email or password, please try again!',
     LOGIN_USER_IN_LOCK: 'Your account is locked!',
@@ -10,11 +12,9 @@ const ERROR_MESSAGE = {
 };
 
 class ErrorService {
-    static getError (errorCode) {
-        return ErrorService.messageMap[errorCode] ? Error.messageMap[errorCode]
-            : 'Server issue, please try later!';
+    getErrorMessage (errorCode) {
+        return ERROR_MESSAGE[errorCode];
     }
 }
-ErrorService.messageMap = ERROR_MESSAGE;
 
 export default ErrorService;

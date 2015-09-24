@@ -1,20 +1,14 @@
 class ResolveService {
-    constructor (User, $q) {
-        this.User = User;
-        this.$q = $q;
-    }
+    login (UserAPI, $q) {
+        return UserAPI.checkLoggedInStatus()
+            .catch(_error);
 
-    login () {
-        const self = this;
-        return this.User.checkLoggedInStatus()
-            .catch(error);
-
-        function error () {
-            return self.$q.reject('requireLogin');
+        function _error () {
+            return $q.reject('requireLogin');
         }
     }
 }
 
-ResolveService.$inject = ['UserAPI', '$q'];
+ResolveService.prototype.login.$inject = ['UserAPI', '$q'];
 
 export default ResolveService;

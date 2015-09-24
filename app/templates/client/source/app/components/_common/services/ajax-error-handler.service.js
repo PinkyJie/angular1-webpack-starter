@@ -9,13 +9,16 @@ class AjaxErrorHandlerService {
         // 1. either an error $http response
         // 2. or an error message returned by _success
         const type = typeof reason;
-        let message = '$SERVER';
+        let code = '$UNEXPECTED';
         if (reason && type === 'object') {
-            message = reason.message;
+            code = reason.message;
         } else if (reason && type === 'string') {
-            message = reason;
+            code = reason;
         }
-        return this.$q.reject(this.Error[message]);
+        return this.$q.reject({
+            code,
+            text: this.Error.getErrorMessage(code)
+        });
     }
 }
 
