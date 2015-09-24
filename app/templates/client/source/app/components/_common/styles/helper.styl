@@ -1,0 +1,55 @@
+@import './common'
+
+// handy class for show/hide in different screens
+.hide-sm
+    +sm()
+        display none
+
+.hide-gt-sm
+    +generate-media($sizes[0])
+        display none
+
+.hide-md
+    +md()
+        display none
+
+.hide-gt-md
+    +generate-media($sizes[1])
+        display none
+
+.hide-lg
+    +lg()
+        display none
+
+.hide-gt-lg
+    +generate-media($sizes[2])
+        display none
+
+// handy class for margin/padding
+$marginPaddingStep = 8
+$marginPaddingMap = {
+    'm': 'margin',
+    'p': 'padding'
+}
+$directionMap = {
+    '': '',
+    'l': 'left',
+    'r': 'right',
+    't': 'top',
+    'b': 'bottom'
+}
+// m1: margin 8px
+// ml2: margin-left 16px
+generate-margin-padding()
+    for _prefix in $marginPaddingMap
+        for _direction in $directionMap
+            for _step in 1..5
+                if _direction == ''
+                    _key = $marginPaddingMap[_prefix]
+                else
+                    _key = $marginPaddingMap[_prefix] + '-' + $directionMap[_direction]
+                _val = unit(_step * $marginPaddingStep, 'px')
+                .{_prefix + _direction + _step}
+                    {_key}: _val
+
+generate-margin-padding()

@@ -23,6 +23,7 @@ body
             display flex
             justify-content center
             align-items center
+            padding 0.5rem 0 1rem 0
             +sm()
                 margin-left 8px
                 margin-right 8px
@@ -33,27 +34,3 @@ body
                 padding 10px 30px 20px 30px
                 width 100%
 
-// generate handy class for show/hide in different screens
-.hide-sm
-    +sm()
-        display none
-
-.hide-gt-sm
-    +generate-media($sizes[0])
-        display none
-
-.hide-md
-    +md()
-        display none
-
-.hide-gt-md
-    +generate-media($sizes[1])
-        display none
-
-.hide-lg
-    +lg()
-        display none
-
-.hide-gt-lg
-    +generate-media($sizes[2])
-        display none
