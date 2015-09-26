@@ -1,38 +1,23 @@
-(function () {
-    'use strict';
+class DashboardController {
+    constructor (UserAPI) {
+        this.UserAPI = UserAPI;
+        this.colors = ['indigo', 'red', 'pink'];
 
-    angular
-        .module('app.dashboard')
-        .controller('DashboardController', DashboardController);
-
-    DashboardController.$inject = ['userAPI'];
-    /* @ngInject */
-    function DashboardController (userAPI) {
-        var vm = this;
-
-        vm.colors = [
-            'bgc-indigo-500',
-            'bgc-red-500',
-            'bgc-pink-500'
-        ];
-
-        init();
-
-        //////////////
-
-        function init () {
-            vm.userInfo = userAPI.getUserInfo();
-            _getProductsSummary();
-        }
-
-        function _getProductsSummary () {
-            userAPI.getProductSummary()
-                .then(function (data) {
-                    vm.products = data;
-                    vm.products.forEach(function (product) {
-                        product.link = 'root.' + product.name;
-                    });
-                });
-        }
+        const userInfo = this.UserAPI.getUserInfo();
+        this.welcomeMessage = `Welcome ${userInfo.name}!`;
+        this._getProductsSummary();
     }
-})();
+    _getProductsSummary () {
+        this.UserAPI.getProductSummary()
+            .then((data) => {
+                this.products = data;
+                this.products.forEach((product) => {
+                    product.link = `root.layout.${product.name}`;
+                });
+            });
+    }
+}
+
+DashboardController.$inject = ['UserAPI'];
+
+export default DashboardController;

@@ -8,7 +8,8 @@ class MockData {
         this.userProducts = [
             {
                 name: 'phone',
-                count: 5
+                count: 5,
+                icon: 'mdi-hardware-phone-android'
             }
         ];
         this.phones = [

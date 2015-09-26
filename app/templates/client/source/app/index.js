@@ -15,6 +15,8 @@ import layout from './components/_layout';
 // pages
 import home from './pages/home';
 import login from './pages/login';
+import dashboard from './pages/dashboard';
+import notfound from './pages/404';
 
 export default angular.module('app', [
     uiRouter,
@@ -24,4 +26,6 @@ export default angular.module('app', [
     layout.name,
     home.name,
     login.name,
+    dashboard.name,
+    notfound.name
 ]);
