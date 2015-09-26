@@ -17,6 +17,10 @@ sm()
     +generate-media(0, $sizes[0])
         {block}
 
+gt-sm()
+    +generate-media($sizes[0])
+        {block}
+
 // middle device: 600px ~ 960px
 md()
     +generate-media($sizes[0], $sizes[1])

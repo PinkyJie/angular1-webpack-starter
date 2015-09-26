@@ -14,7 +14,7 @@ nav.blue
                 a.dropdown-button.waves-light.waves-effect(ng-show="vm.isLoggedIn", data-activates="header-dropdown-content", aio-dropdown-init)
                     i.mdi-navigation-more-vert    
                 ul#header-dropdown-content.dropdown-content
-                    li.hide-gt-sm(ng-show="vm.isLoggedIn")
+                    li.hide-gt-sm.center-align(ng-show="vm.isLoggedIn")
                         span.grey-text {{vm.userInfo.name}}
                     li.hide-gt-sm.divider
                     li

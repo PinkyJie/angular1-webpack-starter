@@ -1,0 +1,4 @@
+- require('./sidebar-sm.styl')
+a.sidebar-menu-fab.btn-floating.waves-light.waves-effect.red.hide-gt-sm(ng-if="hasSidebar", ng-click="vm.toggleSidebar()")
+    i.mdi-image-dehaze
+.sidebar-backdrop.hide-gt-sm(ng-show="showSidebar", ng-click="vm.toggleSidebar(false)")

@@ -3,6 +3,7 @@ import {headerHtml, HeaderController} from '../header';
 import {footerHtml, FooterController} from '../footer';
 import {sidebarHtml, SidebarController} from '../sidebar';
 import {breadcrumbHtml, BreadcrumbController} from '../breadcrumb';
+import {sidebarSmHtml, SidebarSmController} from '../sidebar-sm';
 
 appLayoutRun.$inject = ['RouterHelper'];
 function appLayoutRun (RouterHelper) {
@@ -40,6 +41,10 @@ function getStates () {
                     footer: {
                         template: footerHtml,
                         controller: `${FooterController.name} as vm`
+                    },
+                    'sidebar-sm': {
+                        template: sidebarSmHtml,
+                        controller: `${SidebarSmController.name} as vm`
                     }
                 }
             }

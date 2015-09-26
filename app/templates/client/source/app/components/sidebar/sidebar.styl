@@ -3,6 +3,9 @@
 .sidebar-view
     background-color white
     border-right 1px solid rgba(0, 0, 0, 0.2)
+    +gt-sm()
+        &.ng-enter
+            animation slideInLeft .8s
     +sm()
         position fixed
         height 100%
@@ -19,6 +22,8 @@
             list-style none
             .menu-item
                 border-bottom 1px solid rgba(0, 0, 0, 0.2)
+                i
+                    color #9e9e9e
                 &.active
                     border-radius 5px
                     background-color rgba(146, 205, 255, 0.42)
@@ -27,20 +32,7 @@
                     &:hover
                         background-color rgba(146, 205, 255, 0.42)
                 &:hover
-                    text-shadow 1px 1px rgba(0, 0, 0, 0.2)
+                    text-shadow 2px 2px rgba(0, 0, 0, 0.2)
                     background-color #eee
                 .link
-                    display block
-                    text-decoration none
-                    .text
-                        line-height 32px
-                        font-size 14pt
-    .sidebar-backdrop
-        +sm()
-            position absolute
-            top 0
-            left $sidebarWidth
-            z-index 990
-            background-color rgba(0, 0, 0, 0.5)
-            height 100%
-            width 100%
+                    width 100%

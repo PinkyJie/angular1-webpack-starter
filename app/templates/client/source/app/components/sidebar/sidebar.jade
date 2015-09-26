@@ -1,7 +1,7 @@
 - require('./sidebar.styl')
 .sidebar
-    ul.sidebar-menu.p
-        li.menu-item.p(ng-repeat="nav in ::vm.navs", ui-sref-active="active")
-            a.tc-black.link(ui-sref="{{::nav.link}}", ng-click="vm.hideSidebar()")
-                i.icon.icon--s.icon--grey.icon--flat.mdi(class="{{::nav.icon}}")
-                span.ml.text {{::nav.text}}
+    ul.sidebar-menu.p1
+        li.menu-item.p1(ng-repeat="nav in ::vm.navs", ui-sref-active="active")
+            a.btn-flat.waves-effect.waves-light.link.pl1(ui-sref="{{::nav.link}}", ng-click="vm.hideSidebar()")
+                i.left(class="{{::nav.icon}}")
+                | {{::nav.text}}

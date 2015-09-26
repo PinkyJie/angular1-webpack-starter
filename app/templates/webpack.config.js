@@ -63,7 +63,9 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
-            jQuery: "jquery"
+            jQuery: "jquery",
+            // materialize-css rely on this to support velocity
+            "window.jQuery": "jquery"
         }),
         new webpack.DefinePlugin({
             __DEV__: args.dev,
@@ -81,6 +83,7 @@ module.exports = {
             cached: false,
             colors: true,
             chunk: false
-        }
+        },
+        host: '0.0.0.0'
     }
 };
