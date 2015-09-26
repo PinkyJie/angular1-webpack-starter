@@ -1,0 +1,9 @@
+- require('./square-menu.styl')
+.square-menu-view.boxes
+    a.box.white-text(ng-repeat="menu in ::menus",
+        ui-sref="{{::menu.link}}",
+        class="{{::colors[$index % colors.length]}}"
+    )
+        i.medium(ng-class="::menu.icon")
+        span.count {{::menu.count}}
+        p.name {{::menu.name}}
