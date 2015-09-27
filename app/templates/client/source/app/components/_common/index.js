@@ -14,6 +14,9 @@ import FocusMeDirective from './directives/focus-me.directive';
 import LoadingButtonDirective from './directives/loading-button.directive';
 import ValidateNumberDirective from './directives/validate-number.directive';
 import DropdownInitDirective from './directives/dropdown-init.directive';
+import TooltipInitDirective from './directives/tooltip-init.directive';
+import SelectInitDirective from './directives/select-init.directive';
+import DatepickerInitDirective from './directives/datepicker-init.directive';
 // config
 import appConfig from './config';
 // production
@@ -35,6 +38,9 @@ common
     .directive('aioLoadingButton', LoadingButtonDirective)
     .directive('aioValidateNumber', ValidateNumberDirective)
     .directive('aioDropdownInit', DropdownInitDirective)
+    .directive('aioTooltipInit', TooltipInitDirective)
+    .directive('aioSelectInit', SelectInitDirective)
+    .directive('aioDatepickerInit', DatepickerInitDirective)
     .config(appConfig);
 
 if (__BUILD__) { // eslint-disable-line no-undef

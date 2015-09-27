@@ -1,4 +1,3 @@
-FocusMeDirective.$inject = ['$timeout'];
 function FocusMeDirective ($timeout) {
     return {
         restrict: 'A',
@@ -15,5 +14,7 @@ function FocusMeDirective ($timeout) {
         });
     }
 }
+
+FocusMeDirective.$inject = ['$timeout'];
 
 export default FocusMeDirective;

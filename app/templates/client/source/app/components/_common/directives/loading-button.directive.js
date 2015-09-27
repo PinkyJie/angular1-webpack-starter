@@ -1,4 +1,3 @@
-LoadingButtonDirective.$inject = [];
 function LoadingButtonDirective () {
     return {
         restrict: 'A',
@@ -17,5 +16,7 @@ function LoadingButtonDirective () {
         });
     }
 }
+
+LoadingButtonDirective.$inject = [];
 
 export default LoadingButtonDirective;

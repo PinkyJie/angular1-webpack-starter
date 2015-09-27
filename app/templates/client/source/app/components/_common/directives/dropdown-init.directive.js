@@ -1,4 +1,3 @@
-DropdownInitDirective.$inject = [];
 function DropdownInitDirective () {
     return {
         restrict: 'A',
@@ -6,7 +5,7 @@ function DropdownInitDirective () {
     };
 
     function link (scope, element) {
-        $(element).dropdown();
+        element.dropdown();
     }
 }
 
