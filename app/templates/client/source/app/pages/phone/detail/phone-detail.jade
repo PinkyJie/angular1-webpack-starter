@@ -1,0 +1,13 @@
+.phone-detail-view.full-width
+    .card
+        .card-header.p2
+            h5.title {{::vm.phone.model}}
+            button.btn-floating.blue(ng-show="vm.state === 'view'", ng-click="vm.beginEdit()")
+                i.mdi-image-edit
+        .card-content
+            aio-phone-form(
+                phone="vm.phone", 
+                state="vm.state", 
+                submit="vm.updatePhone(vm, phone)",
+                cancel="vm.cancelUpdate(vm)"
+            )

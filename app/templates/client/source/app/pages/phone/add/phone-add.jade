@@ -1,0 +1,10 @@
+.phone-add-view.full-width
+    .card
+        .card-header.p2
+            h5.title Add a new phone
+        .card-content
+            aio-phone-form(
+                phone="vm.phone", 
+                submit="vm.addNewPhone(vm, phone)",
+                state="vm.state"
+            )

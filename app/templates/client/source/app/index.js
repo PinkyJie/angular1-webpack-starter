@@ -16,6 +16,7 @@ import layout from './components/_layout';
 import home from './pages/home';
 import login from './pages/login';
 import dashboard from './pages/dashboard';
+import phone from './pages/phone';
 import notfound from './pages/404';
 
 export default angular.module('app', [
@@ -27,5 +28,6 @@ export default angular.module('app', [
     home.name,
     login.name,
     dashboard.name,
+    phone.name,
     notfound.name
 ]);
