@@ -12,5 +12,5 @@ export default angular.module('app.pages.dashboard', [
     banner.name,
     squareMenu.name
 ])
-.controller(DashboardController.name, DashboardController)
-.run(appDashboardRun);
+    .controller(DashboardController.name, DashboardController)
+    .run(appDashboardRun);
