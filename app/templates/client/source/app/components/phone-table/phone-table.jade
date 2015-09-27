@@ -1,0 +1,33 @@
+- require('./phone-table.styl')
+.phone-table-view
+    .card-panel.mt2
+        table.highlight
+            thead
+                tr
+                    th Model
+                    th.hide-sm OS
+                    th.hide-sm Price
+                    th.center-align Action
+            tbody
+                tr.empty-row(ng-if="table.phones.length === 0")
+                    td(colspan="4") No Phones found!
+                tr.phone-item(ng-repeat="phone in table.phones track by phone.id")
+                    td
+                        span {{::phone.model}}
+                    td.hide-sm
+                        span {{::phone.os}}
+                    td.hide-sm
+                        span {{::phone.price}}
+                    td.center-align
+                        button.btn-floating.blue.waves-light.waves-effect.tooltipped.mr1(
+                            ng-click="table.firstButtonClick({phone: phone})",
+                            data-position="top", data-delay="50",
+                            data-tooltip="View", aio-tooltip-init
+                        )
+                            i.mdi-action-info
+                        button.btn-floating.red.waves-effect.waves-light.tooltipped(
+                            ng-click="table.secondButtonClick({phone: phone})",
+                            data-position="top", data-delay="50",
+                            data-tooltip="Delete", aio-tooltip-init
+                        )
+                            i.mdi-action-delete
