@@ -1,12 +1,13 @@
-body
-    #loading-bar
-        .bar
-            background $loadingColor
-            height 3px
-        .peg
-            box-shadow 0 0 10px $loadingColor, 0 0 5px $loadingColor
+@import '../../components/_common/styles/common'
 
-    #loading-bar-spinner .spinner-icon
-        border-top-color  $loadingColor
-        border-left-color $loadingColor
-
+.loading-view
+    width 100%
+    z-index 1000
+    position fixed
+    top 0
+    left 0
+    .progress
+        margin 0
+        background-color $loadingBarColor
+        .indeterminate
+            background-color $loadingBgColor

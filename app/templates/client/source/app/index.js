@@ -8,9 +8,9 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import ngMessage from 'angular-messages';
-import ngLoadingBar from 'angular-loading-bar';
 
 import layout from './components/_layout';
+import loading from './components/loading';
 
 // pages
 import home from './pages/home';
@@ -23,7 +23,7 @@ export default angular.module('app', [
     uiRouter,
     ngAnimate,
     ngMessage,
-    ngLoadingBar,
+    loading.name,
     layout.name,
     home.name,
     login.name,
