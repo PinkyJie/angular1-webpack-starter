@@ -5,16 +5,16 @@ nav.blue
         img.logo(src= logoPng)
         a.brand-logo(ui-sref="root.layout.home.all") Aio Angular App
         ul.header-menus.right
-            li(ng-show="!vm.isLoggedIn")
+            li(ng-if="!vm.isLoggedIn")
                 a.waves-light.waves-effect(ui-sref="root.layout.login")
                     i.mdi-action-account-circle
-            li.header-user-name.hide-sm
-                span(ng-show="vm.isLoggedIn") {{vm.userInfo.name}}
-            li(ng-show="vm.isLoggedIn")
-                a.dropdown-button.waves-light.waves-effect(ng-show="vm.isLoggedIn", data-activates="header-dropdown-content", aio-dropdown-init)
+            li.header-user-name.hide-sm(ng-if="vm.isLoggedIn")
+                span {{vm.userInfo.name}}
+            li(ng-if="vm.isLoggedIn")
+                a.dropdown-button.waves-light.waves-effect(data-activates="header-dropdown-content", aio-dropdown-init)
                     i.mdi-navigation-more-vert    
                 ul#header-dropdown-content.dropdown-content
-                    li.hide-gt-sm.center-align(ng-show="vm.isLoggedIn")
+                    li.hide-gt-sm.center-align
                         span.grey-text {{vm.userInfo.name}}
                     li.hide-gt-sm.divider
                     li
