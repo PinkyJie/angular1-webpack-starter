@@ -1,8 +1,9 @@
 class PhoneAddController {
-    constructor (PhoneAPI, $state, $q) {
+    constructor (PhoneAPI, $state, $q, Modal) {
         this.PhoneAPI = PhoneAPI;
         this.$state = $state;
         this.$q = $q;
+        this.Modal = Modal;
 
         this.phone = {};
         this.state = 'add';
@@ -19,13 +20,12 @@ class PhoneAddController {
         }
 
         function _error (message) {
-            ctrl.LxNotificationService.alert('Add phone error', message, 'OK');
+            ctrl.Modal.open('Add phone error', message.text, {ok: 'OK'});
             return ctrl.$q.reject();
         }
     }
-
 }
 
-PhoneAddController.$inject = ['PhoneAPI', '$state', '$q'];
+PhoneAddController.$inject = ['PhoneAPI', '$state', '$q', 'Modal'];
 
 export default PhoneAddController;

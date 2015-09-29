@@ -1,7 +1,8 @@
 class PhoneController {
-    constructor (PhoneAPI, $state) {
+    constructor (PhoneAPI, $state, Modal) {
         this.PhoneAPI = PhoneAPI;
         this.$state = $state;
+        this.Modal = Modal;
         this._getPhoneList();
     }
     _getPhoneList () {
@@ -16,13 +17,13 @@ class PhoneController {
         ctrl.$state.go('root.layout.phone.detail', {id: phone.id});
     }
     deletePhone (ctrl, phone) {
-        const _ctrl = ctrl;
-        ctrl.LxNotificationService.confirm('Are your sure?',
+        ctrl.Modal.open(
+            'Are your sure?',
             `All information about [${phone.model}] will be REMOVED!`,
-            {cancel: 'cancel', ok: 'delete'},
+            {ok: 'delete', cancel: 'cancel'},
             (answer) => {
                 if (answer) {
-                    _ctrl._doDelete(phone.id);
+                    ctrl._doDelete(phone.id);
                 }
             }
         );
@@ -38,13 +39,20 @@ class PhoneController {
         }
 
         function _error (message) {
-            self.LxNotificationService.alert('Delete phone error', message, 'OK', () => {
-                self._getPhoneList();
-            });
+            self.Modal.open(
+                'Delete phone error',
+                message.text,
+                {ok: 'OK'},
+                (answer) => {
+                    if (answer) {
+                        self._getPhoneList();
+                    }
+                }
+            );
         }
     }
 }
 
-PhoneController.$inject = ['PhoneAPI', '$state'];
+PhoneController.$inject = ['PhoneAPI', '$state', 'Modal'];
 
 export default PhoneController;

@@ -2,10 +2,11 @@ import angular from 'angular';
 
 const originalPhone = Symbol();
 class PhoneDetailController {
-    constructor (PhoneAPI, $stateParams, $q) {
+    constructor (PhoneAPI, $stateParams, $q, Modal) {
         this.PhoneAPI = PhoneAPI;
         this.$stateParams = $stateParams;
         this.$q = $q;
+        this.Modal = Modal;
 
         this[originalPhone] = {};
         this.state = 'view';
@@ -40,8 +41,8 @@ class PhoneDetailController {
         }
 
         function _error (message) {
-            ctrl.LxNotificationService.alert('Update phone error', message, 'OK', () => {
-                ctrl.cancelUpdate();
+            ctrl.Modal.open('Update phone error', message.text, {ok: 'OK'}, () => {
+                ctrl.cancelUpdate(ctrl);
             });
             return ctrl.$q.reject();
         }
@@ -49,6 +50,6 @@ class PhoneDetailController {
 
 }
 
-PhoneDetailController.$inject = ['PhoneAPI', '$stateParams', '$q'];
+PhoneDetailController.$inject = ['PhoneAPI', '$stateParams', '$q', 'Modal'];
 
 export default PhoneDetailController;
