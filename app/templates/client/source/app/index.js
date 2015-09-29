@@ -11,6 +11,7 @@ import ngMessage from 'angular-messages';
 
 import layout from './components/_layout';
 import loading from './components/loading';
+import modal from './components/modal';
 
 // pages
 import home from './pages/home';
@@ -23,8 +24,9 @@ export default angular.module('app', [
     uiRouter,
     ngAnimate,
     ngMessage,
-    loading.name,
     layout.name,
+    loading.name,
+    modal.name,
     home.name,
     login.name,
     dashboard.name,
