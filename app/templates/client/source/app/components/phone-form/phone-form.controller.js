@@ -13,7 +13,7 @@ class PhoneFormController {
                 this._endRequest();
                 this.phoneForm.$setPristine();
             })
-            .catch(this._endRequest);
+            .catch(this._endRequest.bind(this));
     }
 
     _endRequest () {

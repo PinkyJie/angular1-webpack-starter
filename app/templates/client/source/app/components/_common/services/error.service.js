@@ -13,7 +13,7 @@ const ERROR_MESSAGE = {
 
 class ErrorService {
     getErrorMessage (errorCode) {
-        return ERROR_MESSAGE[errorCode];
+        return ERROR_MESSAGE[errorCode] || ERROR_MESSAGE.$UNEXPECTED;
     }
 }
 

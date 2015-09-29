@@ -1,14 +1,16 @@
+const errorHandler = Symbol();
 class PhoneSerivce {
     constructor ($http, $q, AjaxError) {
         this.$http = $http;
         this.$q = $q;
         this.AjaxError = AjaxError;
+        this[errorHandler] = this.AjaxError.catcher.bind(this.AjaxError);
     }
     getPhones () {
         const self = this;
         return this.$http.get('api/phones')
             .then(_success)
-            .catch(this.AjaxError.catcher);
+            .catch(this[errorHandler]);
 
         function _success (response) {
             const data = response.data;
@@ -22,7 +24,7 @@ class PhoneSerivce {
         const self = this;
         return this.$http.get(`api/phones/${id}`)
             .then(_success)
-            .catch(this.AjaxError.catcher);
+            .catch(this[errorHandler]);
 
         function _success (response) {
             const data = response.data;
@@ -39,7 +41,7 @@ class PhoneSerivce {
         };
         return this.$http.post('api/phones', req)
             .then(_success)
-            .catch(this.AjaxError.catcher);
+            .catch(this[errorHandler]);
 
         function _success (response) {
             const data = response.data;
@@ -55,7 +57,7 @@ class PhoneSerivce {
         };
         return this.$http.put(`api/phones/${id}`, req)
             .then(_success)
-            .catch(this.AjaxError.catcher);
+            .catch(this[errorHandler]);
 
         function _success (response) {
             const data = response.data;
@@ -69,7 +71,7 @@ class PhoneSerivce {
         const self = this;
         return this.$http.delete(`api/phones/${id}`)
             .then(_success)
-            .catch(this.AjaxError.catcher);
+            .catch(this[errorHandler]);
 
         function _success (response) {
             const data = response.data;

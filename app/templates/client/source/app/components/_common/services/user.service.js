@@ -93,7 +93,7 @@ class UserSerivce {
         const self = this;
         return this.$http.get('api/user/products')
             .then(_success)
-            .catch(this.AjaxError.catcher);
+            .catch(this.AjaxError.catcher.bind(this.AjaxError));
 
         function _success (response) {
             const data = response.data;
