@@ -1,4 +1,4 @@
-# <%= appName %>
+# aio-angular-app
 
 ## Prerequisites
 

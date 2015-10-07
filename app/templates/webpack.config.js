@@ -1,4 +1,4 @@
-/*eslint-disable */
+/* eslint-disable */
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var args = require('yargs').argv;

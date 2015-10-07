@@ -27,6 +27,7 @@
     "karma-junit-reporter": "^0.2.2",
     "karma-mocha-reporter": "^1.0.2",
     "karma-phantomjs-launcher": "^0.1.4",
+    "karma-webpack": "^1.7.0",
     "phantomjs": "^1.9.16",
     "protractor": "^2.0.0",
     "raw-loader": "^0.5.1",
