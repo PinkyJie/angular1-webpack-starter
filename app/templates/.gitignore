@@ -3,12 +3,11 @@
 # node dependencies
 node_modules
 npm-debug.log
-# bower dependencies
-client/source/vendor
 
 # build file
-client/build
+build
 
 # test folder
-client/source/test/e2e/screenshots/*
+source/test/e2e/screenshots/*
 !client/source/test/e2e/screenshots/.gitkeep
+source/test/unit
