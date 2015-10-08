@@ -12,8 +12,8 @@ angular.module('appTest', [
     app.name,
     'ngMockE2E'
 ])
-.service(MockData.name, MockData)
-.config(appTestConfig)
-.run(appTestRun)
-.run(userServiceMock)
-.run(phoneServiceMock);
+    .service(MockData.name, MockData)
+    .config(appTestConfig)
+    .run(appTestRun)
+    .run(userServiceMock)
+    .run(phoneServiceMock);
