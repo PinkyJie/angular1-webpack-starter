@@ -31,7 +31,7 @@ var loaders = [
     {test: /\.(png|jpg)$/, loader: 'null'}
 ];
 var processors = {};
-processors[specFileFilter] = ['webpack'];
+processors[specFileFilter] = ['webpack', 'sourcemap'];
 
 module.exports = function (config) {
     config.set({
@@ -42,7 +42,7 @@ module.exports = function (config) {
             specFileFilter
         ],
         webpack: {
-            devtool: 'eval',
+            devtool: 'inline-source-map',
             module: {
                 preLoaders: preLoaders,
                 loaders: loaders
