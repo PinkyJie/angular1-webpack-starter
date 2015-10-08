@@ -3,19 +3,21 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var args = require('yargs').argv;
 
+var base = './';
+
 var entryJs = args.mock ?
-    './client/source/test/e2e/mocks/index.js' :
-    './client/source/app/index.js';
+    base + 'source/test/e2e/mocks/index.js' :
+    base + 'source/app/index.js';
 var appName = args.mock ? 'appTest' : 'app';
 
 module.exports = {
     entry: [
         entryJs,
         'file?name=index.html!jade-html?app=' + appName +
-            '!./client/source/app/index.jade'
+            '!' + base + 'source/app/index.jade'
     ],
     output: {
-        path: './client/build',
+        path: base + 'build',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },
@@ -74,9 +76,9 @@ module.exports = {
         })
     ],
     debug: true,
-    devtool: 'inline-source-map',
+    devtool: 'eval-source-map',
     devServer: {
-        contentBase: './client/build',
+        contentBase: base + 'build',
         historyApiFallback: true,
         stats: {
             modules: false,
