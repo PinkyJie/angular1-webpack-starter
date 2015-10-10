@@ -1,4 +1,4 @@
-function FocusMeDirective ($timeout) {
+function FocusMeDirective () {
     return {
         restrict: 'A',
         link
@@ -7,7 +7,7 @@ function FocusMeDirective ($timeout) {
     function link (scope, element, attrs) {
         scope.$watch(attrs.aioFocusMe, (val) => {
             if (val) {
-                $timeout(() => {
+                scope.$evalAsync(() => {
                     element[0].focus();
                 });
             }
@@ -15,6 +15,6 @@ function FocusMeDirective ($timeout) {
     }
 }
 
-FocusMeDirective.$inject = ['$timeout'];
+FocusMeDirective.$inject = [];
 
 export default FocusMeDirective;
