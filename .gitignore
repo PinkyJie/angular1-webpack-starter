@@ -1,10 +1,13 @@
 # common
 .DS_Store
-# node module
-node_modules/
+# node dependencies
+node_modules
 npm-debug.log
-# files need to be ignored in templates folder
-app/templates/build
-app/templates/source/test/e2e/screenshots/*
-!app/templates/source/test/e2e/screenshots/.gitkeep
-app/templates/source/test/unit
+
+# build file
+build
+
+# test folder
+source/test/e2e/screenshots/*
+!client/source/test/e2e/screenshots/.gitkeep
+source/test/unit
