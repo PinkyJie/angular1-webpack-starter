@@ -7,8 +7,8 @@
   "main": "source/app/index.js",
   "scripts": {
     "start": "webpack-dev-server --dev --mock",
-    "test": "rm -rf ./source/test/unit && karma start ./karma.conf.js",
-    "test:watch": "rm -rf ./source/test/unit && karma start ./karma.conf.js --watch"
+    "test": "rm -rf ./source/test/unit/results && karma start ./karma.conf.js",
+    "test:watch": "rm -rf ./source/test/unit/results && karma start ./karma.conf.js --watch"
   },
   "author": {
     "name": "马斯特",
@@ -43,6 +43,7 @@
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.10",
     "karma-chrome-launcher": "^0.1.8",
+    "karma-cli": "^0.1.1",
     "karma-coverage": "^0.3.1",
     "karma-jasmine": "^0.3.5",
     "karma-junit-reporter": "^0.3.6",

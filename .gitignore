@@ -10,4 +10,4 @@ build
 # test folder
 source/test/e2e/screenshots/*
 !client/source/test/e2e/screenshots/.gitkeep
-source/test/unit
+source/test/unit/results/

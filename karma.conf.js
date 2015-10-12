@@ -11,7 +11,7 @@ var include = [
     path.resolve('./source/app')
 ];
 // only use coverage/junit in non-watch mode
-var preLoaders = !args.watch ? [
+var preLoaders = args.watch ? [
     // Process test code with Babel
     {test: /\.spec\.js$/, loader: 'babel', include: include},
     // Process all non-test code with Isparta
@@ -19,7 +19,7 @@ var preLoaders = !args.watch ? [
 ] : [
     {test: /\.js$/, loader: 'babel', include: include}
 ];
-var reporters = args.watch ? [
+var reporters = !args.watch ? [
     'mocha'
 ] : [
     'mocha', 'coverage', 'junit'
