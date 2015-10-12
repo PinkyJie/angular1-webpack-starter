@@ -1,7 +1,9 @@
 class ResolveService {
     login (UserAPI, $q) {
-        return UserAPI.checkLoggedInStatus()
-            .catch(_error);
+        if (UserAPI.isLoggedIn() !== true) {
+            return UserAPI.checkLoggedInStatus()
+                .catch(_error);
+        }
 
         function _error () {
             return $q.reject('requireLogin');
