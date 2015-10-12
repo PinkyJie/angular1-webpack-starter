@@ -1,14 +1,32 @@
 {
-  "name": "aio-angular-app",
-  "version": "0.0.1",
-  "description": "Aio Angular App",
-  "repository": "",
+  "name": "angular1-webpack-starter",
+  "version": "0.1.0",
+  "description": "Component based Angular web development with Webpack.",
+  "repository": "PinkyJie/angular1-webpack-starter",
+  "license": "MIT",
+  "main": "source/app/index.js",
   "scripts": {
     "start": "webpack-dev-server --dev --mock",
     "test": "rm -rf ./source/test/unit && karma start ./karma.conf.js",
     "test:watch": "rm -rf ./source/test/unit && karma start ./karma.conf.js --watch"
   },
-  "license": "MIT",
+  "author": {
+    "name": "马斯特",
+    "email": "pilixiaoxuanfeng@gmail.com",
+    "url": "https://github.com/PinkyJie"
+  },
+  "files": [
+    "source"
+  ],
+  "keywords": [
+    "components",
+    "angular",
+    "webpack",
+    "jade",
+    "stylus",
+    "ui-router",
+    "material design"
+  ],
   "devDependencies": {
     "angular-mocks": "^1.4.5",
     "babel-core": "^5.8.24",

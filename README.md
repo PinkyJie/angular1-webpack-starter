@@ -1,62 +1,51 @@
-# aio-angular-app
+# angular1-webpack-starter
 
-## Prerequisites
+A starter project using Angular 1.x with Webpack. A Webpack re-implementation of the project [generator-aio-angular](https://github.com/PinkyJie/generator-aio-angular).
 
-1. Install [Node.js](http://nodejs.org)
+> Pure front-end implementation, all API interaction are mocked using [angular-mocks](https://docs.angularjs.org/api/ngMock).
 
-2. Install these NPM packages globally
+## Preview
+
+<del>Check out the [demo site](/#).</del>
+
+> The dome site is a pure front-end implementation, so you can use any email/password to login, see [mock file](/#) for detail. It is hosted on Github pages, no back-end support, so we use `#` style URL.
+
+## Features
+
+* Material Design using [MaterializeCSS](http://materializecss.com/)
+* Flex Layout
+* Responsive
+   * Support multiple devices with different screen size.
+   * Easy responsive implementation, very convenient to support small screen devices. (see [responsive.styl](source/app/components/_common/styles/responsive.styl))
+* Animation
+   * Using [animate.css](https://daneden.github.io/animate.css/).
+   * All the animation defined by `animate.css` can be used directly as keyframe animation. (see [content.styl](source/app/components/_common/styles/animation.styl))
+* More understandable router design
+* Easy implementation for Sidebar Navigation and Breadcrumb
+
+## Get Started
 
 ```bash
-npm install -g bower gulp
-```
-
-3. Install the dependence packages
-
-```bash
+git clone https://github.com/PinkyJie/angular1-webpack-starter.git
+cd angular1-webpack-starter
 npm install
-```
-    
-> it will run `bower install` automatically
-
-## Launch Mock Server
-
-Launch local mock server using `BrowserSync` in Chrome, it will automatically load your mock files under `client/source/test/e2e/mocks` folder, watch the files changes and reload the browser.
-
-```bash
 npm start
 ```
 
-You can also launch the server with `gulp`:
-
-* for development: `gulp serve:dev --mock`
-* for production: `gulp serve:prod --mock`
-
-> `--mock` will also include the API mock files 
-
-## Linting
-
-Use `JSHint` and `JSCS` to lint your javascript files.
-
-```bash
-gulp lint
-```
+Then open your browser with URL `http://localhost:8080/webpack-dev-server/`.
 
 ## Tests
 
-* Unit Test: `gulp test:unit`
-* Unit Test with auto watch: `gulp test:tdd`
-* E2E Test: `gulp test:e2e`
+* Unit Test: `npm test`
+* Unit Test with auto watch: `npm run test:watch`
+* <del>E2E Test: `npm run test:e2e`</del>
 
-## Building
+## <del>Building</del>
 
-* for development: `gulp build:dev --mock`
-* for production: `gulp build:prod --mock`
+```bash
+npm run build
+```
 
-All the build files will in the sub folder of `client/build/`, development environment will use the original source files, production environment has some optimizations:
-    
-* All the Javascript/CSS files are minified and concated.
-* All the template files used in Angular are processed by `$templateCache`.
-* All the images used are optimized to smaller size.
-* The compressed files will be suffixed by random hash.
+## License
 
- 
+MIT
