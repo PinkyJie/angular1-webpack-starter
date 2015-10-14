@@ -9,17 +9,15 @@ function DatepickerInitDirective () {
         const pickadate = element.pickadate({
             format: 'yyyy-m-d'
         });
-        if (attrs.ngModel) {
-            const watcher = scope.$watch(attrs.ngModel, (value) => {
-                // set initial model value to date picker, only once
-                if (value) {
-                    const picker = pickadate.pickadate('picker');
-                    picker.set('select', value);
-                    // cancel the watcher
-                    watcher();
-                }
-            });
-        }
+        const watcher = scope.$watch(attrs.ngModel, (value) => {
+            // set initial model value to date picker, only once
+            if (value) {
+                const picker = pickadate.pickadate('picker');
+                picker.set('select', value);
+                // cancel the watcher
+                watcher();
+            }
+        });
         ngModelCtrl.$formatters.unshift((modelValue) => {
             if (modelValue) {
                 const date = new Date(modelValue);
