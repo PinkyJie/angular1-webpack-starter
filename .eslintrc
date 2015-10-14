@@ -6,6 +6,9 @@
         "jasmine": true,
         "protractor": true
     },
+    "globals": {
+        "angular": true
+    },
     "ecmaFeatures": {
         "arrowFunctions": true,
         "binaryLiterals": true,

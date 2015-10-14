@@ -1,17 +1,19 @@
 /* eslint-disable */
 var path = require('path');
+var webpack = require('webpack');
 var args = require('yargs').argv;
 
-// var specFileFilter = 'source/test/unit-test.index.js';
-var specFileFilter = 'source/app/**/*.spec.js';
+var unitTestEntry = 'source/test/unit/helper.js';
+// run multiple times in watch mode
 var singleRun = !args.watch;
+// use Pahntom in watch mode
 var browser = args.watch ? 'PhantomJS' : 'Chrome';
 
 var include = [
-    path.resolve('./source/app')
+    path.resolve('./source')
 ];
 // only use coverage/junit in non-watch mode
-var preLoaders = args.watch ? [
+var preLoaders = !args.watch ? [
     // Process test code with Babel
     {test: /\.spec\.js$/, loader: 'babel', include: include},
     // Process all non-test code with Isparta
@@ -19,7 +21,7 @@ var preLoaders = args.watch ? [
 ] : [
     {test: /\.js$/, loader: 'babel', include: include}
 ];
-var reporters = !args.watch ? [
+var reporters = args.watch ? [
     'mocha'
 ] : [
     'mocha', 'coverage', 'junit'
@@ -31,7 +33,8 @@ var loaders = [
     {test: /\.(png|jpg)$/, loader: 'null'}
 ];
 var processors = {};
-processors[specFileFilter] = ['webpack', 'sourcemap'];
+processors[unitTestEntry] = ['webpack', 'sourcemap'];
+processors['source/app/**/*.js'] = ['webpack', 'sourcemap'];
 
 module.exports = function (config) {
     config.set({
@@ -39,7 +42,7 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
         exclude: [],
         files: [
-            specFileFilter
+            unitTestEntry
         ],
         webpack: {
             devtool: 'inline-source-map',
@@ -47,7 +50,14 @@ module.exports = function (config) {
                 preLoaders: preLoaders,
                 loaders: loaders
             },
-            cache: true
+            cache: true,
+            plugins: [
+                new webpack.ProvidePlugin({
+                    $: "jquery",
+                    jQuery: "jquery",
+                    "window.jQuery": "jquery"
+                }),
+            ]
         },
         webpackMiddleware: {
             stats: {
