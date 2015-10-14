@@ -12,9 +12,11 @@ A starter project using Angular 1.x with Webpack. A Webpack re-implementation of
 
 ## Features
 
+* ES6
+* Component based structure
 * Material Design using [MaterializeCSS](http://materializecss.com/)
 * Flex Layout
-* Responsive
+* Responsive Design
    * Support multiple devices with different screen size.
    * Easy responsive implementation, very convenient to support small screen devices. (see [responsive.styl](source/app/components/_common/styles/responsive.styl))
 * Animation

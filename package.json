@@ -8,7 +8,7 @@
   "scripts": {
     "start": "webpack-dev-server --dev --mock",
     "test": "rm -rf ./source/test/unit/results && karma start ./karma.conf.js",
-    "test:watch": "rm -rf ./source/test/unit/results && karma start ./karma.conf.js --watch"
+    "test:watch": "karma start ./karma.conf.js --watch"
   },
   "author": {
     "name": "马斯特",
@@ -19,6 +19,7 @@
     "source"
   ],
   "keywords": [
+    "es6",
     "components",
     "angular",
     "webpack",
@@ -53,6 +54,7 @@
     "karma-webpack": "^1.7.0",
     "null-loader": "^0.1.1",
     "phantomjs": "^1.9.16",
+    "phantomjs-polyfill": "0.0.1",
     "protractor": "^2.0.0",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.12.3",
