@@ -1,13 +1,15 @@
-const config = {
-    appErrorPrefix: '[Aio Angular App Error] '
-};
+import extendExceptionHandler from './exception-handler.decorator';
 
-appProductionConfig.$inject = ['$logProvider', '$compileProvider',
-    'exceptionHandlerProvider'];
-function appProductionConfig ($logProvider, $compileProvider, exceptionHandlerProvider) {
+appProductionConfig.$inject = ['$logProvider', '$compileProvider'];
+function appProductionConfig ($logProvider, $compileProvider) {
     $logProvider.debugEnabled(false);
     $compileProvider.debugInfoEnabled(false);
-    exceptionHandlerProvider.configure(config.appErrorPrefix);
 }
 
-export default appProductionConfig;
+exceptionHandlerConfig.$inject = ['$provide'];
+function exceptionHandlerConfig ($provide) {
+    // Use decorator to extend the original $exceptionHandler:
+    $provide.decorator('$exceptionHandler', extendExceptionHandler);
+}
+
+export {appProductionConfig, exceptionHandlerConfig};

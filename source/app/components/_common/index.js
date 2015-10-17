@@ -20,8 +20,7 @@ import DatepickerInitDirective from './directives/datepicker-init.directive';
 // config
 import appConfig from './config';
 // production
-import {ExceptionHandlerProvider, exceptionHandlerConfig} from './production/exception-handler.provider';
-import appProductionConfig from './production/production.config';
+import {appProductionConfig, exceptionHandlerConfig} from './production/production.config';
 
 const common = angular.module('app.common', []);
 
@@ -45,7 +44,6 @@ common
 
 if (__BUILD__) { // eslint-disable-line no-undef
     common
-        .provider('ExceptionHandler', ExceptionHandlerProvider)
         .config(exceptionHandlerConfig)
         .config(appProductionConfig);
 }
