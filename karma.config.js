@@ -1,47 +1,46 @@
-/* eslint-disable */
-var path = require('path');
-var webpack = require('webpack');
-var args = require('yargs').argv;
+const path = require('path');
+const webpack = require('webpack');
+const args = require('yargs').argv;
 
-var unitTestEntry = 'source/test/unit/helper.js';
+const unitTestEntry = 'source/test/unit/helper.js';
 // run multiple times in watch mode
-var singleRun = !args.watch;
+const singleRun = !args.watch;
 // use Pahntom in watch mode
-var browser = args.watch ? 'PhantomJS' : 'Chrome';
+const browser = args.watch ? 'PhantomJS' : 'Chrome';
 
-var include = [
+const include = [
     path.resolve('./source')
 ];
 
-var preLoaders = [
+const preLoaders = [
     // Process test code with Babel
-    {test: /\.spec\.js$/, loader: 'babel', include: include},
+    {test: /\.spec\.js$/, loader: 'babel', include},
     // Process all non-test code with Isparta
-    {test: /\.js$/, loader: 'isparta', include: include, exclude: /\.spec\.js$/}
+    {test: /\.js$/, loader: 'isparta', include, exclude: /\.spec\.js$/}
 ];
-var loaders = [
+const loaders = [
     {test: /\.styl$/, loader: 'style!css!stylus'},
     {test: /\.jade$/, loader: 'jade'},
     {test: /\.(png|jpg)$/, loader: 'null'}
 ];
-var processors = {};
+const processors = {};
 processors[unitTestEntry] = ['webpack', 'sourcemap'];
 processors['source/app/**/*.js'] = ['webpack', 'sourcemap'];
 
 // for watch mode, only show text coverage
-var reporters = args.watch ? [
+const reporters = args.watch ? [
     'mocha', 'coverage'
 ] : [
     'mocha', 'coverage', 'junit'
 ];
-var coverageReporters = args.watch ? [
+const coverageReporters = args.watch ? [
     {type: 'text-summary'}
 ] : [
     {type: 'html', subdir: '.'},
     {type: 'text-summary'}
 ];
 
-module.exports = function (config) {
+module.exports = (config) => {
     config.set({
         basePath: '.',
         frameworks: ['jasmine'],
@@ -52,16 +51,16 @@ module.exports = function (config) {
         webpack: {
             devtool: 'inline-source-map',
             module: {
-                preLoaders: preLoaders,
-                loaders: loaders
+                preLoaders,
+                loaders
             },
             cache: true,
             plugins: [
                 new webpack.ProvidePlugin({
-                    $: "jquery",
-                    jQuery: "jquery",
-                    "window.jQuery": "jquery"
-                }),
+                    $: 'jquery',
+                    jQuery: 'jquery',
+                    'window.jQuery': 'jquery'
+                })
             ]
         },
         webpackMiddleware: {
@@ -71,7 +70,7 @@ module.exports = function (config) {
             }
         },
         preprocessors: processors,
-        reporters: reporters,
+        reporters,
         coverageReporter: {
             dir: 'source/test/unit/results/coverage',
             reporters: coverageReporters
@@ -80,7 +79,7 @@ module.exports = function (config) {
             outputDir: 'source/test/unit/results/junit'
         },
         reportSlowerThan: 500,
-        singleRun: singleRun,
+        singleRun,
         browsers: [
             browser
         ]

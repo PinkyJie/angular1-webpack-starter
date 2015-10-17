@@ -7,8 +7,8 @@
   "main": "source/app/index.js",
   "scripts": {
     "start": "webpack-dev-server --dev --mock",
-    "test": "rm -rf ./source/test/unit/results && karma start ./karma.conf.js",
-    "test:watch": "karma start ./karma.conf.js --watch"
+    "test": "rm -rf ./source/test/unit/results && karma start ./karma.config.js",
+    "test:watch": "karma start ./karma.config.js --watch",
   },
   "author": {
     "name": "马斯特",
