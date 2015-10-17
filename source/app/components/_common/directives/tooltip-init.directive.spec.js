@@ -6,9 +6,6 @@ describe('TooltipInit Directive', () => {
     beforeEach(() => {
         angular.module('test', [])
             .directive('aioTooltipInit', TooltipInitDirective);
-    });
-
-    beforeEach(() => {
         angular.mock.module('test');
     });
 

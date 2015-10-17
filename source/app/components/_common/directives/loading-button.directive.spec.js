@@ -7,9 +7,6 @@ describe('LoadingButton Directive', () => {
     beforeEach(() => {
         angular.module('test', [])
             .directive('aioLoadingButton', LoadingButtonDirective);
-    });
-
-    beforeEach(() => {
         angular.mock.module('test');
     });
 

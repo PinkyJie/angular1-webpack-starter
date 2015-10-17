@@ -7,9 +7,6 @@ describe('FocusMe Directive', () => {
     beforeEach(() => {
         angular.module('test', [])
             .directive('aioFocusMe', FocusMeDirective);
-    });
-
-    beforeEach(() => {
         angular.mock.module('test');
     });
 

@@ -6,9 +6,6 @@ describe('SelectInit Directive', () => {
     beforeEach(() => {
         angular.module('test', [])
             .directive('aioSelectInit', SelectInitDirective);
-    });
-
-    beforeEach(() => {
         angular.mock.module('test');
     });
 

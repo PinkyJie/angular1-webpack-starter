@@ -7,9 +7,6 @@ describe('ValidateNumber Directive', () => {
     beforeEach(() => {
         angular.module('test', [])
             .directive('aioValidateNumber', ValidateNumberDirective);
-    });
-
-    beforeEach(() => {
         angular.mock.module('test');
     });
 

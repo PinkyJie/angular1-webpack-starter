@@ -6,9 +6,6 @@ describe('DropdownInit Directive', () => {
     beforeEach(() => {
         angular.module('test', [])
             .directive('aioDropdownInit', DropdownInitDirective);
-    });
-
-    beforeEach(() => {
         angular.mock.module('test');
     });
 

@@ -8,9 +8,6 @@ describe('DatepickerInit Directive', () => {
     beforeEach(() => {
         angular.module('test', [])
             .directive('aioDatepickerInit', DatepickerInitDirective);
-    });
-
-    beforeEach(() => {
         angular.mock.module('test');
     });
 
