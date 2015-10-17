@@ -10,10 +10,12 @@ class AjaxErrorHandlerService {
         // 2. or an error message returned by _success
         const type = typeof reason;
         let code = '$UNEXPECTED';
-        if (reason && type === 'object') {
-            code = reason.message;
-        } else if (reason && type === 'string') {
-            code = reason;
+        if (reason) {
+            if (type === 'object') {
+                code = reason.message;
+            } else if (type === 'string') {
+                code = reason;
+            }
         }
         return this.$q.reject({
             code,

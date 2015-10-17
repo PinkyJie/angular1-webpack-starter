@@ -12,8 +12,8 @@ class LoggerService {
         this.$log.info(`Info: ${message}, ${data}`);
     }
 
-    success (message, data) {
-        this.$log.info(`Success: ${message}, ${data}`);
+    debug (message, data) {
+        this.$log.debug(`Debug: ${message}, ${data}`);
     }
 
     warning (message, data) {
