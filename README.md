@@ -13,7 +13,7 @@ A starter project using Angular 1.x with Webpack. A Webpack re-implementation of
 ## Features
 
 * ES6
-* Component based structure
+* Component based structure proposed in https://github.com/fouber/blog/issues/10
 * Material Design using [MaterializeCSS](http://materializecss.com/)
 * Flex Layout
 * Responsive Design
@@ -40,7 +40,7 @@ Then open your browser with URL `http://localhost:8080/webpack-dev-server/`.
 
 * Unit Test: `npm test`
 * Unit Test with auto watch: `npm run test:watch`
-* <del>E2E Test: `npm run test:e2e`</del>
+* E2E Test: `npm run test:e2e` (may need to run `npm run webdriver-update` first)
 
 ## <del>Building</del>
 
