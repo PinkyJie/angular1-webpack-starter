@@ -1,66 +1,50 @@
-/* global $ */
-'use strict';
-
 // page object
-var LoginPage = function () {
-    var self = this;
+class LoginPage extends browser._BasePageObject {
+    constructor () {
+        super('login');
+        this.urlAfterLogin = 'dashboard';
+        this.logoutUrl = 'login?action=logout';
+    }
 
-    self.url = 'login';
-    self.ele = _getAllElements();
-    self.urlAfterLogin = 'dashboard';
-    self.logoutUrl = 'login?action=logout';
-
-    self.load = load;
-    self.loginWithCredential = loginWithCredential;
-
-    ////////
-
-    function _getAllElements () {
+    _getAllElements () {
+        const $page = $('.login-view');
         return {
-            'loadingView': $('.login-checking'),
-            'loadingIcon': $('.login-checking > .mdi-sync'),
-            'accountIcon': $('.login-checking > .mdi-account'),
-            'loadingText': $('.login-checking > .loading-text'),
-            'loginMessage': $('.login-message > p'),
-            'emailInput': element(by.model('vm.credential.email')),
-            'passwordInput': element(by.model('vm.credential.password')),
-            'loginBtn': $('.btn-login')
+            loadingView: $page.$('.login-checking'),
+            loadingIcon: $page.$('.login-checking > .mdi-notification-sync'),
+            accountIcon: $page.$('.login-checking > .mdi-action-account-box'),
+            loadingText: $page.$('.login-checking > .loading-text'),
+            loginMessage: $page.$('.login-message > p'),
+            emailInput: $page.element(by.model('form.credential.email')),
+            passwordInput: $page.element(by.model('form.credential.password')),
+            loginBtn: $page.$('.btn-login')
         };
     }
 
-    function load () {
-        browser._.gotoUrl(self.url);
+    loginWithCredential (email, password) {
+        this.ele.emailInput.sendKeys(email);
+        this.ele.passwordInput.sendKeys(password);
+        expect(this.ele.loginBtn.isEnabled()).toBe(true);
+        this.ele.loginBtn.click();
     }
-
-    function loginWithCredential (email, password) {
-        self.ele.emailInput.sendKeys(email);
-        self.ele.passwordInput.sendKeys(password);
-        expect(self.ele.loginBtn.isEnabled()).toBe(true);
-        self.ele.loginBtn.click();
-    }
-};
+}
 
 module.exports = new LoginPage();
 
 // test scenarios
-describe('Login Page:', function () {
-    var page;
-    beforeEach(function () {
+describe('Login Page:', () => {
+    let page;
+    beforeEach(() => {
         page = new LoginPage();
         page.load();
     });
 
-    afterEach(function () {
-        browser._.takeScreenshotIfFail();
-    });
-
-    it('should login successfully with correct credential', function () {
+    it('should login successfully with correct credential', () => {
         expect(page.ele.loginBtn.isEnabled()).toBe(false);
         page.loginWithCredential('f@f', 'f');
         browser._.expectUrlToMatch(page.urlAfterLogin);
     });
 
-    it('should display error message with incorrect credential', function () {
+    it('should display error message with incorrect credential', () => {
         expect(page.ele.loginMessage.isPresent()).toBe(false);
         page.loginWithCredential('error@error.com', 'f');
         expect(page.ele.loginMessage.isDisplayed()).toBe(true);
@@ -68,32 +52,27 @@ describe('Login Page:', function () {
             .toEqual('Incorrect email or password, please try again!');
     });
 
-    it('should display error message with locked account', function () {
+    it('should display error message with locked account', () => {
         expect(page.ele.loginMessage.isPresent()).toBe(false);
         page.loginWithCredential('lock@lock.com', 'f');
         expect(page.ele.loginMessage.isDisplayed()).toBe(true);
         expect(page.ele.loginMessage.getText())
             .toEqual('Your account is locked!');
     });
-
 });
 
-describe('Logout Page:', function () {
-    var page;
-    beforeEach(function () {
+describe('Logout Page:', () => {
+    let page;
+    beforeEach(() => {
         page = new LoginPage();
         browser._.gotoUrl(page.logoutUrl);
     });
 
-    afterEach(function () {
-        browser._.takeScreenshotIfFail();
-    });
-
-    it('should not display loading view', function () {
+    it('should not display loading view', () => {
         expect(page.ele.loadingView.isPresent()).toBe(false);
     });
 
-    it('should display success logout message', function () {
+    it('should display success logout message', () => {
         expect(page.ele.loginMessage.isDisplayed()).toBe(true);
         expect(page.ele.loginMessage.getText())
             .toEqual('You have been successfully logged out!');
