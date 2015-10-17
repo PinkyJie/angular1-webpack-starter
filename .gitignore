@@ -8,6 +8,5 @@ npm-debug.log
 build
 
 # test folder
-source/test/e2e/screenshots/*
-!client/source/test/e2e/screenshots/.gitkeep
+source/test/e2e/screenshots/
 source/test/unit/results/

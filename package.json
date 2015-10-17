@@ -2,6 +2,9 @@
   "name": "angular1-webpack-starter",
   "version": "0.1.0",
   "description": "Component based Angular web development with Webpack.",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "repository": "PinkyJie/angular1-webpack-starter",
   "license": "MIT",
   "main": "source/app/index.js",
@@ -9,6 +12,9 @@
     "start": "webpack-dev-server --dev --mock",
     "test": "rm -rf ./source/test/unit/results && karma start ./karma.config.js",
     "test:watch": "karma start ./karma.config.js --watch",
+    "webdriver-update": "webdriver-manager update",
+    "webdriver-start": "webdriver-manager start",
+    "e2e": "protractor ./protractor.config.js"
   },
   "author": {
     "name": "马斯特",
@@ -56,6 +62,7 @@
     "phantomjs": "^1.9.16",
     "phantomjs-polyfill": "0.0.1",
     "protractor": "^2.0.0",
+    "protractor-jasmine2-screenshot-reporter": "^0.1.7",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.12.3",
     "stylus-loader": "^1.2.1",

@@ -1,52 +1,43 @@
-/* global $ */
-'use strict';
-
-module.exports = function () {
-    return {
-        gotoUrl: gotoUrl,
-        getHeader: getHeader,
-        takeScreenshotIfFail: takeScreenshotIfFail,
-        expectUrlToMatch: expectUrlToMatch
-    };
-
-    //////////
-
-    function gotoUrl (url) {
-        browser.get(browser.baseUrl + '/' + url);
+// base page object that all page objects will inherit
+class BasePageObject {
+    constructor (url) {
+        this.url = url;
+        this.ele = this._getAllElements();
     }
 
-    function getHeader () {
+    load () {
+        browser._.gotoUrl(this.url);
+    }
+
+    getHeader () {
+        const $header = $('.header-view');
         return {
-            'title': $('.header-title > a'),
-            'loginBtn': $('.header-login'),
-            'userName': $('.header-user-name'),
-            'dropdown': $('.header-dropdown'),
-            'dropdownToggle': $('.dropdown-toggle'),
-            'dropdownMenu': $('.header-dropdown-menu'),
-            'logoutLink': $('.logout-link')
+            title: $header.$('.brand-logo'),
+            userName: $header.$('.header-user-name'),
+            dropdown: $header.$('.header-dropdown'),
+            dropdownButton: $header.$('.dropdown-button'),
+            dropdownContent: $header.$('.dropdown-content'),
+            logoutLink: $header.$('.logout-link')
         };
     }
 
-    function takeScreenshotIfFail () {
-        var fs = require('fs');
-        var currentSpec = jasmine.getEnv().currentSpec;
-        var passed = currentSpec.results().passed();
-        if (!passed) {
-            browser.takeScreenshot().then(function (png) {
-                browser.getCapabilities().then(function (capabilities) {
-                    var browserName = capabilities.caps_.browserName;
-                    var filename = browserName + '-' +
-                        currentSpec.description.replace(/[ :]/g, '-') + '.png';
-                    var stream = fs.createWriteStream(browser.params.screenshotDir + filename);
-                    stream.write(new Buffer(png, 'base64'));
-                    stream.end();
-                });
-            });
-        }
+    getFooter () {
+        const $footer = $('.footer-view');
+        return {
+            copyright: $footer.$('.copyright'),
+            link: $footer.$('.copyright > a')
+        };
+    }
+}
+
+class E2EHelper {
+    gotoUrl (url) {
+        browser.get(`${browser.baseUrl}/${url}`);
     }
 
-    function expectUrlToMatch (url) {
+    expectUrlToMatch (url) {
         expect(browser.getCurrentUrl()).toMatch(new RegExp(url));
     }
+}
 
-};
+export {BasePageObject, E2EHelper};
