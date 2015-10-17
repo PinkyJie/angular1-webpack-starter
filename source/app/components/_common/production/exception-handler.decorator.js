@@ -1,9 +1,9 @@
 // Extend the original $exceptionHandler service.
 // * add error log prefix using exceptionPrefixProvider
 // * do other thing with error log
-extendExceptionHandler.$inject = ['$delegate', 'Logger'];
-function extendExceptionHandler ($delegate, logger) {
-    return (exception, cause) => {
+exceptionHandlerDecorator.$inject = ['$delegate', 'Logger'];
+function exceptionHandlerDecorator ($delegate, logger) {
+    return (exception, cause) => { // eslint-disable-line
         const appErrorPrefix = '[Aio Angular App Error] ';
         const errorData = {exception, cause};
         exception.message = appErrorPrefix + exception.message;
@@ -21,4 +21,4 @@ function extendExceptionHandler ($delegate, logger) {
     };
 }
 
-export default extendExceptionHandler;
+export default exceptionHandlerDecorator;

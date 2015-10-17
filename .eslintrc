@@ -168,7 +168,7 @@
         "key-spacing": 2,
         "lines-around-comment": 0,
         "linebreak-style": [2, "unix"],
-        "max-nested-callbacks": [2, 3],
+        "max-nested-callbacks": [2, 5],
         "new-cap": 2,
         "new-parens": 2,
         "newline-after-var": 0,

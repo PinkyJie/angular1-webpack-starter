@@ -1,4 +1,4 @@
-import extendExceptionHandler from './exception-handler.decorator';
+import exceptionHandlerDecorator from './exception-handler.decorator';
 
 appProductionConfig.$inject = ['$logProvider', '$compileProvider'];
 function appProductionConfig ($logProvider, $compileProvider) {
@@ -9,7 +9,7 @@ function appProductionConfig ($logProvider, $compileProvider) {
 exceptionHandlerConfig.$inject = ['$provide'];
 function exceptionHandlerConfig ($provide) {
     // Use decorator to extend the original $exceptionHandler:
-    $provide.decorator('$exceptionHandler', extendExceptionHandler);
+    $provide.decorator('$exceptionHandler', exceptionHandlerDecorator);
 }
 
 export {appProductionConfig, exceptionHandlerConfig};
