@@ -71,8 +71,8 @@ class UserSerivce {
 
         function _success (response) {
             const data = response.data;
-            self._clearUser();
             if (response.status === 200 && data.code === 0) {
+                self._clearUser();
                 self.$rootScope.$broadcast(self.Event.AUTH_LOGOUT);
             } else {
                 return self.$q.reject(data.message);
@@ -80,6 +80,7 @@ class UserSerivce {
         }
 
         function _error (reason) {
+            // log out user even API is failed
             self._clearUser();
             return self.AjaxError.catcher(reason);
         }
