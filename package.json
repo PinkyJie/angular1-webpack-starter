@@ -60,7 +60,6 @@
     "karma-webpack": "^1.7.0",
     "null-loader": "^0.1.1",
     "phantomjs": "^1.9.16",
-    "phantomjs-polyfill": "0.0.1",
     "protractor": "^2.0.0",
     "protractor-jasmine2-screenshot-reporter": "^0.1.7",
     "raw-loader": "^0.5.1",

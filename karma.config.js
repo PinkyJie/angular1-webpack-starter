@@ -5,8 +5,15 @@ const args = require('yargs').argv;
 const unitTestEntry = 'source/test/unit/helper.js';
 // run multiple times in watch mode
 const singleRun = !args.watch;
-// use Pahntom in watch mode
+// use phantomjs in watch mode
 const browser = args.watch ? 'PhantomJS' : 'Chrome';
+// load babel polyfill for phantomjs
+const files = browser === 'PhantomJS' ? [
+    'node_modules/babel-core/browser-polyfill.js',
+    unitTestEntry
+] : [
+    unitTestEntry
+];
 
 const include = [
     path.resolve('./source')
@@ -45,9 +52,7 @@ module.exports = (config) => {
         basePath: '.',
         frameworks: ['jasmine'],
         exclude: [],
-        files: [
-            unitTestEntry
-        ],
+        files,
         webpack: {
             devtool: 'inline-source-map',
             module: {
