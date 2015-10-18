@@ -8,7 +8,6 @@ import LoggerService from './services/logger.service';
 import ResolveService from './services/resolve.service';
 import RouterHelperProvider from './services/router-helper.provider';
 import UserService from './services/user.service';
-import UtilService from './services/util.service';
 // directives
 import FocusMeDirective from './directives/focus-me.directive';
 import LoadingButtonDirective from './directives/loading-button.directive';
@@ -32,7 +31,6 @@ common
     .service('Resolve', ResolveService)
     .provider('RouterHelper', RouterHelperProvider)
     .service('UserAPI', UserService)
-    .service('Util', UtilService)
     .directive('aioFocusMe', FocusMeDirective)
     .directive('aioLoadingButton', LoadingButtonDirective)
     .directive('aioValidateNumber', ValidateNumberDirective)
