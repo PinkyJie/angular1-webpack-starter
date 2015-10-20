@@ -6,11 +6,10 @@ const [handlingStateChangeError, hasOtherwise, stateCounts] = [
 
 class RouterHelper {
     constructor (config, $stateProvider, $urlRouterProvider,
-        $location, $rootScope, $state, Logger, Resolve) {
+        $rootScope, $state, Logger, Resolve) {
         this.config = config;
         this.$stateProvider = $stateProvider;
         this.$urlRouterProvider = $urlRouterProvider;
-        this.$location = $location;
         this.$rootScope = $rootScope;
         this.$state = $state;
         this.Logger = Logger;
@@ -62,7 +61,8 @@ class RouterHelper {
                 const destination = (toState &&
                     (toState.title || toState.name || toState.loadedTemplateUrl)) ||
                     'unknown target';
-                const msg = `Error routing to ${destination}.\nReason: ${error.message || error}.`;
+                const errorMessage = (error && error.message) || error;
+                const msg = `Error routing to ${destination}.\nReason: ${errorMessage}.`;
                 this.Logger.warning(msg);
                 // handle requireLogin issue
                 if (error === 'requireLogin') {
@@ -115,15 +115,15 @@ class RouterHelperProvider {
         angular.extend(this.config, cfg);
     }
 
-    $get ($location, $rootScope, $state, Logger, Resolve) {
+    $get ($rootScope, $state, Logger, Resolve) {
         return new RouterHelper(
             this.config, this.$stateProvider, this.$urlRouterProvider,
-            $location, $rootScope, $state, Logger, Resolve);
+            $rootScope, $state, Logger, Resolve);
     }
 }
 
 RouterHelperProvider.prototype.$get.$inject = [
-    '$location', '$rootScope', '$state', 'Logger', 'Resolve'
+    '$rootScope', '$state', 'Logger', 'Resolve'
 ];
 
 RouterHelperProvider.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
