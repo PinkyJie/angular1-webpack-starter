@@ -72,7 +72,7 @@ class RouterHelper {
                     };
                     this.$state.go('root.layout.login');
                 } else {
-                    this.$state.go('root.layout.home.all');
+                    this.$state.go('root.layout.home');
                 }
             }
         );

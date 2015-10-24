@@ -1,7 +1,8 @@
 import angular from 'angular';
 
-import homeHeroHtml from './home-hero.jade';
+import HomeHeroDirective from './home-hero.directive';
 
-const homeHero = angular.module('app.components.homeHero', []);
+const homeHero = angular.module('app.components.homeHero', [])
+    .directive('aioHomeHero', HomeHeroDirective);
 
-export {homeHero, homeHeroHtml};
+export default homeHero;

@@ -3,7 +3,7 @@
 nav.blue
     .nav-wrapper
         img.logo(src= logoPng)
-        a.brand-logo(ui-sref="root.layout.home.all") Aio Angular App
+        a.brand-logo(ui-sref="root.layout.home") Aio Angular App
         ul.header-menus.right(ng-if="vm.isLoggedIn")
             li.header-user-name.hide-sm
                 span {{vm.userInfo.name}}

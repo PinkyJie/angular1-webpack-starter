@@ -255,7 +255,7 @@ describe('RouterHelper Provider', () => {
                 it('should go to home page if error is something else', () => {
                     $rootScope.$broadcast('$stateChangeError', toState, toParams, null, null, 'error');
                     expect($state.prev).not.toBeDefined();
-                    expect($state.go).toHaveBeenCalledWith('root.layout.home.all');
+                    expect($state.go).toHaveBeenCalledWith('root.layout.home');
                 });
             });
 
