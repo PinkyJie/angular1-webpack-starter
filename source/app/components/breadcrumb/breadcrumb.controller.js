@@ -1,6 +1,5 @@
 class BreadcrumbController {
-    constructor (RouterHelper, $state, $rootScope) {
-        this.RouterHelper = RouterHelper;
+    constructor ($state, $rootScope) {
         this.$state = $state;
         this.$rootScope = $rootScope;
 
@@ -17,18 +16,20 @@ class BreadcrumbController {
         const parentStateNames = this._getAncestorStates(curName);
         parentStateNames.forEach((name) => {
             const stateConfig = this.$state.get(name);
+            if (stateConfig.abstract) {
+                return;
+            }
             const breadcrumb = {
                 link: name,
                 text: stateConfig.breadcrumb
             };
-            if (stateConfig.abstract) {
-                return;
-            }
-            if (params) {
-                breadcrumb.link = `${name}(${JSON.stringify(params)})`;
-            }
             this.breadcrumbs.push(breadcrumb);
         });
+        const length = this.breadcrumbs.length;
+        if (params && length > 0) {
+            const lastBreadcrumb = this.breadcrumbs[length - 1];
+            lastBreadcrumb.link = `${lastBreadcrumb.link}(${JSON.stringify(params)})`;
+        }
     }
 
     _getAncestorStates (stateName) {
@@ -44,6 +45,6 @@ class BreadcrumbController {
     }
 }
 
-BreadcrumbController.$inject = ['RouterHelper', '$state', '$rootScope'];
+BreadcrumbController.$inject = ['$state', '$rootScope'];
 
 export default BreadcrumbController;
