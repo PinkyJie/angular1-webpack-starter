@@ -93,7 +93,7 @@ describe('RouterHelper Provider', () => {
                     expect($stateProvider.state).not.toHaveBeenCalled();
                 });
 
-                function commonExpect (states, isLogin) {
+                function assertCommon (states, isLogin) {
                     RouterHelper.configureStates(states);
                     if (isLogin) {
                         expect(states[0].config.resolve.loginResolve).toEqual(Resolve.login);
@@ -115,7 +115,7 @@ describe('RouterHelper Provider', () => {
                             }
                         }
                     ];
-                    commonExpect(states, true);
+                    assertCommon(states, true);
                 });
 
                 it('should not set login resolve if "requireLogin" is false', () => {
@@ -129,7 +129,7 @@ describe('RouterHelper Provider', () => {
                             }
                         }
                     ];
-                    commonExpect(states, false);
+                    assertCommon(states, false);
                 });
 
                 it('should not set login resolve if no "requireLogin" passed', () => {
@@ -141,7 +141,7 @@ describe('RouterHelper Provider', () => {
                             }
                         }
                     ];
-                    commonExpect(states, false);
+                    assertCommon(states, false);
                 });
 
                 it('should handle multiple states in one time', () => {
@@ -191,7 +191,7 @@ describe('RouterHelper Provider', () => {
 
         describe('handleRoutingErrors function', () => {
             describe('error message', () => {
-                function commonExpect (toState, destination, error, message) {
+                function assertCommon (toState, destination, error, message) {
                     $rootScope.$broadcast('$stateChangeError', toState, null, null, null, error);
                     const log = `Error routing to ${destination}.\nReason: ${message}.`;
                     expect(Logger.warning).toHaveBeenCalledWith(log);
@@ -202,7 +202,7 @@ describe('RouterHelper Provider', () => {
                         title: 'title'
                     };
                     const error = 'error';
-                    commonExpect(toState, toState.title, error, error);
+                    assertCommon(toState, toState.title, error, error);
                 });
 
                 it('should log expected error if toState[name] is not null', () => {
@@ -212,7 +212,7 @@ describe('RouterHelper Provider', () => {
                     const error = {
                         message: 'message'
                     };
-                    commonExpect(toState, toState.name, error, error.message);
+                    assertCommon(toState, toState.name, error, error.message);
                 });
 
                 it('should log expected error if toState[loadedTemplateUrl] is not null', () => {
@@ -220,7 +220,7 @@ describe('RouterHelper Provider', () => {
                         loadedTemplateUrl: 'loadedTemplateUrl'
                     };
                     const error = null;
-                    commonExpect(toState, toState.loadedTemplateUrl, error, 'null');
+                    assertCommon(toState, toState.loadedTemplateUrl, error, 'null');
                 });
 
                 it('should log expected error if toState is null', () => {
@@ -228,7 +228,7 @@ describe('RouterHelper Provider', () => {
                     const error = {
                         aaa: 'not message'
                     };
-                    commonExpect(toState, 'unknown target', error, '[object Object]');
+                    assertCommon(toState, 'unknown target', error, '[object Object]');
                 });
             });
 

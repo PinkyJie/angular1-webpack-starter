@@ -55,7 +55,7 @@ describe('User Service', () => {
             apiResponse = $httpBackend.expectGET('api/user/loginstatus');
         });
 
-        function successExpect (returnData) {
+        function assertSuccess (returnData) {
             return (data) => {
                 expect(data).toEqual(returnData);
                 expect(User._setUser).toHaveBeenCalledWith(returnData);
@@ -63,7 +63,7 @@ describe('User Service', () => {
             };
         }
 
-        function errorExpect (error) {
+        function assertError (error) {
             return () => {
                 expect(User._setUser).not.toHaveBeenCalled();
                 expect($rootScope.$broadcast).not.toHaveBeenCalled();
@@ -75,13 +75,13 @@ describe('User Service', () => {
 
         it('should set user when API returns successful result', () => {
             apiResponse.respond({code: 0, result: {user: 'user'}});
-            User.checkLoggedInStatus().then(successExpect('user'));
+            User.checkLoggedInStatus().then(assertSuccess('user'));
             $httpBackend.flush();
         });
 
         it('should not set user when API returns error result', () => {
             apiResponse.respond({code: 1, message: 'error'});
-            User.checkLoggedInStatus().catch(errorExpect('error'));
+            User.checkLoggedInStatus().catch(assertError('error'));
             $httpBackend.flush();
         });
 
@@ -89,7 +89,7 @@ describe('User Service', () => {
             apiResponse.respond(() => {
                 return [500];
             });
-            User.checkLoggedInStatus().catch(errorExpect(null));
+            User.checkLoggedInStatus().catch(assertError(null));
             $httpBackend.flush();
         });
     });
@@ -102,7 +102,7 @@ describe('User Service', () => {
             apiResponse = $httpBackend.expectPOST('api/user/login');
         });
 
-        function successExpect (returnData) {
+        function assertSuccess (returnData) {
             return (data) => {
                 expect(data).toEqual(returnData);
                 expect(User._setUser).toHaveBeenCalledWith(returnData);
@@ -110,7 +110,7 @@ describe('User Service', () => {
             };
         }
 
-        function errorExpect (error) {
+        function assertError (error) {
             return () => {
                 expect(User._setUser).not.toHaveBeenCalled();
                 expect($rootScope.$broadcast).not.toHaveBeenCalled();
@@ -122,13 +122,13 @@ describe('User Service', () => {
 
         it('should login user when API returns successful result', () => {
             apiResponse.respond({code: 0, result: {user: 'user'}});
-            User.login('a', 'b').then(successExpect('user'));
+            User.login('a', 'b').then(assertSuccess('user'));
             $httpBackend.flush();
         });
 
         it('should not login user when API returns error result', () => {
             apiResponse.respond({code: 1, message: 'error'});
-            User.login('a', 'b').catch(errorExpect('error'));
+            User.login('a', 'b').catch(assertError('error'));
             $httpBackend.flush();
         });
 
@@ -136,7 +136,7 @@ describe('User Service', () => {
             apiResponse.respond(() => {
                 return [500];
             });
-            User.login('a', 'b').catch(errorExpect(null));
+            User.login('a', 'b').catch(assertError(null));
             $httpBackend.flush();
         });
     });
@@ -148,12 +148,12 @@ describe('User Service', () => {
             apiResponse = $httpBackend.expectPOST('api/user/logout');
         });
 
-        function successExpect () {
+        function assertSuccess () {
             expect(User._clearUser).toHaveBeenCalled();
             expect($rootScope.$broadcast).toHaveBeenCalledWith(3);
         }
 
-        function errorExpect (error) {
+        function assertError (error) {
             return () => {
                 expect($rootScope.$broadcast).not.toHaveBeenCalled();
                 expect($q.reject).toHaveBeenCalledWith(error);
@@ -164,13 +164,13 @@ describe('User Service', () => {
 
         it('should logout user when API returns successful result', () => {
             apiResponse.respond({code: 0});
-            User.logout().then(successExpect);
+            User.logout().then(assertSuccess);
             $httpBackend.flush();
         });
 
         it('should still logout user even when API returns error result', () => {
             apiResponse.respond({code: 1, message: 'error'});
-            User.logout().catch(errorExpect('error'));
+            User.logout().catch(assertError('error'));
             $httpBackend.flush();
         });
 
@@ -178,7 +178,7 @@ describe('User Service', () => {
             apiResponse.respond(() => {
                 return [500];
             });
-            User.logout().catch(errorExpect(null));
+            User.logout().catch(assertError(null));
             $httpBackend.flush();
         });
     });
@@ -189,13 +189,13 @@ describe('User Service', () => {
             apiResponse = $httpBackend.expectGET('api/user/products');
         });
 
-        function successExpect (returnData) {
+        function assertSuccess (returnData) {
             return (data) => {
                 expect(data).toEqual(returnData);
             };
         }
 
-        function errorExpect (error) {
+        function assertError (error) {
             return () => {
                 expect($q.reject).toHaveBeenCalledWith(error);
                 expect(AjaxErrorHandler.catcher).toHaveBeenCalledWith(error);
@@ -204,13 +204,13 @@ describe('User Service', () => {
 
         it('should get products info when API returns successful result', () => {
             apiResponse.respond({code: 0, result: {summary: 'summary'}});
-            User.getProductSummary().then(successExpect('summary'));
+            User.getProductSummary().then(assertSuccess('summary'));
             $httpBackend.flush();
         });
 
         it('should not get products info when API returns error result', () => {
             apiResponse.respond({code: 1, message: 'error'});
-            User.getProductSummary().catch(errorExpect('error'));
+            User.getProductSummary().catch(assertError('error'));
             $httpBackend.flush();
         });
 
@@ -218,7 +218,7 @@ describe('User Service', () => {
             apiResponse.respond(() => {
                 return [500];
             });
-            User.getProductSummary().catch(errorExpect(null));
+            User.getProductSummary().catch(assertError(null));
             $httpBackend.flush();
         });
     });
