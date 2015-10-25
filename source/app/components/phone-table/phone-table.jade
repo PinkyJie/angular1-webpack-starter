@@ -19,13 +19,13 @@
                     td.hide-sm
                         span {{::phone.price}}
                     td.center-align
-                        button.btn-floating.blue.waves-light.waves-effect.tooltipped.mr1(
+                        button.btn-first.btn-floating.blue.waves-light.waves-effect.tooltipped.mr1(
                             ng-click="table.firstButtonClick({phone: phone})",
                             data-position="top", data-delay="50",
                             data-tooltip="View", aio-tooltip-init
                         )
                             i.mdi-action-info
-                        button.btn-floating.red.waves-effect.waves-light.tooltipped(
+                        button.btn-second.btn-floating.red.waves-effect.waves-light.tooltipped(
                             ng-click="table.secondButtonClick({phone: phone})",
                             data-position="top", data-delay="50",
                             data-tooltip="Delete", aio-tooltip-init

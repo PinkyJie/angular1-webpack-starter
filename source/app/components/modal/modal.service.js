@@ -1,8 +1,7 @@
 import angular from 'angular';
 
 class ModalService {
-    constructor ($compile, $timeout) {
-        this.$compile = $compile;
+    constructor ($timeout) {
         this.$timeout = $timeout;
     }
     open (title, content, buttons, callback) {
@@ -46,7 +45,7 @@ class ModalService {
         });
         // ok button
         const okBtn = angular.element('<a/>', {
-            class: 'btn modal-action modal-close waves-effect waves-light mr3',
+            class: 'btn btn-ok modal-action modal-close waves-effect waves-light mr3',
             text: buttons.ok
         });
         okBtn.on('click', () => {
@@ -59,7 +58,7 @@ class ModalService {
         // cancel button
         if (angular.isDefined(buttons.cancel)) {
             const cancelBtn = angular.element('<a/>', {
-                class: 'btn white black-text modal-action modal-close waves-effect waves-light mr2',
+                class: 'btn btn-cancel white black-text modal-action modal-close waves-effect waves-light mr2',
                 text: buttons.cancel
             });
             footerDiv.append(cancelBtn);
@@ -79,6 +78,6 @@ class ModalService {
     }
 }
 
-ModalService.$inject = ['$compile', '$timeout'];
+ModalService.$inject = ['$timeout'];
 
 export default ModalService;
