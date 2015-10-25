@@ -8,12 +8,6 @@ describe('LoginForm Controller', () => {
     let $rootScope;
 
     beforeEach(() => {
-        // need to use $q from angular
-        angular.module('test', []);
-        angular.mock.module('test');
-    });
-
-    beforeEach(() => {
         angular.mock.inject((_$q_, _$rootScope_) => {
             $q = _$q_;
             $rootScope = _$rootScope_;

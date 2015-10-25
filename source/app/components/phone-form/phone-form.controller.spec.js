@@ -6,11 +6,6 @@ describe('PhoneForm Controller', () => {
     let $rootScope;
 
     beforeEach(() => {
-        angular.module('test', []);
-        angular.mock.module('test');
-    });
-
-    beforeEach(() => {
         angular.mock.inject((_$q_, _$rootScope_) => {
             $q = _$q_;
             $rootScope = _$rootScope_;

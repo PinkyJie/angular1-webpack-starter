@@ -3,7 +3,7 @@ class LoginController {
         this.UserAPI = UserAPI;
         this.$state = $state;
         this.$timeout = $timeout;
-        // private
+
         this.routeAfterLogin = 'root.layout.dashboard';
 
         // handle logout
