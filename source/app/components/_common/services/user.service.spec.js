@@ -38,6 +38,11 @@ describe('User Service', () => {
         });
     });
 
+    afterEach(() => {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
+
     describe('constructor function', () => {
         it('should init successfully', () => {
             expect(User.Event).toBe(Event);

@@ -1,5 +1,5 @@
 const errorHandler = Symbol();
-class PhoneSerivce {
+class PhoneService {
     constructor ($http, $q, AjaxError) {
         this.$http = $http;
         this.$q = $q;
@@ -52,6 +52,7 @@ class PhoneSerivce {
         }
     }
     updatePhone (id, phone) {
+        const self = this;
         const req = {
             phone
         };
@@ -83,6 +84,6 @@ class PhoneSerivce {
     }
 }
 
-PhoneSerivce.$inject = ['$http', '$q', 'AjaxErrorHandler'];
+PhoneService.$inject = ['$http', '$q', 'AjaxErrorHandler'];
 
-export default PhoneSerivce;
+export default PhoneService;
