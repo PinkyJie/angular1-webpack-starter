@@ -1,7 +1,8 @@
 class SidebarSmController {
     constructor ($rootScope) {
-        this.$rootScope = $rootScope;
+        Object.assign(this, {$rootScope});
     }
+
     toggleSidebar (flag) {
         if (typeof flag === 'undefined') {
             this.$rootScope.showSidebar = !this.$rootScope.showSidebar;

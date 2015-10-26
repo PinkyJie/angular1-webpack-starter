@@ -1,21 +1,23 @@
 class PhoneController {
     constructor (PhoneAPI, $state, Modal) {
-        this.PhoneAPI = PhoneAPI;
-        this.$state = $state;
-        this.Modal = Modal;
+        Object.assign(this, {PhoneAPI, $state, Modal});
+
         this._getPhoneList();
     }
+
     _getPhoneList () {
         this.PhoneAPI.getPhones()
             .then((data) => {
                 this.phones = data;
             });
     }
+
     gotoPhoneDetail (ctrl, phone) {
         // don't use this here, this point to directive context,
         // not controller context
         ctrl.$state.go('root.layout.phone.detail', {id: phone.id});
     }
+
     deletePhone (ctrl, phone) {
         ctrl.Modal.open(
             'Are your sure?',
@@ -28,6 +30,7 @@ class PhoneController {
             }
         );
     }
+
     _doDelete (id) {
         const self = this;
         this.PhoneAPI.removePhone(id)

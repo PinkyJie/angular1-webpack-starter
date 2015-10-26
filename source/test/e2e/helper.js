@@ -1,7 +1,8 @@
 // base page object that all page objects will inherit
 class BasePageObject {
     constructor (url) {
-        this.url = url;
+        Object.assign(this, {url});
+
         this.ele = this._getAllElements();
     }
 

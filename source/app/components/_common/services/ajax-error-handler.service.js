@@ -1,7 +1,6 @@
 class AjaxErrorHandlerService {
     constructor (Error, $q) {
-        this.Error = Error;
-        this.$q = $q;
+        Object.assign(this, {Error, $q});
     }
     // directly reject the human readable error message
     catcher (reason) {

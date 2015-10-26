@@ -1,8 +1,6 @@
 class LoginController {
     constructor (UserAPI, $state, $timeout) {
-        this.UserAPI = UserAPI;
-        this.$state = $state;
-        this.$timeout = $timeout;
+        Object.assign(this, {UserAPI, $state, $timeout});
 
         this.routeAfterLogin = 'root.layout.dashboard';
 

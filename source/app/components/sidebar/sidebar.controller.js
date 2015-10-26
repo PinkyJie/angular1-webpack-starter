@@ -1,8 +1,6 @@
 class SidebarController {
     constructor (RouterHelper, $scope, $rootScope) {
-        this.RouterHelper = RouterHelper;
-        this.$scope = $scope;
-        this.$rootScope = $rootScope;
+        Object.assign(this, {RouterHelper, $scope, $rootScope});
 
         // generate sidebar nav menus
         this.navs = this._getNavMenus();

@@ -1,7 +1,6 @@
 class HeaderController {
     constructor ($rootScope, Event) {
-        this.$rootScope = $rootScope;
-        this.Event = Event;
+        Object.assign(this, {$rootScope, Event});
 
         // udpate header based on auth event
         this.$rootScope.$on(this.Event.AUTH_LOGIN, this.updateHeader.bind(this));

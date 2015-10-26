@@ -7,13 +7,8 @@ const [handlingStateChangeError, hasOtherwise, stateCounts] = [
 class RouterHelper {
     constructor (config, $stateProvider, $urlRouterProvider,
         $rootScope, $state, Logger, Resolve) {
-        this.config = config;
-        this.$stateProvider = $stateProvider;
-        this.$urlRouterProvider = $urlRouterProvider;
-        this.$rootScope = $rootScope;
-        this.$state = $state;
-        this.Logger = Logger;
-        this.Resolve = Resolve;
+        Object.assign(this, {config, $stateProvider, $urlRouterProvider,
+            $rootScope, $state, Logger, Resolve});
         // private variable
         this[handlingStateChangeError] = false;
         this[hasOtherwise] = false;
@@ -100,9 +95,7 @@ RouterHelper.$inject = [];
 // Help configure the state-base ui.router
 class RouterHelperProvider {
     constructor ($locationProvider, $stateProvider, $urlRouterProvider) {
-        this.$locationProvider = $locationProvider;
-        this.$stateProvider = $stateProvider;
-        this.$urlRouterProvider = $urlRouterProvider;
+        Object.assign(this, {$locationProvider, $stateProvider, $urlRouterProvider});
 
         this.config = {
             mainTitle: '',

@@ -1,8 +1,8 @@
 class LoginFormController {
     constructor (UserAPI, $state) {
-        this.UserAPI = UserAPI;
-        this.$state = $state;
+        Object.assign(this, {UserAPI, $state});
     }
+
     login (credential) {
         const self = this;
         if (this.loginForm.$invalid) {

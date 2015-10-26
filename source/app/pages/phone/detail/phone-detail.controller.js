@@ -3,10 +3,7 @@ import angular from 'angular';
 const originalPhone = Symbol();
 class PhoneDetailController {
     constructor (PhoneAPI, $stateParams, $q, Modal) {
-        this.PhoneAPI = PhoneAPI;
-        this.$stateParams = $stateParams;
-        this.$q = $q;
-        this.Modal = Modal;
+        Object.assign(this, {PhoneAPI, $stateParams, $q, Modal});
 
         this[originalPhone] = {};
         this.state = 'view';
@@ -15,20 +12,24 @@ class PhoneDetailController {
             this._getPhoneDetail(id);
         }
     }
+
     _getPhoneDetail (id) {
         this.PhoneAPI.getPhoneDetail(id)
             .then((data) => {
                 this.phone = data;
             });
     }
+
     beginEdit () {
         this[originalPhone] = angular.copy(this.phone);
         this.state = 'edit';
     }
+
     cancelUpdate (ctrl) {
         ctrl.phone = angular.copy(ctrl[originalPhone]);
         ctrl.state = 'view';
     }
+
     updatePhone (ctrl, phone) {
         // return promise here to let the phone form controller know the response status
         return ctrl.PhoneAPI.updatePhone(phone.id, phone)

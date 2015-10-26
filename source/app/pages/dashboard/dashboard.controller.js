@@ -1,12 +1,14 @@
 class DashboardController {
     constructor (UserAPI) {
-        this.UserAPI = UserAPI;
+        Object.assign(this, {UserAPI});
+
         this.colors = ['indigo', 'red', 'pink'];
 
         const userInfo = this.UserAPI.getUserInfo();
         this.welcomeMessage = `Welcome ${userInfo.name}!`;
         this._getProductsSummary();
     }
+
     _getProductsSummary () {
         this.UserAPI.getProductSummary()
             .then((data) => {

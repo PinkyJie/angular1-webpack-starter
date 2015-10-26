@@ -1,7 +1,6 @@
 class BreadcrumbController {
     constructor ($state, $rootScope) {
-        this.$state = $state;
-        this.$rootScope = $rootScope;
+        Object.assign(this, {$state, $rootScope});
 
         this._applyNewBreadcrumb(this.$state.current, this.$state.params);
         this.$rootScope.$on('$stateChangeSuccess',

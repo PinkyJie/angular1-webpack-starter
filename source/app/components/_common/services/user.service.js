@@ -1,11 +1,7 @@
 const [isLoggedIn, userInfo] = [Symbol(), Symbol()];
 class UserSerivce {
     constructor ($http, $q, $rootScope, Event, AjaxError) {
-        this.$http = $http;
-        this.$q = $q;
-        this.$rootScope = $rootScope;
-        this.Event = Event;
-        this.AjaxError = AjaxError;
+        Object.assign(this, {$http, $q, $rootScope, Event, AjaxError});
         // private variable
         this[isLoggedIn] = false;
         this[userInfo] = null;

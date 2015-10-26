@@ -1,7 +1,7 @@
 // A wrapper service for original $log
 class LoggerService {
     constructor ($log) {
-        this.$log = $log;
+        Object.assign(this, {$log});
     }
 
     error (message, data) {

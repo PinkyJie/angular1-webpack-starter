@@ -1,11 +1,11 @@
 const errorHandler = Symbol();
 class PhoneService {
     constructor ($http, $q, AjaxError) {
-        this.$http = $http;
-        this.$q = $q;
-        this.AjaxError = AjaxError;
+        Object.assign(this, {$http, $q, AjaxError});
+
         this[errorHandler] = this.AjaxError.catcher.bind(this.AjaxError);
     }
+
     getPhones () {
         const self = this;
         return this.$http.get('api/phones')
@@ -20,6 +20,7 @@ class PhoneService {
             return self.$q.reject(data.message);
         }
     }
+
     getPhoneDetail (id) {
         const self = this;
         return this.$http.get(`api/phones/${id}`)
@@ -34,6 +35,7 @@ class PhoneService {
             return self.$q.reject(data.message);
         }
     }
+
     addNewPhone (phone) {
         const self = this;
         const req = {
@@ -51,6 +53,7 @@ class PhoneService {
             return self.$q.reject(data.message);
         }
     }
+
     updatePhone (id, phone) {
         const self = this;
         const req = {
@@ -68,6 +71,7 @@ class PhoneService {
             return self.$q.reject(data.message);
         }
     }
+
     removePhone (id) {
         const self = this;
         return this.$http.delete(`api/phones/${id}`)

@@ -2,8 +2,9 @@ import angular from 'angular';
 
 class ModalService {
     constructor ($timeout) {
-        this.$timeout = $timeout;
+        Object.assign(this, {$timeout});
     }
+
     open (title, content, buttons, callback) {
         const modalView = angular.element('<div/>', {
             class: 'modal-view'
@@ -24,6 +25,7 @@ class ModalService {
             });
         }, 100);
     }
+
     _buildHeaderAndContent (title, content) {
         const headerDiv = angular.element('<div/>', {
             class: 'modal-content'
@@ -39,6 +41,7 @@ class ModalService {
         headerDiv.append(titleDiv).append(contentDiv);
         return headerDiv;
     }
+
     _buildFooter (buttons, callback) {
         const footerDiv = angular.element('<div/>', {
             class: 'modal-footer'
@@ -71,6 +74,7 @@ class ModalService {
         }
         return footerDiv;
     }
+
     _close () {
         this.$timeout(() => {
             angular.element('.modal-view').remove();

@@ -1,9 +1,6 @@
 class PhoneAddController {
     constructor (PhoneAPI, $state, $q, Modal) {
-        this.PhoneAPI = PhoneAPI;
-        this.$state = $state;
-        this.$q = $q;
-        this.Modal = Modal;
+        Object.assign(this, {PhoneAPI, $state, $q, Modal});
 
         this.phone = {};
         this.state = 'add';
