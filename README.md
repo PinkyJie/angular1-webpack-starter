@@ -1,6 +1,8 @@
 # angular1-webpack-starter
 
-A starter project using Angular 1.x with Webpack. A Webpack re-implementation of the project [generator-aio-angular](https://github.com/PinkyJie/generator-aio-angular).
+A starter project using Angular 1.x with Webpack. A Webpack + ES6 re-implementation of the  [generator-aio-angular](https://github.com/PinkyJie/generator-aio-angular) project.
+
+Still wanna use **Gulp + ES5**? Check the [generator-aio-angular](https://github.com/PinkyJie/generator-aio-angular) project.
 
 > Pure front-end implementation, all API interaction are mocked using [angular-mocks](https://docs.angularjs.org/api/ngMock).
 
