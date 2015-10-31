@@ -48,6 +48,7 @@
     "jade-html-loader": "0.0.3",
     "jade-loader": "^0.7.1",
     "jasmine-core": "^2.3.4",
+    "jasmine-spec-reporter": "^2.4.0",
     "karma": "^0.13.10",
     "karma-chrome-launcher": "^0.1.8",
     "karma-cli": "^0.1.1",

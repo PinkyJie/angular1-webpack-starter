@@ -1,5 +1,6 @@
 require('babel-core/register');
 const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+const SpecReporter = require('jasmine-spec-reporter');
 
 const webpackConfig = require('./webpack.config');
 const helper = require('./source/test/e2e/helper');
@@ -11,7 +12,9 @@ exports.config = {
     framework: 'jasmine2',
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 30000
+        defaultTimeoutInterval: 30000,
+        // remove ugly protractor dot reporter
+        print: () => {}
     },
     specs: `${e2eBaseFolder}/specs/*.spec.js`,
     suites: {
@@ -40,6 +43,11 @@ exports.config = {
                 }
             })
         );
+        // add jasmine spec reporter
+        jasmine.getEnv().addReporter(new SpecReporter({
+            displayStacktrace: 'all',
+            displayFailuresSummary: false
+        }));
     },
     params: {
         timeout: 10000
