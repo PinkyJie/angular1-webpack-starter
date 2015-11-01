@@ -224,6 +224,13 @@
         "prefer-spread": 2,
         "prefer-reflect": 2,
         "prefer-template": 2,
-        "require-yield": 2
+        "require-yield": 2,
+
+        // Legacy
+        "max-len": [2, 120, 4, {
+            "ignoreComments": true,
+            "ignoreUrls": true,
+            "ignorePattern": "^\\s*var\\s.+=\\s*require\\s*\\("
+        }]
     }
 }
