@@ -7,8 +7,6 @@ class HomePage extends browser._BasePageObject {
     _getAllElements () {
         const $page = $('.home-view');
         return {
-            header: this.getHeader(),
-            footer: this.getFooter(),
             mainTitle: $page.$('.title'),
             subTitle: $page.$('.subtitle'),
             getStartedBtn: $page.$('.btn-get-started')
@@ -26,22 +24,34 @@ describe('Home Page:', () => {
         page.load();
     });
 
-    it('should display correct header', () => {
-        expect(page.ele.header.title.getText()).toEqual('Aio Angular App');
+    browser._.testURLAndTitleAndClass(HomePage, '/', `Home`, 'home');
+    browser._.testPreloginHeader(HomePage);
+    browser._.testFooter(HomePage);
+
+    describe('Sidebar section:', () => {
+        it('should not display sidebar section', () => {
+            const sidebar = page.getSidebar();
+            expect(sidebar.view.getText()).toEqual('');
+        });
     });
 
-    it('should display correct footer', () => {
-        expect(page.ele.footer.copyright.getText()).toEqual('Copyright © 2015. AIO-Angular generator.');
+    describe('Breadcrumb section:', () => {
+        it('should not display breadcrumb section', () => {
+            const breadcrumb = page.getBreadcrumb();
+            expect(breadcrumb.view.getText()).toEqual('');
+        });
     });
 
-    it('should display correct tilte and sub title', () => {
-        expect(page.ele.mainTitle.getText()).toEqual('Aio Angular App');
-        expect(page.ele.subTitle.getText()).toEqual(
-            'Awesome web app built on AngularJS & Material Design.');
-    });
+    describe('Hero section:', () => {
+        it('should display correct tilte and sub title', () => {
+            expect(page.ele.mainTitle.getText()).toEqual('Aio Angular App');
+            expect(page.ele.subTitle.getText()).toEqual(
+                'Awesome web app built on AngularJS & Material Design.');
+        });
 
-    it('should go to login page if click get started', () => {
-        page.ele.getStartedBtn.click();
-        browser._.expectUrlToMatch('login');
+        it('should go to login page if click get started', () => {
+            page.ele.getStartedBtn.click();
+            browser._.expectUrlToMatch('login');
+        });
     });
 });

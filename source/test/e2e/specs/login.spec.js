@@ -1,3 +1,5 @@
+import homePage from './home.spec';
+
 // page object
 class LoginPage extends browser._BasePageObject {
     constructor () {
@@ -38,26 +40,56 @@ describe('Login Page:', () => {
         page.load();
     });
 
-    it('should login successfully with correct credential', () => {
-        expect(page.ele.loginBtn.isEnabled()).toBe(false);
-        page.loginWithCredential('f@f', 'f');
-        browser._.expectUrlToMatch(page.urlAfterLogin);
+    browser._.testURLAndTitleAndClass(LoginPage, 'login', `Login`, 'login');
+    browser._.testPreloginHeader(LoginPage);
+    browser._.testFooter(LoginPage);
+
+    describe('Sidebar section:', () => {
+        it('should not display sidebar section', () => {
+            const sidebar = page.getSidebar();
+            expect(sidebar.view.getText()).toEqual('');
+        });
     });
 
-    it('should display error message with incorrect credential', () => {
-        expect(page.ele.loginMessage.isPresent()).toBe(false);
-        page.loginWithCredential('error@error.com', 'f');
-        expect(page.ele.loginMessage.isDisplayed()).toBe(true);
-        expect(page.ele.loginMessage.getText())
-            .toEqual('Incorrect email or password, please try again!');
+    describe('Breadcrumb section:', () => {
+        it('should not display breadcrumb section', () => {
+            const breadcrumb = page.getBreadcrumb();
+            expect(breadcrumb.view.getText()).toEqual('');
+        });
     });
 
-    it('should display error message with locked account', () => {
-        expect(page.ele.loginMessage.isPresent()).toBe(false);
-        page.loginWithCredential('lock@lock.com', 'f');
-        expect(page.ele.loginMessage.isDisplayed()).toBe(true);
-        expect(page.ele.loginMessage.getText())
-            .toEqual('Your account is locked!');
+    describe('Login form section:', () => {
+        it('should login successfully with correct credential', () => {
+            expect(page.ele.loginBtn.isEnabled()).toBe(false);
+            page.loginWithCredential('f@f', 'f');
+            browser._.expectUrlToMatch(page.urlAfterLogin);
+        });
+
+        it('should display error message with incorrect credential', () => {
+            expect(page.ele.loginMessage.isPresent()).toBe(false);
+            page.loginWithCredential('error@error.com', 'f');
+            expect(page.ele.loginMessage.isDisplayed()).toBe(true);
+            expect(page.ele.loginMessage.getText())
+                .toEqual('Incorrect email or password, please try again!');
+        });
+
+        it('should display error message with locked account', () => {
+            expect(page.ele.loginMessage.isPresent()).toBe(false);
+            page.loginWithCredential('lock@lock.com', 'f');
+            expect(page.ele.loginMessage.isDisplayed()).toBe(true);
+            expect(page.ele.loginMessage.getText())
+                .toEqual('Your account is locked!');
+        });
+
+        it('should automatically log user to dashboard if user has already logged in', () => {
+            page.loginWithCredential('f@f', 'f');
+            browser._.expectUrlToMatch(page.urlAfterLogin);
+            // go back to home page
+            page.getHeader().title.click();
+            homePage.ele.getStartedBtn.click();
+            // go to login page will redirect user to dashboard
+            browser._.expectUrlToMatch(page.urlAfterLogin);
+        });
     });
 });
 
