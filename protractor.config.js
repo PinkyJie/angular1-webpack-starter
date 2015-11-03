@@ -1,10 +1,7 @@
-// support ES6 in this config file
-require('babel-core/register');
 const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
 const SpecReporter = require('jasmine-spec-reporter');
 
 const webpackConfig = require('./webpack.config');
-const helper = require('./source/test/e2e/helper');
 
 const e2eBaseFolder = './source/test/e2e';
 
@@ -18,17 +15,14 @@ exports.config = {
         print: () => {}
     },
     specs: `${e2eBaseFolder}/specs/*.spec.js`,
-    suites: {
-        home: `${e2eBaseFolder}/specs/home.spec.js`,
-        login: `${e2eBaseFolder}/specs/login.spec.js`,
-        dashboard: `${e2eBaseFolder}/specs/dashboard.spec.js`,
-        phone: `${e2eBaseFolder}/specs/phone.spec.js`,
-        notfound: `${e2eBaseFolder}/specs/404.spec.js`
-    },
     capabilities: {
         browserName: 'chrome'
     },
     onPrepare: () => {
+        // support ES6, need to put this line in onPrepare to make line number
+        // in error report correct
+        require('babel-core/register'); // eslint-disable-line
+        const helper = require('./source/test/e2e/helper'); // eslint-disable-line
         browser._BasePageObject = helper.BasePageObject;
         browser._ = new helper.E2EHelper();
         // screenshot reporter
