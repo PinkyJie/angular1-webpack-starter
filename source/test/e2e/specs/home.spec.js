@@ -24,11 +24,19 @@ describe('Home Page:', () => {
         page.load();
     });
 
-    browser._.testURLAndTitleAndClass(HomePage, '/', `Home`, 'home');
-    browser._.testPreloginHeader(HomePage);
-    browser._.testFooter(HomePage);
-    browser._.testNoSidebar(HomePage);
-    browser._.testNoBreadcrumb(HomePage);
+    describe('Layout:', () => {
+        it('should have correct layout', () => {
+            const config = {
+                url: '/',
+                title: 'Home',
+                klass: 'home',
+                header: 'prelogin',
+                sidebar: false,
+                breadcrumb: false
+            };
+            browser._.expectCorrectLayout(page, config);
+        });
+    });
 
     describe('Hero section:', () => {
         it('should display correct tilte and sub title', () => {

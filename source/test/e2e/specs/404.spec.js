@@ -22,16 +22,26 @@ describe('404 Page:', () => {
         page.load();
     });
 
-    browser._.testURLAndTitleAndClass(NotFoundPage, '404', `404`, 'notfound');
-    browser._.testPreloginHeader(NotFoundPage);
-    browser._.testFooter(NotFoundPage);
-    browser._.testNoSidebar(NotFoundPage);
-    browser._.testBreadcrumb(NotFoundPage, [
-        {
-            link: false,
-            text: '404'
-        }
-    ]);
+    describe('Layout:', () => {
+        it('should have correct layout', () => {
+            const config = {
+                url: '404',
+                title: '404',
+                klass: 'notfound',
+                header: 'prelogin',
+                sidebar: false,
+                breadcrumb: {
+                    items: [
+                        {
+                            link: false,
+                            text: '404'
+                        }
+                    ]
+                }
+            };
+            browser._.expectCorrectLayout(page, config);
+        });
+    });
 
     describe('Main section:', () => {
         it('should display 404 text', () => {

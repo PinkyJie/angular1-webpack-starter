@@ -37,11 +37,19 @@ describe('Login Page:', () => {
         page.load();
     });
 
-    browser._.testURLAndTitleAndClass(LoginPage, 'login', `Login`, 'login');
-    browser._.testPreloginHeader(LoginPage);
-    browser._.testFooter(LoginPage);
-    browser._.testNoSidebar(LoginPage);
-    browser._.testNoBreadcrumb(LoginPage);
+    describe('Layout:', () => {
+        it('should have correct layout', () => {
+            const config = {
+                url: 'login',
+                title: 'Login',
+                klass: 'login',
+                header: 'prelogin',
+                sidebar: false,
+                breadcrumb: false
+            };
+            browser._.expectCorrectLayout(page, config);
+        });
+    });
 
     describe('Login form section:', () => {
         it('should login successfully with correct credential', () => {
