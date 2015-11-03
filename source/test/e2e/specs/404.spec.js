@@ -25,29 +25,13 @@ describe('404 Page:', () => {
     browser._.testURLAndTitleAndClass(NotFoundPage, '404', `404`, 'notfound');
     browser._.testPreloginHeader(NotFoundPage);
     browser._.testFooter(NotFoundPage);
-
-    describe('Sidebar section:', () => {
-        it('should not display sidebar section', () => {
-            const sidebar = page.getSidebar();
-            expect(sidebar.view.getText()).toEqual('');
-        });
-    });
-
-    describe('Breadcrumb section:', () => {
-        it('should display correct breadcrumb', () => {
-            const breadcrumb = page.getBreadcrumb();
-            expect(breadcrumb.breadcrumbItem.count()).toEqual(1);
-            // home icon
-            expect(breadcrumb.homeItem.isDisplayed()).toBe(true);
-            expect(breadcrumb.homeLink.getAttribute('href')).toEqual(`${browser.baseUrl}/`);
-            expect(breadcrumb.homeIcon).toHaveClass('mdi-action-home');
-            // 404 text
-            const notfoundItem = breadcrumb.breadcrumbItem.get(0);
-            expect(notfoundItem.$(breadcrumb.childLink).isPresent()).toBe(false);
-            expect(notfoundItem.$(breadcrumb.childIcon)).toHaveClass('mdi-navigation-chevron-right');
-            expect(notfoundItem.$(breadcrumb.childText).getText()).toEqual('404');
-        });
-    });
+    browser._.testNoSidebar(NotFoundPage);
+    browser._.testBreadcrumb(NotFoundPage, [
+        {
+            link: false,
+            text: '404'
+        }
+    ]);
 
     describe('Main section:', () => {
         it('should display 404 text', () => {

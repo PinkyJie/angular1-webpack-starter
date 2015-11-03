@@ -22,9 +22,11 @@ class BasePageObject {
             dropdownButton: $header.$('.dropdown-button'),
             dropdownIcon: $header.$('.dropdown-button > i'),
             dropdownContent: $header.$('.dropdown-content'),
-            logoutLink: $header.$('.logout-link'),
-            childLink: 'a',
-            childIcon: 'a > i'
+            logoutLink: {
+                view: $header.$('.logout-link'),
+                link: 'a',
+                icon: 'a > i'
+            }
         };
     }
 
@@ -42,9 +44,11 @@ class BasePageObject {
         const menuItemClass = '.menu-item';
         return {
             view: $sidebar,
-            menuItem: $sidebar.$$(menuItemClass),
-            menuLink: $sidebar.$$(`${menuItemClass} > a`),
-            menuIcon: $sidebar.$$(`${menuItemClass} > a > i`)
+            menuItem: {
+                view: $sidebar.$$(menuItemClass),
+                link: 'a',
+                icon: 'a > i'
+            }
         };
     }
 
@@ -54,13 +58,17 @@ class BasePageObject {
         const breadcrumbItemClass = '.breadcrumb-item';
         return {
             view: $breadcrumb,
-            homeItem: $breadcrumb.$(homeItemClass),
-            homeLink: $breadcrumb.$(`${homeItemClass} > a`),
-            homeIcon: $breadcrumb.$(`${homeItemClass} > a > i`),
-            breadcrumbItem: $breadcrumb.$$(breadcrumbItemClass),
-            childLink: 'a',
-            childIcon: 'i',
-            childText: 'span'
+            homeItem: {
+                view: $breadcrumb.$(homeItemClass),
+                link: 'a',
+                icon: 'a > i'
+            },
+            breadcrumbItem: {
+                view: $breadcrumb.$$(breadcrumbItemClass),
+                link: 'a',
+                icon: 'i',
+                text: 'span'
+            }
         };
     }
 }
@@ -123,10 +131,11 @@ class E2EHelper {
                 expect(header.dropdownContent.isDisplayed()).toBe(false);
                 header.dropdownButton.click();
                 expect(header.dropdownContent.isDisplayed()).toBe(true);
-                expect(header.logoutLink.$(header.childLink).getAttribute('href'))
+                const logoutLink = header.logoutLink;
+                expect(logoutLink.view.$(logoutLink.link).getAttribute('href'))
                     .toEqual(`${browser.baseUrl}/login?action=logout`);
-                expect(header.logoutLink.$(header.childIcon)).toHaveClass('mdi-action-exit-to-app ');
-                expect(header.logoutLink.getText()).toEqual('Logout');
+                expect(logoutLink.view.$(logoutLink.icon)).toHaveClass('mdi-action-exit-to-app');
+                expect(logoutLink.view.$(logoutLink.link).getText()).toEqual('Logout');
             });
         });
     }
@@ -141,6 +150,84 @@ class E2EHelper {
             });
             it('should display correct footer', () => {
                 expect(footer.copyright.getText()).toEqual('Copyright © 2015. AIO-Angular generator.');
+            });
+        });
+    }
+
+    testNoSidebar (Page) {
+        let sidebar;
+        beforeEach(() => {
+            const page = new Page();
+            page.load();
+            sidebar = page.getSidebar();
+        });
+        describe('Sidebar section:', () => {
+            it('should not display sidebar section', () => {
+                expect(sidebar.view.getText()).toEqual('');
+            });
+        });
+    }
+
+    testNoBreadcrumb (Page) {
+        let breadcrumb;
+        beforeEach(() => {
+            const page = new Page();
+            page.load();
+            breadcrumb = page.getBreadcrumb();
+        });
+        describe('Breadcrumb section:', () => {
+            it('should not display breadcrumb section', () => {
+                expect(breadcrumb.view.getText()).toEqual('');
+            });
+        });
+    }
+
+    testSidebar (Page, expectedItems) {
+        let sidebar;
+        beforeEach(() => {
+            const page = new Page();
+            page.load();
+            sidebar = page.getSidebar();
+        });
+        describe('Sidebar section:', () => {
+            it('should display correct sidebar', () => {
+                expect(sidebar.menuItem.view.count()).toEqual(expectedItems.length);
+                // items
+                sidebar.menuItem.view.each((item, index) => {
+                    const expected = expectedItems[index];
+                    expect(item.$(sidebar.menuItem.link).getAttribute('href'))
+                        .toEqual(`${browser.baseUrl}/${expected.link}`);
+                    expect(item.$(sidebar.menuItem.icon)).toHaveClass(expected.icon);
+                    expect(item.$(sidebar.menuItem.link).getText()).toEqual(expected.text);
+                });
+            });
+        });
+    }
+
+    testBreadcrumb (Page, expectedItems) {
+        let breadcrumb;
+        beforeEach(() => {
+            const page = new Page();
+            page.load();
+            breadcrumb = page.getBreadcrumb();
+        });
+        describe('Breadcrumb section:', () => {
+            it('should display correct breadcrumb', () => {
+                // home icon
+                const homeItem = breadcrumb.homeItem;
+                expect(homeItem.view.isDisplayed()).toBe(true);
+                expect(homeItem.view.$(homeItem.link).getAttribute('href'))
+                    .toEqual(`${browser.baseUrl}/`);
+                expect(homeItem.view.$(homeItem.icon)).toHaveClass('mdi-action-home');
+                // items
+                expect(breadcrumb.breadcrumbItem.view.count()).toEqual(expectedItems.length);
+                breadcrumb.breadcrumbItem.view.each((item, index) => {
+                    const expected = expectedItems[index];
+                    expect(item.$(breadcrumb.breadcrumbItem.link).isPresent()).toBe(expected.link);
+                    expect(item.$(breadcrumb.breadcrumbItem.icon))
+                        .toHaveClass('mdi-navigation-chevron-right');
+                    expect(item.$(breadcrumb.breadcrumbItem.text).getText()).toEqual(expected.text);
+                });
             });
         });
     }

@@ -12,9 +12,6 @@ class LoginPage extends browser._BasePageObject {
         const $page = $('.login-view');
         return {
             loadingView: $page.$('.login-checking'),
-            loadingIcon: $page.$('.login-checking > .mdi-notification-sync'),
-            accountIcon: $page.$('.login-checking > .mdi-action-account-box'),
-            loadingText: $page.$('.login-checking > .loading-text'),
             loginMessage: $page.$('.login-message > p'),
             emailInput: $page.element(by.model('form.credential.email')),
             passwordInput: $page.element(by.model('form.credential.password')),
@@ -43,20 +40,8 @@ describe('Login Page:', () => {
     browser._.testURLAndTitleAndClass(LoginPage, 'login', `Login`, 'login');
     browser._.testPreloginHeader(LoginPage);
     browser._.testFooter(LoginPage);
-
-    describe('Sidebar section:', () => {
-        it('should not display sidebar section', () => {
-            const sidebar = page.getSidebar();
-            expect(sidebar.view.getText()).toEqual('');
-        });
-    });
-
-    describe('Breadcrumb section:', () => {
-        it('should not display breadcrumb section', () => {
-            const breadcrumb = page.getBreadcrumb();
-            expect(breadcrumb.view.getText()).toEqual('');
-        });
-    });
+    browser._.testNoSidebar(LoginPage);
+    browser._.testNoBreadcrumb(LoginPage);
 
     describe('Login form section:', () => {
         it('should login successfully with correct credential', () => {

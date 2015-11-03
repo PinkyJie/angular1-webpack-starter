@@ -27,20 +27,8 @@ describe('Home Page:', () => {
     browser._.testURLAndTitleAndClass(HomePage, '/', `Home`, 'home');
     browser._.testPreloginHeader(HomePage);
     browser._.testFooter(HomePage);
-
-    describe('Sidebar section:', () => {
-        it('should not display sidebar section', () => {
-            const sidebar = page.getSidebar();
-            expect(sidebar.view.getText()).toEqual('');
-        });
-    });
-
-    describe('Breadcrumb section:', () => {
-        it('should not display breadcrumb section', () => {
-            const breadcrumb = page.getBreadcrumb();
-            expect(breadcrumb.view.getText()).toEqual('');
-        });
-    });
+    browser._.testNoSidebar(HomePage);
+    browser._.testNoBreadcrumb(HomePage);
 
     describe('Hero section:', () => {
         it('should display correct tilte and sub title', () => {
