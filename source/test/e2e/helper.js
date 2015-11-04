@@ -82,7 +82,7 @@ class E2EHelper {
     }
 
     // shared test case
-    expectCorrectLayout (page, config) {
+    assertCorrectLayout (page, config) {
         // URL/title/class
         browser._.expectUrlToMatch(config.url);
         expect(browser.getTitle()).toEqual(`${config.title} - ${page.mainTitle}`);

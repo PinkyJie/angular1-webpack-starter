@@ -35,7 +35,7 @@ class DashboardPage extends browser._BasePageObject {
 module.exports = new DashboardPage();
 
 // test scenarios
-fdescribe('Dashboard Page:', () => {
+describe('Dashboard Page:', () => {
     let page;
     beforeEach(() => {
         page = new DashboardPage();
@@ -74,7 +74,7 @@ fdescribe('Dashboard Page:', () => {
                     ]
                 }
             };
-            browser._.expectCorrectLayout(page, config);
+            browser._.assertCorrectLayout(page, config);
         });
     });
 

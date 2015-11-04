@@ -39,7 +39,7 @@ describe('404 Page:', () => {
                     ]
                 }
             };
-            browser._.expectCorrectLayout(page, config);
+            browser._.assertCorrectLayout(page, config);
         });
     });
 
