@@ -70,6 +70,17 @@ class BasePageObject {
             }
         };
     }
+
+    getModal () {
+        const $modal = $('.modal-view');
+        return {
+            view: $modal,
+            title: $modal.$('.modal-content > h4'),
+            body: $modal.$('.modal-content > p'),
+            okBtn: $modal.$('.modal-footer > .btn-ok'),
+            cancelBtn: $modal.$('.modal-footer > .btn-cancel')
+        };
+    }
 }
 
 class E2EHelper {
@@ -145,7 +156,13 @@ class E2EHelper {
             expect(breadcrumb.breadcrumbItem.view.count()).toEqual(expectedBreadcrumbItems.length);
             breadcrumb.breadcrumbItem.view.each((item, index) => {
                 const expected = expectedBreadcrumbItems[index];
-                expect(item.$(breadcrumb.breadcrumbItem.link).isPresent()).toBe(expected.link);
+                if (expected.link) {
+                    expect(item.$(breadcrumb.breadcrumbItem.link).getAttribute('href'))
+                        .toEqual(`${browser.baseUrl}/${expected.link}`);
+                } else {
+                    expect(item.$(breadcrumb.breadcrumbItem.link).isPresent())
+                        .toBe(expected.link);
+                }
                 expect(item.$(breadcrumb.breadcrumbItem.icon))
                     .toHaveClass('mdi-navigation-chevron-right');
                 expect(item.$(breadcrumb.breadcrumbItem.text).getText()).toEqual(expected.text);
