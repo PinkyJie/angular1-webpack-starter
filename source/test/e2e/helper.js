@@ -88,6 +88,35 @@ class E2EHelper {
         browser.get(`${browser.baseUrl}/${url}`);
     }
 
+    chooseDate (input, picker, date) {
+        // trigger date picker modal
+        browser.actions().click(input).perform();
+        // check if opened
+        expect(picker).toHaveClass('picker--opened');
+        expect(picker).toHaveClass('picker--focused');
+        // click target date field
+        $(`[aria-label="${date}"]`).click();
+        // click background
+        $('.picker__close').click();
+        // check if hide
+        expect(picker).not.toHaveClass('picker--opened');
+    }
+
+    selectValue (input, selector, value) {
+        // open selector
+        input.click();
+        expect(selector.isDisplayed()).toBe(true);
+        selector.$$('li').filter((item) => {
+            // find item with specified text
+            return item.$('span').getText().then((text) => {
+                return text === value;
+            });
+        }).then((filterItems) => {
+            // click item
+            filterItems[0].click();
+        });
+    }
+
     expectUrlToMatch (url) {
         expect(browser.getCurrentUrl()).toMatch(new RegExp(url));
     }
@@ -156,16 +185,19 @@ class E2EHelper {
             expect(breadcrumb.breadcrumbItem.view.count()).toEqual(expectedBreadcrumbItems.length);
             breadcrumb.breadcrumbItem.view.each((item, index) => {
                 const expected = expectedBreadcrumbItems[index];
+                expect(item.$(breadcrumb.breadcrumbItem.icon))
+                    .toHaveClass('mdi-navigation-chevron-right');
                 if (expected.link) {
                     expect(item.$(breadcrumb.breadcrumbItem.link).getAttribute('href'))
                         .toEqual(`${browser.baseUrl}/${expected.link}`);
+                    expect(item.$(breadcrumb.breadcrumbItem.link).getText())
+                        .toEqual(expected.text.toUpperCase());
                 } else {
                     expect(item.$(breadcrumb.breadcrumbItem.link).isPresent())
-                        .toBe(expected.link);
+                        .toBe(false);
+                    expect(item.$(breadcrumb.breadcrumbItem.text).getText())
+                        .toEqual(expected.text);
                 }
-                expect(item.$(breadcrumb.breadcrumbItem.icon))
-                    .toHaveClass('mdi-navigation-chevron-right');
-                expect(item.$(breadcrumb.breadcrumbItem.text).getText()).toEqual(expected.text);
             });
         } else { // no sidebar
             expect(breadcrumb.view.getText()).toEqual('');

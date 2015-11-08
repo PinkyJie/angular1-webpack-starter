@@ -10,7 +10,7 @@
                 .form-field
                     .error-message(ng-messages="form.phoneForm.modelInput.$error",
                         ng-show="form.phoneForm.modelInput.showError")
-                        p(ng-message="required") Model filed is required!
+                        p(ng-message="required") Model field is required!
                     .input-field.form-control
                         input(name="modelInput", type="text", ng-model="form.phone.model", required, ng-class="{'invalid': form.phoneForm.modelInput.$invalid && form.phoneForm.modelInput.$dirty}")
                         label(for="modelInput", ng-class="::{'active': form.phone.model}") Model
@@ -26,7 +26,7 @@
                 .form-field
                     .error-message(ng-messages="form.phoneForm.osSelect.$error",
                         ng-show="form.phoneForm.osSelect.showError")
-                        p(ng-message="required") OS Type filed is required!
+                        p(ng-message="required") OS Type field is required!
                     .input-field.form-control
                         select(name="osSelect" ng-model="form.phone.os",
                             ng-options="os for os in form.allOS track by os",
@@ -34,7 +34,7 @@
                             aio-select-init
                         )
                             option(value="" disabled ng-selected="!form.phone.os") Choose OS Type
-                        label(for="osSelect") OS Type
+                        label(for="osSelect") OS
                     .error-icon(ng-show="form.phoneForm.osSelect.$invalid && form.phoneForm.osSelect.$dirty")
                         i.red.white-text.mdi-content-remove.icon-breath-animation(
                             ng-mouseenter="form.phoneForm.osSelect.showError = true",
@@ -47,8 +47,8 @@
                 .form-field
                     .error-message(ng-messages="form.phoneForm.priceInput.$error",
                         ng-show="form.phoneForm.priceInput.showError")
-                        p(ng-message="required") Price filed is required!
-                        p(ng-message="number") Price filed must be a valid number!
+                        p(ng-message="required") Price field is required!
+                        p(ng-message="number") Price field must be a valid number!
                     .input-field.form-control
                         input(name="priceInput", type="text", ng-model="form.phone.price",
                             aio-validate-number, required, ng-class="{'invalid': form.phoneForm.priceInput.$invalid && form.phoneForm.priceInput.$dirty}")
@@ -66,7 +66,7 @@
                 .form-field
                     .error-message(ng-messages="form.phoneForm.sizeInput.$error",
                         ng-show="form.phoneForm.sizeInput.showError")
-                        p(ng-message="required") Screen Size filed is required!
+                        p(ng-message="required") Screen Size field is required!
                         p(ng-message="number") Screen Size must be a valid number!
                     .input-field.form-control
                         input(name="sizeInput", type="text", ng-model="form.phone.size",
@@ -84,7 +84,7 @@
                 .form-field
                     .error-message(ng-messages="form.phoneForm.manufacturerInput.$error",
                         ng-show="form.phoneForm.manufacturerInput.showError")
-                        p(ng-message="required") Manufacturer filed is required!
+                        p(ng-message="required") Manufacturer field is required!
                     .input-field.form-control
                         input(name="manufacturerInput", type="text",
                             ng-model="form.phone.manufacturer", required, ng-class="{'invalid': form.phoneForm.manufacturerInput.$invalid && form.phoneForm.manufacturerInput.$dirty}")
@@ -100,7 +100,7 @@
                     span.form-value {{form.phone.releaseDate | date: 'MMMM d, yyyy'}}
                 .form-field
                     .error-message(ng-show="form.releaseDateError")
-                        p Release Date filed is required!
+                        p Release Date field is required!
                     .input-field.form-control(ng-click="form.hasClicked = true")
                         label(for="releaseDateInput") Release Date
                         input.datepicker(name="releaseDateInput", type="text",
