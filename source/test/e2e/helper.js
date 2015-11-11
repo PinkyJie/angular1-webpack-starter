@@ -96,8 +96,17 @@ class E2EHelper {
         expect(picker).toHaveClass('picker--focused');
         // click target date field
         $(`[aria-label="${date}"]`).click();
-        // click background
+        // click Close button
         $('.picker__close').click();
+        // check if hide
+        expect(picker).not.toHaveClass('picker--opened');
+    }
+
+    clearDate (input, picker) {
+        // trigger date picker modal
+        browser.actions().click(input).perform();
+        // click Clear button
+        $('.picker__clear').click();
         // check if hide
         expect(picker).not.toHaveClass('picker--opened');
     }

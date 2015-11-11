@@ -106,7 +106,8 @@
                         input.datepicker(name="releaseDateInput", type="text",
                             ng-model="form.phone.releaseDate",
                             data-value="::form.phone.releaseDate",
-                            required, aio-datepicker-init)
+                            required, aio-datepicker-init,
+                            ng-class="{'invalid': !form.phone.releaseDate && form.hasClicked}")
                     .error-icon(ng-show="!form.phone.releaseDate && form.hasClicked")
                         i.red.white-text.mdi-content-remove.icon-breath-animation(
                             ng-mouseenter="form.releaseDateError = true",
