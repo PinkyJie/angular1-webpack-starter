@@ -47,7 +47,7 @@ describe('Login Page:', () => {
                 sidebar: false,
                 breadcrumb: false
             };
-            browser._.assertCorrectLayout(page, config);
+            page.assertCorrectLayout(config);
         });
     });
 

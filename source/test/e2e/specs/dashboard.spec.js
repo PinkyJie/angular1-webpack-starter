@@ -74,7 +74,7 @@ describe('Dashboard Page:', () => {
                     ]
                 }
             };
-            browser._.assertCorrectLayout(page, config);
+            page.assertCorrectLayout(config);
         });
     });
 

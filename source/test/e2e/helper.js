@@ -81,6 +81,89 @@ class BasePageObject {
             cancelBtn: $modal.$('.modal-footer > .btn-cancel')
         };
     }
+
+    // shared test case
+    assertCorrectLayout (config) {
+        // URL/title/class
+        browser._.expectUrlToMatch(config.url);
+        expect(browser.getTitle()).toEqual(`${config.title} - ${this.mainTitle}`);
+        expect($('body')).toHaveClass(`${config.klass}-page`);
+        // header section
+        const header = this.getHeader();
+        if (config.header === 'prelogin') { // prelogin
+            expect(header.title.getText()).toEqual('Aio Angular App');
+            expect(header.menus.isPresent()).toBe(false);
+        } else { // logged in
+            expect(header.title.getText()).toEqual('Aio Angular App');
+            expect(header.menus.isPresent()).toBe(true);
+            expect(header.userName.getText()).toEqual('PinkyJie');
+            // dropdown button icon
+            expect(header.dropdownIcon).toHaveClass('mdi-navigation-more-vert');
+            expect(header.dropdownContent.isDisplayed()).toBe(false);
+            header.dropdownButton.click();
+            expect(header.dropdownContent.isDisplayed()).toBe(true);
+            const logoutLink = header.logoutLink;
+            expect(logoutLink.view.$(logoutLink.link).getAttribute('href'))
+                .toEqual(`${browser.baseUrl}/login?action=logout`);
+            expect(logoutLink.view.$(logoutLink.icon)).toHaveClass('mdi-action-exit-to-app');
+            expect(logoutLink.view.$(logoutLink.link).getText()).toEqual('Logout');
+        }
+        // footer section
+        const footer = this.getFooter();
+        expect(footer.copyright.getText()).toEqual('Copyright © 2015. AIO-Angular generator.');
+        // sidebar section
+        const sidebar = this.getSidebar();
+        if (config.sidebar) { // has sidebar
+            const expectedSidebarItems = config.sidebar.items;
+            expect(sidebar.menuItem.view.count()).toEqual(expectedSidebarItems.length);
+            // items
+            sidebar.menuItem.view.each((item, index) => {
+                const expected = expectedSidebarItems[index];
+                expect(item.$(sidebar.menuItem.link).getAttribute('href'))
+                    .toEqual(`${browser.baseUrl}/${expected.link}`);
+                expect(item.$(sidebar.menuItem.icon)).toHaveClass(expected.icon);
+                expect(item.$(sidebar.menuItem.link).getText()).toEqual(expected.text);
+                if (expected.active) {
+                    expect(item).toHaveClass('active');
+                } else {
+                    expect(item).not.toHaveClass('active');
+                }
+            });
+        } else { // no sidebar
+            expect(sidebar.view.getText()).toEqual('');
+        }
+        // breadcrumb section
+        const breadcrumb = this.getBreadcrumb();
+        if (config.breadcrumb) { // has sidebar
+            const expectedBreadcrumbItems = config.breadcrumb.items;
+            // home icon
+            const homeItem = breadcrumb.homeItem;
+            expect(homeItem.view.isDisplayed()).toBe(true);
+            expect(homeItem.view.$(homeItem.link).getAttribute('href'))
+                .toEqual(`${browser.baseUrl}/`);
+            expect(homeItem.view.$(homeItem.icon)).toHaveClass('mdi-action-home');
+            // items
+            expect(breadcrumb.breadcrumbItem.view.count()).toEqual(expectedBreadcrumbItems.length);
+            breadcrumb.breadcrumbItem.view.each((item, index) => {
+                const expected = expectedBreadcrumbItems[index];
+                expect(item.$(breadcrumb.breadcrumbItem.icon))
+                    .toHaveClass('mdi-navigation-chevron-right');
+                if (expected.link) {
+                    expect(item.$(breadcrumb.breadcrumbItem.link).getAttribute('href'))
+                        .toEqual(`${browser.baseUrl}/${expected.link}`);
+                    expect(item.$(breadcrumb.breadcrumbItem.link).getText())
+                        .toEqual(expected.text.toUpperCase());
+                } else {
+                    expect(item.$(breadcrumb.breadcrumbItem.link).isPresent())
+                        .toBe(false);
+                    expect(item.$(breadcrumb.breadcrumbItem.text).getText())
+                        .toEqual(expected.text);
+                }
+            });
+        } else { // no sidebar
+            expect(breadcrumb.view.getText()).toEqual('');
+        }
+    }
 }
 
 class E2EHelper {
@@ -128,89 +211,6 @@ class E2EHelper {
 
     expectUrlToMatch (url) {
         expect(browser.getCurrentUrl()).toMatch(new RegExp(url));
-    }
-
-    // shared test case
-    assertCorrectLayout (page, config) {
-        // URL/title/class
-        browser._.expectUrlToMatch(config.url);
-        expect(browser.getTitle()).toEqual(`${config.title} - ${page.mainTitle}`);
-        expect($('body')).toHaveClass(`${config.klass}-page`);
-        // header section
-        const header = page.getHeader();
-        if (config.header === 'prelogin') { // prelogin
-            expect(header.title.getText()).toEqual('Aio Angular App');
-            expect(header.menus.isPresent()).toBe(false);
-        } else { // logged in
-            expect(header.title.getText()).toEqual('Aio Angular App');
-            expect(header.menus.isPresent()).toBe(true);
-            expect(header.userName.getText()).toEqual('PinkyJie');
-            // dropdown button icon
-            expect(header.dropdownIcon).toHaveClass('mdi-navigation-more-vert');
-            expect(header.dropdownContent.isDisplayed()).toBe(false);
-            header.dropdownButton.click();
-            expect(header.dropdownContent.isDisplayed()).toBe(true);
-            const logoutLink = header.logoutLink;
-            expect(logoutLink.view.$(logoutLink.link).getAttribute('href'))
-                .toEqual(`${browser.baseUrl}/login?action=logout`);
-            expect(logoutLink.view.$(logoutLink.icon)).toHaveClass('mdi-action-exit-to-app');
-            expect(logoutLink.view.$(logoutLink.link).getText()).toEqual('Logout');
-        }
-        // footer section
-        const footer = page.getFooter();
-        expect(footer.copyright.getText()).toEqual('Copyright © 2015. AIO-Angular generator.');
-        // sidebar section
-        const sidebar = page.getSidebar();
-        if (config.sidebar) { // has sidebar
-            const expectedSidebarItems = config.sidebar.items;
-            expect(sidebar.menuItem.view.count()).toEqual(expectedSidebarItems.length);
-            // items
-            sidebar.menuItem.view.each((item, index) => {
-                const expected = expectedSidebarItems[index];
-                expect(item.$(sidebar.menuItem.link).getAttribute('href'))
-                    .toEqual(`${browser.baseUrl}/${expected.link}`);
-                expect(item.$(sidebar.menuItem.icon)).toHaveClass(expected.icon);
-                expect(item.$(sidebar.menuItem.link).getText()).toEqual(expected.text);
-                if (expected.active) {
-                    expect(item).toHaveClass('active');
-                } else {
-                    expect(item).not.toHaveClass('active');
-                }
-            });
-        } else { // no sidebar
-            expect(sidebar.view.getText()).toEqual('');
-        }
-        // breadcrumb section
-        const breadcrumb = page.getBreadcrumb();
-        if (config.breadcrumb) { // has sidebar
-            const expectedBreadcrumbItems = config.breadcrumb.items;
-            // home icon
-            const homeItem = breadcrumb.homeItem;
-            expect(homeItem.view.isDisplayed()).toBe(true);
-            expect(homeItem.view.$(homeItem.link).getAttribute('href'))
-                .toEqual(`${browser.baseUrl}/`);
-            expect(homeItem.view.$(homeItem.icon)).toHaveClass('mdi-action-home');
-            // items
-            expect(breadcrumb.breadcrumbItem.view.count()).toEqual(expectedBreadcrumbItems.length);
-            breadcrumb.breadcrumbItem.view.each((item, index) => {
-                const expected = expectedBreadcrumbItems[index];
-                expect(item.$(breadcrumb.breadcrumbItem.icon))
-                    .toHaveClass('mdi-navigation-chevron-right');
-                if (expected.link) {
-                    expect(item.$(breadcrumb.breadcrumbItem.link).getAttribute('href'))
-                        .toEqual(`${browser.baseUrl}/${expected.link}`);
-                    expect(item.$(breadcrumb.breadcrumbItem.link).getText())
-                        .toEqual(expected.text.toUpperCase());
-                } else {
-                    expect(item.$(breadcrumb.breadcrumbItem.link).isPresent())
-                        .toBe(false);
-                    expect(item.$(breadcrumb.breadcrumbItem.text).getText())
-                        .toEqual(expected.text);
-                }
-            });
-        } else { // no sidebar
-            expect(breadcrumb.view.getText()).toEqual('');
-        }
     }
 }
 

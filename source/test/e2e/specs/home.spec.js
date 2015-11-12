@@ -34,7 +34,7 @@ describe('Home Page:', () => {
                 sidebar: false,
                 breadcrumb: false
             };
-            browser._.assertCorrectLayout(page, config);
+            page.assertCorrectLayout(config);
         });
     });
 

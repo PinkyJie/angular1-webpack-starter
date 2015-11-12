@@ -83,7 +83,7 @@ describe('Phone Detail Page:', () => {
                     ]
                 }
             };
-            browser._.assertCorrectLayout(page, config);
+            page.assertCorrectLayout(config);
         });
     });
 

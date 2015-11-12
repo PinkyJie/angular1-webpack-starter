@@ -72,7 +72,7 @@ describe('Phone Main Page:', () => {
                     ]
                 }
             };
-            browser._.assertCorrectLayout(page, config);
+            page.assertCorrectLayout(config);
         });
     });
 
