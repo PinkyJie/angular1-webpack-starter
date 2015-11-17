@@ -1,5 +1,4 @@
-import dashboardHtml from './dashboard.jade';
-import DashboardController from './dashboard.controller';
+import angular from 'angular';
 
 appDashboardRun.$inject = ['RouterHelper'];
 function appDashboardRun (RouterHelper) {
@@ -14,8 +13,14 @@ function getStates () {
                 url: '/dashboard',
                 views: {
                     'main@root': {
-                        template: dashboardHtml,
-                        controller: `${DashboardController.name} as vm`
+                        templateProvider: ['$q', ($q) => {
+                            return $q((resolve) => {
+                                require.ensure([], () => {
+                                    resolve(require('./dashboard.jade'));
+                                }, 'dashboard');
+                            });
+                        }],
+                        controller: 'DashboardController as vm'
                     }
                 },
                 data: {
@@ -27,10 +32,21 @@ function getStates () {
                     icon: 'mdi-action-dashboard',
                     text: 'Dashboard'
                 },
-                breadcrumb: 'Dashboard'
+                breadcrumb: 'Dashboard',
+                resolve: {
+                    loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
+                        return $q((resolve) => {
+                            require.ensure([], () => {
+                                $ocLazyLoad.load({name: require('./index').name});
+                                resolve();
+                            }, 'dashboard');
+                        });
+                    }]
+                }
             }
         }
     ];
 }
 
-export default appDashboardRun;
+export default angular.module('app.routes.dashboard', [])
+    .run(appDashboardRun);

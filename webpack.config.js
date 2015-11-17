@@ -1,25 +1,71 @@
-/* eslint-disable */
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var jade = require('jade');
 var args = require('yargs').argv;
 
-var base = './';
+// parameters
+var isProd = args.prod;
+var isMock = args.mock;
 
-var entryJs = args.mock ?
+var base = './';
+// use mock api or not
+var entryJs = isMock ?
     base + 'source/test/e2e/mocks/index.js' :
     base + 'source/app/index.js';
-var appName = args.mock ? 'appTest' : 'app';
+var appName = isMock ? 'appTest' : 'app';
+
+var template = jade.compileFile('./source/app/index.jade')({app: appName});
+var plugins = [
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        // materialize-css rely on this to support velocity
+        "window.jQuery": "jquery"
+    }),
+    new webpack.DefinePlugin({
+        __PROD__: isProd,
+        __MOCK__: isMock
+    }),
+    new webpack.optimize.CommonsChunkPlugin('vendor', isProd ? 'vendor.[hash].js' : 'vendor.js'),
+    new ExtractTextPlugin(isProd ? '[name].[hash].css' : '[name].css'),
+    new HtmlWebpackPlugin({
+        templateContent: template,
+        inject: 'body',
+        chunks: ['app', 'vendor']
+    })
+];
+
+if (isProd) {
+    plugins.push(
+        new webpack.NoErrorsPlugin(),
+        new webpack.optimize.DedupePlugin()
+    );
+}
 
 module.exports = {
-    entry: [
-        entryJs,
-        'file?name=index.html!jade-html?app=' + appName +
-            '!' + base + 'source/app/index.jade'
-    ],
+    entry: {
+        app: [
+            entryJs
+        ],
+        vendor: [
+            // 3rd dependencies
+            'materialize-css/bin/materialize.css',
+            'materialize-css/bin/materialize.js',
+            'animate.css/animate.css',
+            // angular
+            'angular',
+            'angular-ui-router',
+            'angular-animate',
+            'angular-messages',
+            'angular-mocks',
+            'oclazyload'
+        ]
+    },
     output: {
         path: base + 'build',
-        filename: '[name].js',
-        chunkFilename: '[id].chunk.js'
+        filename: isProd ? '[name].[hash].js' : '[name].js',
+        chunkFilename: isProd ? '[name].[hash].chunk.js' : '[name].chunk.js'
     },
     module: {
         preLoaders: [
@@ -46,37 +92,25 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                loader: 'style!css!stylus'
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!autoprefixer!stylus')
             },
             {
                 test: /\.css$/,
-                loader: "style!css"
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!autoprefixer')
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?]?.*)?$/,
-                loader : 'file?name=assets/[name].[ext]?[hash]'
+                loader : 'file?name=assets/fonts/[name].[ext]?[hash]'
             },
             {
                 test: /\.(png|jpg)$/,
-                loader: 'url?limit=8192'
+                loader: 'url?limit=8192&name=assets/images/[name].[hash].[ext]'
             }
         ]
     },
-    plugins: [
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            // materialize-css rely on this to support velocity
-            "window.jQuery": "jquery"
-        }),
-        new webpack.DefinePlugin({
-            __DEV__: args.dev,
-            __BUILD__: args.build,
-            __MOCK__: args.mock
-        })
-    ],
-    debug: true,
-    devtool: 'eval-source-map',
+    plugins: plugins,
+    debug: !isProd,
+    devtool: isProd ? 'source-map' : 'eval-source-map',
     devServer: {
         contentBase: base + 'build',
         historyApiFallback: true,

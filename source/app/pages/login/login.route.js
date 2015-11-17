@@ -1,5 +1,4 @@
-import loginHtml from './login.jade';
-import LoginController from './login.controller';
+import angular from 'angular';
 
 appLoginRun.$inject = ['RouterHelper'];
 function appLoginRun (RouterHelper) {
@@ -14,8 +13,14 @@ function getStates () {
                 url: '/login?action',
                 views: {
                     'main@root': {
-                        template: loginHtml,
-                        controller: `${LoginController.name} as vm`
+                        templateProvider: ['$q', ($q) => {
+                            return $q((resolve) => {
+                                require.ensure([], () => {
+                                    resolve(require('./login.jade'));
+                                }, 'login');
+                            });
+                        }],
+                        controller: 'LoginController as vm'
                     },
                     'breadcrumb@root': {},
                     'sidebar@root': {}
@@ -23,10 +28,21 @@ function getStates () {
                 data: {
                     title: 'Login',
                     _class: 'login'
+                },
+                resolve: {
+                    loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
+                        return $q((resolve) => {
+                            require.ensure([], () => {
+                                $ocLazyLoad.load({name: require('./index').name});
+                                resolve();
+                            }, 'login');
+                        });
+                    }]
                 }
             }
         }
     ];
 }
 
-export default appLoginRun;
+export default angular.module('app.routes.login', [])
+    .run(appLoginRun);

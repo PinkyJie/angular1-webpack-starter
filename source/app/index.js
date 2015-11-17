@@ -8,28 +8,30 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngAnimate from 'angular-animate';
 import ngMessage from 'angular-messages';
+import 'oclazyload';
 
 import layout from './components/_layout';
 import loading from './components/loading';
 import modal from './components/modal';
 
-// pages
-import home from './pages/home';
-import login from './pages/login';
-import dashboard from './pages/dashboard';
-import phone from './pages/phone';
-import notfound from './pages/404';
+// routes
+import homeRoute from './pages/home/home.route';
+import loginRoute from './pages/login/login.route';
+import dashboardRoute from './pages/dashboard/dashboard.route';
+import phoneRoute from './pages/phone/phone.route';
+import notfoundRoute from './pages/404/404.route';
 
 export default angular.module('app', [
+    'oc.lazyLoad',
     uiRouter,
     ngAnimate,
     ngMessage,
     layout.name,
     loading.name,
     modal.name,
-    home.name,
-    login.name,
-    dashboard.name,
-    phone.name,
-    notfound.name
+    homeRoute.name,
+    loginRoute.name,
+    dashboardRoute.name,
+    phoneRoute.name,
+    notfoundRoute.name
 ]);

@@ -40,7 +40,7 @@ common
     .directive('aioDatepickerInit', DatepickerInitDirective)
     .config(appConfig);
 
-if (__BUILD__) { // eslint-disable-line no-undef
+if (__PROD__) { // eslint-disable-line no-undef
     common
         .config(exceptionHandlerConfig)
         .config(appProductionConfig);

@@ -1,8 +1,8 @@
-import homeHtml from './home.jade';
+import angular from 'angular';
 
 appHomeRun.$inject = ['RouterHelper'];
-function appHomeRun (routerHelper) {
-    routerHelper.configureStates(getStates());
+function appHomeRun (RouterHelper) {
+    RouterHelper.configureStates(getStates());
 }
 
 function getStates () {
@@ -13,7 +13,13 @@ function getStates () {
                 url: '/',
                 views: {
                     'main@root': {
-                        template: homeHtml
+                        templateProvider: ['$q', ($q) => {
+                            return $q((resolve) => {
+                                require.ensure([], () => {
+                                    resolve(require('./home.jade'));
+                                }, 'home');
+                            });
+                        }]
                     },
                     'sidebar@root': {},
                     'breadcrumb@root': {}
@@ -21,10 +27,21 @@ function getStates () {
                 data: {
                     title: 'Home',
                     _class: 'home'
+                },
+                resolve: {
+                    loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
+                        return $q((resolve) => {
+                            require.ensure([], () => {
+                                $ocLazyLoad.load({name: require('./index').name});
+                                resolve();
+                            }, 'home');
+                        });
+                    }]
                 }
             }
         }
     ];
 }
 
-export default appHomeRun;
+export default angular.module('app.routes.home', [])
+    .run(appHomeRun);

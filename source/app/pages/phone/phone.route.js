@@ -1,9 +1,4 @@
-import phoneHtml from './phone.jade';
-import PhoneController from './phone.controller';
-import phoneAddHtml from './add/phone-add.jade';
-import PhoneAddController from './add/phone-add.controller';
-import phoneDetailHtml from './detail/phone-detail.jade';
-import PhoneDetailController from './detail/phone-detail.controller';
+import angular from 'angular';
 
 appPhoneRun.$inject = ['RouterHelper'];
 function appPhoneRun (RouterHelper) {
@@ -18,8 +13,14 @@ function getStates () {
                 url: '/phone',
                 views: {
                     'main@root': {
-                        template: phoneHtml,
-                        controller: `${PhoneController.name} as vm`
+                        templateProvider: ['$q', ($q) => {
+                            return $q((resolve) => {
+                                require.ensure([], () => {
+                                    resolve(require('./phone.jade'));
+                                }, 'phone');
+                            });
+                        }],
+                        controller: 'PhoneController as vm'
                     }
                 },
                 data: {
@@ -31,7 +32,17 @@ function getStates () {
                     icon: 'mdi-hardware-phone-android',
                     text: 'Phones'
                 },
-                breadcrumb: 'Phone List'
+                breadcrumb: 'Phone List',
+                resolve: {
+                    loadModule: ['$q', '$ocLazyLoad', ($q, $ocLazyLoad) => {
+                        return $q((resolve) => {
+                            require.ensure([], () => {
+                                $ocLazyLoad.load({name: require('./index').name});
+                                resolve();
+                            }, 'phone');
+                        });
+                    }]
+                }
             }
         },
         {
@@ -40,8 +51,14 @@ function getStates () {
                 url: '/add',
                 views: {
                     'main@root': {
-                        template: phoneAddHtml,
-                        controller: `${PhoneAddController.name} as vm`
+                        templateProvider: ['$q', ($q) => {
+                            return $q((resolve) => {
+                                require.ensure([], () => {
+                                    resolve(require('./add/phone-add.jade'));
+                                }, 'phone');
+                            });
+                        }],
+                        controller: 'PhoneAddController as vm'
                     }
                 },
                 breadcrumb: 'Add Phone'
@@ -53,8 +70,14 @@ function getStates () {
                 url: '/:id',
                 views: {
                     'main@root': {
-                        template: phoneDetailHtml,
-                        controller: `${PhoneDetailController.name} as vm`
+                        templateProvider: ['$q', ($q) => {
+                            return $q((resolve) => {
+                                require.ensure([], () => {
+                                    resolve(require('./detail/phone-detail.jade'));
+                                }, 'phone');
+                            });
+                        }],
+                        controller: 'PhoneDetailController as vm'
                     }
                 },
                 breadcrumb: 'Phone Detail'
@@ -63,4 +86,5 @@ function getStates () {
     ];
 }
 
-export default appPhoneRun;
+export default angular.module('app.routes.phone', [])
+    .run(appPhoneRun);
