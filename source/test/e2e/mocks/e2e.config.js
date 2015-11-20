@@ -21,10 +21,4 @@ function appTestConfig ($httpProvider) {
     }
 }
 
-appTestRun.$inject = ['$httpBackend'];
-function appTestRun ($httpBackend) {
-    // pass through static files
-    $httpBackend.whenGET(/^static\//).passThrough();
-}
-
-export {appTestConfig, appTestRun};
+export default appTestConfig;

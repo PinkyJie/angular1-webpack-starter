@@ -62,6 +62,8 @@ class MockData {
     }
 }
 
+MockData.$inject = [];
+
 function _getTimestamp (year, month, day) {
     const date = new Date();
     date.setFullYear(year);
