@@ -39,7 +39,14 @@ var plugins = [
 if (isProd) {
     plugins.push(
         new webpack.NoErrorsPlugin(),
-        new webpack.optimize.DedupePlugin()
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            mangle: false
+        }),
+        new webpack.optimize.OccurenceOrderPlugin()
     );
 }
 
@@ -59,6 +66,7 @@ module.exports = {
             'angular-animate',
             'angular-messages',
             'angular-mocks',
+            'angular-loading-bar',
             'oclazyload'
         ]
     },
