@@ -110,7 +110,7 @@ class BasePageObject {
         }
         // footer section
         const footer = this.getFooter();
-        expect(footer.copyright.getText()).toEqual('Copyright © 2015. AIO-Angular generator.');
+        expect(footer.copyright.getText()).toEqual('Angular1 Webpack Starter © 2015');
         // sidebar section
         const sidebar = this.getSidebar();
         if (config.sidebar) { // has sidebar
