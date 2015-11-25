@@ -16,6 +16,7 @@ Still wanna use **Gulp + ES5**? Check the [generator-aio-angular](https://github
 
 * ES6
 * Component based structure proposed in https://github.com/fouber/blog/issues/10
+* Lazy load resources(js/css/images/templates...) for each page
 * Material Design using [MaterializeCSS](http://materializecss.com/)
 * Flex Layout
 * Responsive Design
@@ -42,13 +43,16 @@ Then open your browser with URL `http://localhost:8080/webpack-dev-server/`.
 
 * Unit Test: `npm test`
 * Unit Test with auto watch: `npm run test:watch`
-* E2E Test: `npm run test:e2e` (may need to run `npm run webdriver-update` first)
+* E2E Test: `npm run e2e`
+    * run `npm run webdriver-update` first
+    * make sure a local mock server is running
 
-## <del>Building</del>
+## Building
 
 ```bash
 npm run build
 ```
+The optimized files will be generated in `build` folder.
 
 ## License
 
