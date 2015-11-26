@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ev
 
-# run unit test
-npm test
+# run unit test (--travis: use phantomjs browser)
+npm test -- --travis
 
 # run build
 npm build

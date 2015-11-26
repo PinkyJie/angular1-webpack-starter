@@ -6,7 +6,7 @@ const unitTestEntry = 'source/test/unit/helper.js';
 // run multiple times in watch mode
 const singleRun = !args.watch;
 // use phantomjs in watch mode
-const browser = args.watch ? 'PhantomJS' : 'Chrome';
+const browser = (args.watch || args.travis) ? 'PhantomJS' : 'Chrome';
 // load babel polyfill for phantomjs
 const files = browser === 'PhantomJS' ? [
     'node_modules/babel-core/browser-polyfill.js',
