@@ -1,0 +1,13 @@
+diff --git a/source/app/components/_common/services/router-helper.provider.js b/source/app/components/_common/services/router-helper.provider.js
+index 426cf72..5319d32 100644
+--- a/source/app/components/_common/services/router-helper.provider.js
++++ b/source/app/components/_common/services/router-helper.provider.js
+@@ -101,7 +101,7 @@ class RouterHelperProvider {
+             mainTitle: '',
+             resolveAlways: {}
+         };
+-        this.$locationProvider.html5Mode(true);
++        this.$locationProvider.html5Mode(false);
+     }
+ 
+     configure (cfg) {
