@@ -5,12 +5,12 @@ set -ev
 npm test -- --travis
 
 # run build
-npm build
+npm run build
 
 # copy unit test coverage report to build folder
 cp -r ./source/test/unit/results/coverage ./build
 # push build folder to github
-cd buid
+cd build
 
 # git init
 git init
