@@ -11,7 +11,7 @@ git apply ./gh-pages-patch.diff
 npm run build
 
 # copy unit test coverage report to build folder
-cp -r ./source/test/unit/results/coverage ./build
+cp -r ./source/test/unit/results/coverage/lcov-report ./build/coverage
 # push build folder to github
 cd build
 

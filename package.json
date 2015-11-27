@@ -12,6 +12,7 @@
     "start": "webpack-dev-server --mock",
     "build": "rm -rf ./build && webpack --progress --mock --prod",
     "test": "rm -rf ./source/test/unit/results && karma start ./karma.config.js",
+    "codecov": "cat ./source/test/unit/results/coverage/lcov.info | codecov",
     "test:watch": "karma start ./karma.config.js --watch",
     "webdriver-update": "webdriver-manager update",
     "webdriver-start": "webdriver-manager start",
@@ -73,7 +74,8 @@
     "url-loader": "^0.5.6",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.10.1",
-    "yargs": "^3.25.0"
+    "yargs": "^3.25.0",
+    "codecov.io": "^0.1.6"
   },
   "dependencies": {
     "angular": "^1.4.5",

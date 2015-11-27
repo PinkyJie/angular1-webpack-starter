@@ -3,6 +3,8 @@ node_js:
   - stable
 script:
   - ./publish-to-gh-pages.sh
+after_success:
+  - npm run codecov
 env:
   global:
   - GitHub_REF: github.com/PinkyJie/angular1-webpack-starter.git

@@ -43,7 +43,7 @@ const reporters = args.watch ? [
 const coverageReporters = args.watch ? [
     {type: 'text-summary'}
 ] : [
-    {type: 'html', subdir: '.'},
+    {type: 'lcov', subdir: '.'},
     {type: 'text-summary'}
 ];
 
