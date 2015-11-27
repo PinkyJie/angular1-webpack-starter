@@ -1,6 +1,6 @@
 {
   "name": "angular1-webpack-starter",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "Component based Angular web development with Webpack.",
   "engines": {
     "node": ">=4.0.0"
