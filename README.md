@@ -1,15 +1,10 @@
 # angular1-webpack-starter
 [![Travis](https://img.shields.io/travis/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
 [![Codecov](https://img.shields.io/codecov/c/github/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
-
 [![David](https://img.shields.io/david/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
 [![David](https://img.shields.io/david/dev/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
 [![node](https://img.shields.io/node/v/angular1-webpack-starter.svg?style=flat-square)]()
 [![npm](https://img.shields.io/npm/v/angular1-webpack-starter.svg?style=flat-square)]()
-
-[![Github All Releases](https://img.shields.io/github/downloads/PinkyJie/angular1-webpack-starter/total.svg?style=flat-square)]()
-[![npm](https://img.shields.io/npm/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
-[![GitHub license](https://img.shields.io/github/license/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
 
 A starter project using Angular 1.x with Webpack. A Webpack + ES6 re-implementation of the  [generator-aio-angular](https://github.com/PinkyJie/generator-aio-angular) project.
 
@@ -20,7 +15,7 @@ Still wanna use **Gulp + ES5**? Check the [generator-aio-angular](https://github
 ## Preview
 
 Check out the [demo site](http://pinkyjie.com/angular1-webpack-starter/#/).
-You can also check the unit test coverage report [here](http://pinkyjie.com/angular1-webpack-starter/converage).
+You can also check the unit test coverage report [here](http://pinkyjie.com/angular1-webpack-starter/coverage).
 
 > The dome site is a pure front-end implementation, so you can use any email/password to login, see [mock file](source/test/e2e/mocks/e2e.user.js) for detail. It is hosted on Github pages, no back-end support, so we use `#` style URL.
 
