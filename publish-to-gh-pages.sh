@@ -5,7 +5,7 @@ set -ev
 npm test -- --travis
 
 # apply /#/ style router for SPA
-git apply -R ./html5-router-patch.diff
+git apply ./html5-router-patch.diff
 
 # run build
 npm run build
