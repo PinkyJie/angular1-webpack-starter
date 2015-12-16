@@ -140,7 +140,7 @@ class BasePageObject {
             const homeItem = breadcrumb.homeItem;
             expect(homeItem.view.isDisplayed()).toBe(true);
             expect(homeItem.view.$(homeItem.link).getAttribute('href'))
-                .toEqual(`${browser.baseUrl}/`);
+                .toEqual(`${browser.baseUrl}`);
             expect(homeItem.view.$(homeItem.icon)).toHaveClass('mdi-action-home');
             // items
             expect(breadcrumb.breadcrumbItem.view.count()).toEqual(expectedBreadcrumbItems.length);
@@ -168,7 +168,7 @@ class BasePageObject {
 
 class E2EHelper {
     gotoUrl (url) {
-        browser.get(`${browser.baseUrl}/${url}`);
+        browser.get(`${browser.baseUrl}${url}`);
     }
 
     chooseDate (input, picker, date) {

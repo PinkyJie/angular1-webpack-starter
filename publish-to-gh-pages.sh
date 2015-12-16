@@ -2,7 +2,7 @@
 set -ev
 
 # run unit test (--travis: use phantomjs browser)
-npm test -- --travis
+npm test -- --ci
 
 # apply /#/ style router for SPA
 git apply ./gh-pages-patch.diff

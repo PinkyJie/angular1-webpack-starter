@@ -5,7 +5,12 @@ script:
   - ./publish-to-gh-pages.sh
 after_success:
   - npm run codecov
+  - npm run e2e -- --ci --build-id=$TRAVIS_BUILD_NUMBER
 env:
   global:
   - GitHub_REF: github.com/PinkyJie/angular1-webpack-starter.git
   - secure: "Sq6NJGdO4trRXiY+pr8RMV8GuZjsML8If6653ZKVqsHPFPS8eTEKNlIepXcWf/+I6cqVhiT0B/IUxVwdbw/Jh+0BLM1RxofvyFAcZAQaxhRnfDnVdGqysP89RlxuoR/Bc58F7qFwu4nfJ96dFfiIDEnV5whLbvekXperPeLDy41BbgRov4H2ifz3OiwAK2DISmM4ikJBCkwKOA0BHo9/cDtobHNicCM7sE36aYIjYXK6esM8aBZ/XHiLzF/rlfRGQFvNmaxq6Wu41GbtnatDg3PUqBIxCiutKpqEpPothGN/gbTZFNQBCJGmNqnp8KxD2ua3mBvmnL0x+Rij27uMFTfSqfDyLTx/A9M1tMYaIbwBNXz3tR7jyQk0WyAFbuTyw4i6rtM4qqRLSbkF3DXImM5qPqO5zlXNMSAAlOqDXWL9+PpU2U0S7YtxZiV5fzGuZ77F1XTsnHhTgNDru0l0mZhPzTfb+rnagcT74O/6XBeShEZ+eh9gfDLF0/uyXP4Jjif/7204M+Attk/GUuXht+A3+SttUJ/nGbvNJyUi1OXZonuRJSkEPvNu/88KyMvLP/QxTWo0UVE+2Vxb7p9MQo5Fl/W0cCTLQorJX/DYVkJErnktzHX0UV4Y0dR0pQKZpUcmkxkk2zQ/uLugVRD3oHw/Hnzbb3PWlPL5vosIsoE="
+addons:
+  sauce_connect:
+    username: "sd4399340"
+    access_key: "5829a37c-41c0-4490-b6c2-061ae4acc5e9"
