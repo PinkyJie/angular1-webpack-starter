@@ -68,7 +68,8 @@ module.exports = {
             'angular-mocks',
             'angular-loading-bar',
             'oclazyload'
-        ]
+        ],
+        'ie-polyfill': 'babel-core/polyfill.js'
     },
     output: {
         path: base + 'build',
