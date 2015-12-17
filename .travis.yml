@@ -5,6 +5,7 @@ script:
   - ./publish-to-gh-pages.sh
 after_success:
   - npm run codecov
+  - npm start > /dev/null 2>&1
   - npm run e2e -- --ci --build-id=$TRAVIS_BUILD_NUMBER
 env:
   global:

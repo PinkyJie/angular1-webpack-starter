@@ -12,7 +12,7 @@ index 426cf72..5319d32 100644
  
      configure (cfg) {
 diff --git a/source/app/index.jade b/source/app/index.jade
-index 9924009..50c0119 100644
+index 3a80e23..30ff8ca 100644
 --- a/source/app/index.jade
 +++ b/source/app/index.jade
 @@ -10,7 +10,7 @@ html(lang="en", ng-app= app, ng-strict-di)
@@ -21,6 +21,6 @@ index 9924009..50c0119 100644
          meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
 -        base(href="/")
 +        base(href="./")
- 
-     body(ng-class="_class + '-page'")
-         .wrapper(ui-view)
+         // babel polyfill for IE
+         <!--[if IE]>
+         <script src="ie-polyfill.{%=o.webpack.hash%}.js"></script>
