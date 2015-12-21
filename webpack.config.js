@@ -33,7 +33,8 @@ var plugins = [
     new HtmlWebpackPlugin({
         templateContent: template,
         inject: 'body',
-        chunks: ['app', 'vendor']
+        chunks: ['app', 'vendor'],
+        favicon: 'favicon.ico'
     }),
     new CopyWebpackPlugin([
         { from: 'node_modules/babel-core/browser-polyfill.min.js', to: 'polyfill.js'}
