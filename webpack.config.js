@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var jade = require('jade');
 var args = require('yargs').argv;
 
@@ -33,7 +34,10 @@ var plugins = [
         templateContent: template,
         inject: 'body',
         chunks: ['app', 'vendor']
-    })
+    }),
+    new CopyWebpackPlugin([
+        { from: 'node_modules/babel-core/browser-polyfill.min.js', to: 'polyfill.js'}
+    ])
 ];
 
 if (isProd) {
@@ -68,8 +72,7 @@ module.exports = {
             'angular-mocks',
             'angular-loading-bar',
             'oclazyload'
-        ],
-        'ie-polyfill': 'babel-core/polyfill.js'
+        ]
     },
     output: {
         path: base + 'build',

@@ -11,10 +11,10 @@ html(lang="en", ng-app= app, ng-strict-di)
         meta(http-equiv="X-UA-Compatible", content="IE=edge, chrome=1")
         meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
         base(href="/")
-        // babel polyfill for IE
-        <!--[if IE]>
-        <script src="ie-polyfill.{%=o.webpack.hash%}.js"></script>
-        <![endif]-->
+        //- babel polyfill for IE
+        //- conditional comment is not supported from IE 10
+        //- TODO: how to include this only for IE
+        script(src="polyfill.js")
 
     body(ng-class="_class + '-page'")
         .wrapper(ui-view)
