@@ -18,6 +18,8 @@ import SelectInitDirective from './directives/select-init.directive';
 import DatepickerInitDirective from './directives/datepicker-init.directive';
 // config
 import appConfig from './config';
+// run
+import appRun from './run';
 // production
 import {appProductionConfig, exceptionHandlerConfig} from './production/production.config';
 
@@ -45,5 +47,7 @@ if (__PROD__) { // eslint-disable-line no-undef
         .config(exceptionHandlerConfig)
         .config(appProductionConfig);
 }
+
+common.run(appRun);
 
 export default common;

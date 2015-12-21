@@ -4,9 +4,12 @@ body
     .wrapper
         display flex
         flex-direction column
-        min-height 100vh
         background-image url('./bg.png')
         background-size cover
+        .ie &
+            height 100vh
+        .no-ie &
+            min-height 100vh
 .content
     margin-top $headerHeight
     +sm()
