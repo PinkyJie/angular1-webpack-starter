@@ -87,6 +87,6 @@
     "animate.css": "^3.4.0",
     "hammerjs": "^2.0.4",
     "jquery": "^2.1.4",
-    "materialize-css": "^0.97.1"
+    "materialize-css": "0.97.1"
   }
 }

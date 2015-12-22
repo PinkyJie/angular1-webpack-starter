@@ -4,7 +4,7 @@
         i.medium(ng-class="{'mdi-notification-sync icon-rotate-animation': !form.userInfo, 'mdi-action-account-box': form.userInfo}")
         p.loading-text {{form.userInfo ? form.userInfo.name : 'Checking Login User...'}}
 
-    form.card(name="form.loginForm", ng-submit="form.login(form.credential)", novalidate)
+    form.card(name="form.loginForm", ng-submit="form.login(form.credential)", novalidate, autocomplete="off")
         .card-title.black-text.p2
             | Please sign in with your Email and Password
         .login-message.p1(class="{{form.loginError.type}}", ng-if="form.loginError")
