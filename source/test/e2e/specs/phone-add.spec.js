@@ -96,6 +96,7 @@ describe('Phone Add Page:', () => {
         });
 
         it('should add phone correctly via form', () => {
+            const now = new Date();
             const newPhone = {
                 Model: 'iPhone 17',
                 OS: 'iOS',
@@ -103,7 +104,8 @@ describe('Phone Add Page:', () => {
                 'Screen Size': '9.9',
                 Manufacturer: 'AppleApple',
                 'Release Date': 'November 20, 2015',
-                date: '2015-11-20'
+                // always use today's date for easy testing
+                date: `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
             };
             page.ele.form.assertEditingForm(newPhone, true);
             // back to phone main page

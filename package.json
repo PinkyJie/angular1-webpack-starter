@@ -16,7 +16,8 @@
     "test:watch": "karma start ./karma.config.js --watch",
     "webdriver-update": "webdriver-manager update",
     "webdriver-start": "webdriver-manager start",
-    "e2e": "protractor ./protractor.config.js"
+    "e2e": "protractor ./protractor.config.js",
+    "server": "http-server ./build &"
   },
   "author": {
     "name": "马斯特",
@@ -49,6 +50,7 @@
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.1",
+    "http-server": "^0.8.5",
     "isparta-loader": "^1.0.0",
     "jade": "^1.11.0",
     "jade-html-loader": "0.0.3",
