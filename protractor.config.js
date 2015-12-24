@@ -62,7 +62,7 @@ if (args.ci) {
         {
             name: `Chrome (build-${args.buildId})`,
             build: args.buildId,
-            'tunnel-identifier': args.buildId,
+            'tunnel-identifier': args.jobId,
             browserName: 'chrome',
             platform: 'Windows 7',
             maxDuration: 3600,
@@ -72,7 +72,7 @@ if (args.ci) {
         {
             name: `Safari (build-${args.buildId})`,
             build: args.buildId,
-            'tunnel-identifier': args.buildId,
+            'tunnel-identifier': args.jobId,
             browserName: 'safari',
             platform: 'OS X 10.11',
             maxDuration: 3600,
@@ -82,7 +82,7 @@ if (args.ci) {
         {
             name: `IE (build-${args.buildId})`,
             build: args.buildId,
-            'tunnel-identifier': args.buildId,
+            'tunnel-identifier': args.jobId,
             browserName: 'internet explorer',
             platform: 'Windows 7',
             version: '11.0',
@@ -93,7 +93,7 @@ if (args.ci) {
         {
             name: `iOS (build-${args.buildId})`,
             build: args.buildId,
-            'tunnel-identifier': args.buildId,
+            'tunnel-identifier': args.jobId,
             browserName: 'iphone',
             platform: 'OS X 10.10',
             version: '9.1',
@@ -106,7 +106,7 @@ if (args.ci) {
         {
             name: `Android (build-${args.buildId})`,
             build: args.buildId,
-            'tunnel-identifier': args.buildId,
+            'tunnel-identifier': args.jobId,
             browserName: 'android',
             platform: 'Linux',
             version: '4.4',
