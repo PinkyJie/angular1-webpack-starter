@@ -87,9 +87,15 @@ describe('Phone Main Page:', () => {
     describe('Table section:', () => {
         it('should show correct table', () => {
             // table header
-            const header = ['Model', 'OS', 'Price', 'Action'];
-            page.ele.tableHeader.each((th, index) => {
-                expect(th.getText()).toEqual(header[index]);
+            const headerText = ['Model', 'OS', 'Price', 'Action'];
+            browser._.isSmallScreen().then((isSmall) => {
+                page.ele.tableHeader.each((th, index) => {
+                    if (isSmall && (index === 1 || index === 2)) {
+                        expect(th.isDisplayed()).toBe(false);
+                    } else {
+                        expect(th.getText()).toEqual(headerText[index]);
+                    }
+                });
             });
             // table content
             const phoneList = page.ele.phoneItem;
@@ -97,33 +103,50 @@ describe('Phone Main Page:', () => {
             // first row
             const first = phoneList.view.get(0);
             const expectedFirst = ['iPhone 6', 'iOS', '5288'];
-            first.$$(phoneList.cell).each((td, index) => {
-                if (index === 3) {
-                    const firstBtn = td.$(phoneList.firstBtn);
-                    expect(firstBtn).toHaveClass('blue');
-                    expect(firstBtn.$(phoneList.icon)).toHaveClass('mdi-action-info');
-                    const secondBtn = td.$(phoneList.secondBtn);
-                    expect(secondBtn).toHaveClass('red');
-                    expect(secondBtn.$(phoneList.icon)).toHaveClass('mdi-action-delete');
-                    return;
-                }
-                expect(td.getText()).toEqual(expectedFirst[index]);
+            browser._.isSmallScreen().then((isSmall) => {
+                first.$$(phoneList.cell).each((td, index) => {
+                    if (index === 3) {
+                        const firstBtn = td.$(phoneList.firstBtn);
+                        expect(firstBtn).toHaveClass('blue');
+                        expect(firstBtn.$(phoneList.icon)).toHaveClass('mdi-action-info');
+                        const secondBtn = td.$(phoneList.secondBtn);
+                        expect(secondBtn).toHaveClass('red');
+                        expect(secondBtn.$(phoneList.icon)).toHaveClass('mdi-action-delete');
+                        return;
+                    }
+                    if (isSmall && (index === 1 || index === 2)) {
+                        expect(td.isDisplayed()).toBe(false);
+                    } else {
+                        expect(td.getText()).toEqual(expectedFirst[index]);
+                    }
+                });
             });
             // click view
             first.$$(phoneList.cell).get(3).$(phoneList.firstBtn).click();
             browser._.expectUrlToMatch('phone/1');
             // back to phone List
             const sidebar = page.getSidebar();
-            sidebar.menuItem.view.get(1).$(sidebar.menuItem.link).click();
-            browser._.expectUrlToMatch(page.url);
+            browser._.isSmallScreen().then((isSmall) => {
+                if (isSmall) {
+                    sidebar.sidebarSmBtn.click();
+                }
+                sidebar.menuItem.view.get(1).$(sidebar.menuItem.link).click();
+                browser._.expectUrlToMatch(page.url);
+            });
             // third row
             const third = phoneList.view.get(2);
             const expectedThird = ['Nexus 6', 'Android', '4400'];
-            third.$$(phoneList.cell).each((td, index) => {
-                if (index === 3) {
-                    return;
-                }
-                expect(td.getText()).toEqual(expectedThird[index]);
+            browser._.isSmallScreen().then((isSmall) => {
+                third.$$(phoneList.cell).each((td, index) => {
+                    if (index === 3) {
+                        return;
+                    }
+                    if (isSmall && (index === 1 || index === 2)) {
+                        expect(td.isDisplayed()).toBe(false);
+                    } else {
+                        expect(td.getText()).toEqual(expectedThird[index]);
+                    }
+                });
             });
             // click delete
             const modal = page.getModal();

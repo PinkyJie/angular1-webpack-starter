@@ -88,7 +88,7 @@ describe('Phone Add Page:', () => {
     });
 
     describe('Phone Add section:', () => {
-        it('should have correct inital state', () => {
+        it('should have correct initial state', () => {
             expect(page.ele.title.getText()).toEqual('Add a new phone');
             expect(page.ele.form.ele.cancelBtn.isDisplayed()).toBe(false);
             expect(page.ele.form.ele.saveBtn.isEnabled()).toBe(false);
@@ -115,12 +115,18 @@ describe('Phone Add Page:', () => {
             expect(phoneList.view.count()).toEqual(6);
             const lastItem = phoneList.view.get(5);
             const expectedItem = [newPhone.Model, newPhone.OS, newPhone.Price];
-            lastItem.$$(phoneList.cell).each((td, index) => {
-                if (index === 3) {
-                    // ignore the last cell
-                    return;
-                }
-                expect(td.getText()).toEqual(expectedItem[index]);
+            browser._.isSmallScreen().then((isSmall) => {
+                lastItem.$$(phoneList.cell).each((td, index) => {
+                    if (index === 3) {
+                        // ignore the last cell
+                        return;
+                    }
+                    if (isSmall && (index === 1 || index === 2)) {
+                        expect(td.isDisplayed()).toBe(false);
+                    } else {
+                        expect(td.getText()).toEqual(expectedItem[index]);
+                    }
+                });
             });
         });
     });

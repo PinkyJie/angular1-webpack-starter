@@ -17,7 +17,7 @@
     "webdriver-update": "webdriver-manager update",
     "webdriver-start": "webdriver-manager start",
     "e2e": "protractor ./protractor.config.js",
-    "server": "http-server ./build &"
+    "server": "nohup http-server ./build &"
   },
   "author": {
     "name": "马斯特",

@@ -39,7 +39,7 @@ describe('Home Page:', () => {
     });
 
     describe('Hero section:', () => {
-        it('should display correct tilte and sub title', () => {
+        it('should display correct title and sub title', () => {
             expect(page.ele.mainTitle.getText()).toEqual('Aio Angular App');
             expect(page.ele.subTitle.getText()).toEqual(
                 'Awesome web app built on AngularJS & Material Design.');

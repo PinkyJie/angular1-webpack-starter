@@ -119,9 +119,17 @@ if (args.ci) {
     ];
 } else {
     // local run
-    config.capabilities = {
-        browserName: 'chrome'
-    };
+    config.multiCapabilities = [
+        {
+            browserName: 'chrome'
+        },
+        {
+            browserName: 'chrome',
+            chromeOptions: {
+                args: ['--window-size=375,627']
+            }
+        }
+    ];
 }
 
 exports.config = config;

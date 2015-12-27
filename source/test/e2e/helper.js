@@ -22,6 +22,8 @@ class BasePageObject {
             dropdownButton: $header.$('.dropdown-button'),
             dropdownIcon: $header.$('.dropdown-button > i'),
             dropdownContent: $header.$('.dropdown-content'),
+            dropdownUserName: $header.$('.dropdown-user-name > span'),
+            dropdownDivider: $header.$('.divider'),
             logoutLink: {
                 view: $header.$('.logout-link'),
                 link: 'a',
@@ -43,6 +45,7 @@ class BasePageObject {
         const menuItemClass = '.menu-item';
         return {
             view: $sidebar,
+            sidebarSmBtn: $('.sidebar-menu-fab'),
             menuItem: {
                 view: $sidebar.$$(menuItemClass),
                 link: 'a',
@@ -96,12 +99,30 @@ class BasePageObject {
         } else { // logged in
             expect(header.title.getText()).toEqual('Aio Angular App');
             expect(header.menus.isPresent()).toBe(true);
-            expect(header.userName.getText()).toEqual('PinkyJie');
+            // user name
+            browser._.isSmallScreen().then((isSmall) => {
+                if (isSmall) {
+                    expect(header.userName.isDisplayed()).toBe(false);
+                } else {
+                    expect(header.userName.getText()).toEqual('PinkyJie');
+                }
+            });
             // dropdown button icon
             expect(header.dropdownIcon).toHaveClass('mdi-navigation-more-vert');
             expect(header.dropdownContent.isDisplayed()).toBe(false);
             header.dropdownButton.click();
             expect(header.dropdownContent.isDisplayed()).toBe(true);
+            // username/divider in dropdown
+            browser._.isSmallScreen().then((isSmall) => {
+                if (isSmall) {
+                    expect(header.dropdownUserName.getText()).toEqual('PinkyJie');
+                    expect(header.dropdownDivider.isDisplayed()).toBe(true);
+                } else {
+                    expect(header.dropdownUserName.isDisplayed()).toBe(false);
+                    expect(header.dropdownDivider.isDisplayed()).toBe(false);
+                }
+            });
+            // logout
             const logoutLink = header.logoutLink;
             expect(logoutLink.view.$(logoutLink.link).getAttribute('href'))
                 .toEqual(`${browser.baseUrl}/login?action=logout`);
@@ -114,20 +135,28 @@ class BasePageObject {
         // sidebar section
         const sidebar = this.getSidebar();
         if (config.sidebar) { // has sidebar
-            const expectedSidebarItems = config.sidebar.items;
-            expect(sidebar.menuItem.view.count()).toEqual(expectedSidebarItems.length);
-            // items
-            sidebar.menuItem.view.each((item, index) => {
-                const expected = expectedSidebarItems[index];
-                expect(item.$(sidebar.menuItem.link).getAttribute('href'))
-                    .toEqual(`${browser.baseUrl}/${expected.link}`);
-                expect(item.$(sidebar.menuItem.icon)).toHaveClass(expected.icon);
-                expect(item.$(sidebar.menuItem.link).getText()).toEqual(expected.text);
-                if (expected.active) {
-                    expect(item).toHaveClass('active');
+            browser._.isSmallScreen().then((isSmall) => {
+                if (isSmall) {
+                    expect(sidebar.sidebarSmBtn.isDisplayed()).toBe(true);
+                    sidebar.sidebarSmBtn.click();
                 } else {
-                    expect(item).not.toHaveClass('active');
+                    expect(sidebar.sidebarSmBtn.isDisplayed()).toBe(false);
                 }
+                const expectedSidebarItems = config.sidebar.items;
+                expect(sidebar.menuItem.view.count()).toEqual(expectedSidebarItems.length);
+                // items
+                sidebar.menuItem.view.each((item, index) => {
+                    const expected = expectedSidebarItems[index];
+                    expect(item.$(sidebar.menuItem.link).getAttribute('href'))
+                        .toEqual(`${browser.baseUrl}/${expected.link}`);
+                    expect(item.$(sidebar.menuItem.icon)).toHaveClass(expected.icon);
+                    expect(item.$(sidebar.menuItem.link).getText()).toEqual(expected.text);
+                    if (expected.active) {
+                        expect(item).toHaveClass('active');
+                    } else {
+                        expect(item).not.toHaveClass('active');
+                    }
+                });
             });
         } else { // no sidebar
             expect(sidebar.view.getText()).toEqual('');
@@ -167,6 +196,12 @@ class BasePageObject {
 }
 
 class E2EHelper {
+    isSmallScreen () {
+        return browser.driver.manage().window().getSize().then((size) => {
+            return size.width < 600;
+        });
+    }
+
     gotoUrl (url) {
         browser.get(`${browser.baseUrl}/${url}`);
     }
