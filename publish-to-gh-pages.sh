@@ -12,9 +12,11 @@ npm run build
 
 # copy unit test coverage report to build folder
 cp -r ./source/test/unit/results/coverage/lcov-report ./build/coverage
+# rename _common to common cause github pages dose not support this
+mv ./build/coverage/app/components/_common ./build/coverage/app/components/common
+
 # push build folder to github
 cd build
-
 # git init
 git init
 # inside this git repo we'll pretend to be a new user
