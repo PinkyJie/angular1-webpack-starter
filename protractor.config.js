@@ -11,7 +11,7 @@ const config = {
     framework: 'jasmine2',
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 90000,
+        defaultTimeoutInterval: 900 * 1000,
         // remove ugly protractor dot reporter
         print: () => {}
     },
