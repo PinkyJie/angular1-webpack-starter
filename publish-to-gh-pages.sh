@@ -14,7 +14,7 @@ npm run build
 cp -r ./source/test/unit/results/coverage/lcov-report ./build/coverage
 # rename _common to common cause github pages dose not support this
 mv ./build/coverage/app/components/_common ./build/coverage/app/components/common
-sed -i '' 's/href=\"app\/components\/_common/href=\"app\/components\/common/g' ./build/coverage/index.html
+sed -i 's/href=\"app\/components\/_common/href=\"app\/components\/common/g' ./build/coverage/index.html
 
 # push build folder to github
 cd build
