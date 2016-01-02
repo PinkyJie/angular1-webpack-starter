@@ -11,7 +11,7 @@ const config = {
     framework: 'jasmine2',
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 900 * 1000,
+        defaultTimeoutInterval: 30 * 1000,
         // remove ugly protractor dot reporter
         print: () => {}
     },
@@ -94,11 +94,12 @@ if (args.ci) {
             name: `iOS (build-${args.buildId})`,
             build: `${args.buildId}`,
             'tunnel-identifier': `${args.jobId}`,
-            browserName: 'iphone',
-            platform: 'OS X 10.10',
-            version: '9.1',
+            browserName: 'Safari',
+            appiumVersion: '1.4.16',
             deviceName: 'iPhone 5s',
             deviceOrientation: 'portrait',
+            platformVersion: '9.1',
+            platformName: 'iOS',
             maxDuration: 3600,
             commandTimeout: 600,
             idleTimeout: 1000
@@ -107,11 +108,12 @@ if (args.ci) {
             name: `Android (build-${args.buildId})`,
             build: `${args.buildId}`,
             'tunnel-identifier': `${args.jobId}`,
-            browserName: 'android',
-            platform: 'Linux',
-            version: '4.4',
+            browserName: 'Browser',
+            appiumVersion: '1.4.16',
             deviceName: 'Android Emulator',
             deviceOrientation: 'portrait',
+            platformVersion: '4.4',
+            platformName: 'Android',
             maxDuration: 3600,
             commandTimeout: 600,
             idleTimeout: 1000
