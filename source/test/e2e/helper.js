@@ -131,7 +131,7 @@ class BasePageObject {
         }
         // footer section
         const footer = this.getFooter();
-        expect(footer.copyright.getText()).toEqual('Angular1 Webpack Starter © 2015');
+        expect(footer.copyright.getText()).toEqual('Angular1 Webpack Starter © 2016');
         // sidebar section
         const sidebar = this.getSidebar();
         if (config.sidebar) { // has sidebar

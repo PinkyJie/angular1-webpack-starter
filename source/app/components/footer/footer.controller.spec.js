@@ -7,6 +7,6 @@ describe('Footer Controller', () => {
     });
 
     it('should have correct year', () => {
-        expect(controller.year).toEqual(2015);
+        expect(controller.year).toEqual(2016);
     });
 });
