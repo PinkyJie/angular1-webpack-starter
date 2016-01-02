@@ -62,7 +62,16 @@ npm run build
 The optimized files will be generated in `build` folder.
 
 ## CI
-Proudly use [Travis](https://travis-ci.org/) to do Continuous Integration, every push will trigger a build on Travis, it will automatically run unit test, run build script, and deploy site/test coverage report to Github pages. Check [.travis.yml](.travis.yml) and [publish-to-gh-pages.sh](publish-to-gh-pages.sh) for detail.
+Proudly use [Travis](https://travis-ci.org/) to do Continuous Integration. 
+
+Every push will trigger a build on Travis, it will automatically: 
+- run unit test.
+- run build script, deploy website and test coverage report to Github pages.
+- run E2E test on different browsers using [Sauce Labs](https://saucelabs.com). 
+
+Check [.travis.yml](.travis.yml) and [publish-to-gh-pages.sh](publish-to-gh-pages.sh) for detail implementation.
+
+Check [Travis build log](https://travis-ci.org/PinkyJie/angular1-webpack-starter) for build results.
 
 ## License
 
