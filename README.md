@@ -1,6 +1,6 @@
 # angular1-webpack-starter
-[![Travis](https://img.shields.io/travis/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
-[![Codecov](https://img.shields.io/codecov/c/github/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
+[![Travis](https://img.shields.io/travis/PinkyJie/angular1-webpack-starter.svg?style=flat-square)](https://travis-ci.org/PinkyJie/angular1-webpack-starter)
+[![Codecov](https://img.shields.io/codecov/c/github/PinkyJie/angular1-webpack-starter.svg?style=flat-square)](https://codecov.io/github/PinkyJie/angular1-webpack-starter)
 [![David](https://img.shields.io/david/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
 [![David](https://img.shields.io/david/dev/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
 [![node](https://img.shields.io/node/v/angular1-webpack-starter.svg?style=flat-square)]()
