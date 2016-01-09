@@ -1,10 +1,10 @@
 # angular1-webpack-starter
 [![Travis](https://img.shields.io/travis/PinkyJie/angular1-webpack-starter.svg?style=flat-square)](https://travis-ci.org/PinkyJie/angular1-webpack-starter)
 [![Codecov](https://img.shields.io/codecov/c/github/PinkyJie/angular1-webpack-starter.svg?style=flat-square)](https://codecov.io/github/PinkyJie/angular1-webpack-starter)
-[![David](https://img.shields.io/david/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
-[![David](https://img.shields.io/david/dev/PinkyJie/angular1-webpack-starter.svg?style=flat-square)]()
-[![node](https://img.shields.io/node/v/angular1-webpack-starter.svg?style=flat-square)]()
-[![npm](https://img.shields.io/npm/v/angular1-webpack-starter.svg?style=flat-square)]()
+[![David](https://img.shields.io/david/PinkyJie/angular1-webpack-starter.svg?style=flat-square)](https://david-dm.org/pinkyjie/angular1-webpack-starter#info=dependencies&view=table)
+[![David](https://img.shields.io/david/dev/PinkyJie/angular1-webpack-starter.svg?style=flat-square)](https://david-dm.org/pinkyjie/angular1-webpack-starter#info=devDependencies&view=table)
+[![node](https://img.shields.io/node/v/angular1-webpack-starter.svg?style=flat-square)](https://nodejs.org)
+[![npm](https://img.shields.io/npm/v/angular1-webpack-starter.svg?style=flat-square)](https://www.npmjs.com/package/angular1-webpack-starter)
 
 A starter project using Angular 1.x with Webpack. A Webpack + ES6 re-implementation of the  [generator-aio-angular](https://github.com/PinkyJie/generator-aio-angular) project.
 
