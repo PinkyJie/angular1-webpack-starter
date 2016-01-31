@@ -9,7 +9,7 @@ function PhoneFormDirective () {
         controllerAs: 'form',
         bindToController: {
             phone: '=',
-            state: '=',
+            state: '@',
             submit: '&',
             cancel: '&'
         },
