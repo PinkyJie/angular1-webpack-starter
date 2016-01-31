@@ -25,27 +25,28 @@ class PhoneDetailController {
         this.state = 'edit';
     }
 
-    cancelUpdate (ctrl) {
-        ctrl.phone = angular.copy(ctrl[originalPhone]);
-        ctrl.state = 'view';
+    cancelUpdate () {
+        this.phone = angular.copy(this[originalPhone]);
+        this.state = 'view';
     }
 
-    updatePhone (ctrl, phone) {
+    updatePhone (phone) {
+        const self = this;
         // return promise here to let the phone form controller know the response status
-        return ctrl.PhoneAPI.updatePhone(phone.id, phone)
+        return this.PhoneAPI.updatePhone(phone.id, phone)
             .then(_success)
             .catch(_error);
 
         function _success (data) {
-            ctrl.state = 'view';
-            ctrl.phone = data;
+            self.state = 'view';
+            self.phone = data;
         }
 
         function _error (message) {
-            ctrl.Modal.open('Update phone error', message.text, {ok: 'OK'}, () => {
-                ctrl.cancelUpdate(ctrl);
+            self.Modal.open('Update phone error', message.text, {ok: 'OK'}, () => {
+                self.cancelUpdate();
             });
-            return ctrl.$q.reject();
+            return self.$q.reject();
         }
     }
 

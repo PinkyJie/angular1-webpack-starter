@@ -95,7 +95,7 @@ describe('PhoneDetail Controller', () => {
 
         it('should update phone successfully if API resolves', () => {
             updatePhoneDefer.resolve(updatedPhone);
-            controller.updatePhone(controller, originalPhone);
+            controller.updatePhone(originalPhone);
             expect(PhoneAPI.updatePhone).toHaveBeenCalledWith(1, originalPhone);
             $rootScope.$digest();
             expect(controller.state).toEqual('view');
@@ -105,7 +105,7 @@ describe('PhoneDetail Controller', () => {
         it('should not update phone if API rejects', () => {
             updatePhoneDefer.reject({text: 'error'});
             spyOn($q, 'reject');
-            controller.updatePhone(controller, originalPhone);
+            controller.updatePhone(originalPhone);
             expect(PhoneAPI.updatePhone).toHaveBeenCalledWith(1, originalPhone);
             $rootScope.$digest();
             expect(controller.phone).not.toBeDefined();

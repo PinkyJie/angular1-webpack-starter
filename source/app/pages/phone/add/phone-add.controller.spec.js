@@ -41,7 +41,7 @@ describe('PhoneAdd Controller', () => {
 
         it('should go to correct state if API resolves', () => {
             deferred.resolve();
-            controller.addNewPhone(controller, {id: 1});
+            controller.addNewPhone({id: 1});
             expect(PhoneAPI.addNewPhone).toHaveBeenCalledWith({id: 1});
             $rootScope.$digest();
             expect($state.go).toHaveBeenCalledWith('root.layout.phone');
@@ -49,7 +49,7 @@ describe('PhoneAdd Controller', () => {
 
         it('should show error modal if API rejects', () => {
             deferred.reject({text: 'error'});
-            controller.addNewPhone(controller, {id: 1});
+            controller.addNewPhone({id: 1});
             expect(PhoneAPI.addNewPhone).toHaveBeenCalledWith({id: 1});
             $rootScope.$digest();
             expect(Modal.open).toHaveBeenCalledWith('Add phone error', 'error', {ok: 'OK'});

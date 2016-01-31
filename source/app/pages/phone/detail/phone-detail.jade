@@ -7,7 +7,7 @@
         .card-content
             aio-phone-form(
                 phone="vm.phone", 
-                state="vm.state", 
-                submit="vm.updatePhone(vm, phone)",
-                cancel="vm.cancelUpdate(vm)"
+                state="{{vm.state}}", 
+                submit="vm.updatePhone(phone)",
+                cancel="vm.cancelUpdate()"
             )
