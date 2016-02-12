@@ -5,7 +5,7 @@ function PhoneFormDirective () {
     return {
         restrict: 'AE',
         scope: {},
-        controller: `${PhoneFormController.name}`,
+        controller: PhoneFormController.name,
         controllerAs: 'form',
         bindToController: {
             phone: '=',

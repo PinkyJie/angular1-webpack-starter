@@ -5,7 +5,7 @@ function PhoneTableDirective () {
     return {
         restrict: 'AE',
         scope: {},
-        controller: `${PhoneTableController.name}`,
+        controller: PhoneTableController.name,
         controllerAs: 'table',
         bindToController: {
             phones: '=',

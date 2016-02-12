@@ -5,7 +5,7 @@ function LoginFormDirective () {
     return {
         restrict: 'AE',
         scope: {},
-        controller: `${LoginFormController.name}`,
+        controller: LoginFormController.name,
         controllerAs: 'form',
         bindToController: {
             needCheckLogin: '=',
