@@ -12,20 +12,18 @@ class PhoneController {
             });
     }
 
-    gotoPhoneDetail (ctrl, phone) {
-        // don't use this here, this point to directive context,
-        // not controller context
-        ctrl.$state.go('root.layout.phone.detail', {id: phone.id});
+    gotoPhoneDetail (phone) {
+        this.$state.go('root.layout.phone.detail', {id: phone.id});
     }
 
-    deletePhone (ctrl, phone) {
-        ctrl.Modal.open(
+    deletePhone (phone) {
+        this.Modal.open(
             'Are your sure?',
             `All information about [${phone.model}] will be REMOVED!`,
             {ok: 'delete', cancel: 'cancel'},
             (answer) => {
                 if (answer) {
-                    ctrl._doDelete(phone.id);
+                    this._doDelete(phone.id);
                 }
             }
         );

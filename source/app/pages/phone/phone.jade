@@ -4,7 +4,6 @@
         | Add New
     aio-phone-table(
         phones="vm.phones",
-        //- pass controller context into directive
-        first-button-click="vm.gotoPhoneDetail(vm, phone)",
-        second-button-click="vm.deletePhone(vm, phone)"
+        first-button-click="vm.gotoPhoneDetail(phone)",
+        second-button-click="vm.deletePhone(phone)"
     )

@@ -51,7 +51,7 @@ describe('Phone Controller', () => {
 
     describe('gotoPhoneDetail function', () => {
         it('should go to correct state', () => {
-            controller.gotoPhoneDetail(controller, {id: 1});
+            controller.gotoPhoneDetail({id: 1});
             expect($state.go).toHaveBeenCalledWith('root.layout.phone.detail', {id: 1});
         });
     });
@@ -62,7 +62,7 @@ describe('Phone Controller', () => {
         });
 
         it('should show error modal before deleting', () => {
-            controller.deletePhone(controller, {
+            controller.deletePhone({
                 id: 1,
                 model: 'model'
             });

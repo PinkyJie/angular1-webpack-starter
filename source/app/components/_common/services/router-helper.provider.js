@@ -90,8 +90,6 @@ class RouterHelper {
     }
 }
 
-RouterHelper.$inject = [];
-
 // Help configure the state-base ui.router
 class RouterHelperProvider {
     constructor ($locationProvider, $stateProvider, $urlRouterProvider) {
