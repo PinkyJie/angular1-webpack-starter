@@ -10,7 +10,7 @@ function LoginFormDirective () {
         bindToController: {
             needCheckLogin: '=',
             userInfo: '=',
-            routeAfterLogin: '=',
+            routeAfterLogin: '@',
             loginError: '='
         },
         template: loginFormHtml
