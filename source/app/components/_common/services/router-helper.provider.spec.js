@@ -21,24 +21,21 @@ describe('RouterHelper Provider', () => {
         angular.mock.module(($provide) => {
             $provide.provider('$location', jasmine.createSpyObj('$locationProvider', ['html5Mode', '$get']));
             $provide.provider('$urlRouter', jasmine.createSpyObj('$urlRouterProvider', ['otherwise', '$get']));
-            $provide.provider('$state', {
-                state: jasmine.createSpy('state'),
-                $get: () => {
-                    return {
-                        get: jasmine.createSpy('get'),
-                        go: jasmine.createSpy('go')
-                    };
-                }
-            });
-            $provide.value('Logger', jasmine.createSpyObj('Logger', ['warning']));
-            $provide.value('Resolve', jasmine.createSpyObj('Resolve', ['login']));
+            $provide.provider('$state', jasmine.createSpyObj('$stateProvider', ['state', '$get']));
         });
         // provider needs to be mocked before module load
         angular.mock.module('test');
+        // but service is not required to mock before module load
+        angular.mock.module(($provide) => {
+            $provide.value('$rootScope', jasmine.createSpyObj('$rootScope', ['$on']));
+            $provide.value('Logger', jasmine.createSpyObj('Logger', ['warning']));
+            $provide.value('Resolve', jasmine.createSpyObj('Resolve', ['login']));
+        });
         angular.mock.module((_$locationProvider_, _$stateProvider_,
             _$urlRouterProvider_, _RouterHelperProvider_) => {
             $locationProvider = _$locationProvider_;
             $stateProvider = _$stateProvider_;
+            $stateProvider.$get.and.returnValue(jasmine.createSpyObj('$get', ['get', 'go']));
             $urlRouterProvider = _$urlRouterProvider_;
             provider = _RouterHelperProvider_;
         });
@@ -190,9 +187,18 @@ describe('RouterHelper Provider', () => {
         });
 
         describe('handleRoutingErrors function', () => {
+            beforeEach(() => {
+                expect($rootScope.$on).toHaveBeenCalled();
+                expect($rootScope.$on.calls.argsFor(0)[0]).toBe('$stateChangeError');
+            });
+
+            function fireCallback (toState, toParams, error) {
+                const callback = $rootScope.$on.calls.argsFor(0)[1];
+                callback(null, toState, toParams, null, null, error);
+            }
+
             describe('error message', () => {
-                function assertCommon (toState, destination, error, message) {
-                    $rootScope.$broadcast('$stateChangeError', toState, null, null, null, error);
+                function assertCommon (destination, message) {
                     const log = `Error routing to ${destination}.\nReason: ${message}.`;
                     expect(Logger.warning).toHaveBeenCalledWith(log);
                 }
@@ -202,7 +208,8 @@ describe('RouterHelper Provider', () => {
                         title: 'title'
                     };
                     const error = 'error';
-                    assertCommon(toState, toState.title, error, error);
+                    fireCallback(toState, null, error);
+                    assertCommon(toState.title, error);
                 });
 
                 it('should log expected error if toState[name] is not null', () => {
@@ -212,7 +219,8 @@ describe('RouterHelper Provider', () => {
                     const error = {
                         message: 'message'
                     };
-                    assertCommon(toState, toState.name, error, error.message);
+                    fireCallback(toState, null, error);
+                    assertCommon(toState.name, error.message);
                 });
 
                 it('should log expected error if toState[loadedTemplateUrl] is not null', () => {
@@ -220,7 +228,8 @@ describe('RouterHelper Provider', () => {
                         loadedTemplateUrl: 'loadedTemplateUrl'
                     };
                     const error = null;
-                    assertCommon(toState, toState.loadedTemplateUrl, error, 'null');
+                    fireCallback(toState, null, error);
+                    assertCommon(toState.loadedTemplateUrl, 'null');
                 });
 
                 it('should log expected error if toState is null', () => {
@@ -228,7 +237,8 @@ describe('RouterHelper Provider', () => {
                     const error = {
                         aaa: 'not message'
                     };
-                    assertCommon(toState, 'unknown target', error, '[object Object]');
+                    fireCallback(toState, null, error);
+                    assertCommon('unknown target', '[object Object]');
                 });
             });
 
@@ -244,7 +254,7 @@ describe('RouterHelper Provider', () => {
                 });
 
                 it('should go to login page if error is requireLogin', () => {
-                    $rootScope.$broadcast('$stateChangeError', toState, toParams, null, null, 'requireLogin');
+                    fireCallback(toState, toParams, 'requireLogin');
                     expect($state.prev).toEqual({
                         state: toState.name,
                         params: toParams
@@ -253,15 +263,15 @@ describe('RouterHelper Provider', () => {
                 });
 
                 it('should go to home page if error is something else', () => {
-                    $rootScope.$broadcast('$stateChangeError', toState, toParams, null, null, 'error');
+                    fireCallback(toState, toParams, 'error');
                     expect($state.prev).not.toBeDefined();
                     expect($state.go).toHaveBeenCalledWith('root.layout.home');
                 });
             });
 
             it('should not hanlde error more than once', () => {
-                $rootScope.$broadcast('$stateChangeError');
-                $rootScope.$broadcast('$stateChangeError');
+                fireCallback();
+                fireCallback();
                 expect(Logger.warning.calls.count()).toEqual(1);
                 expect($state.go.calls.count()).toEqual(1);
             });
@@ -286,7 +296,10 @@ describe('RouterHelper Provider', () => {
                         _class: 'class'
                     }
                 };
-                $rootScope.$broadcast('$stateChangeSuccess', eventData);
+                expect($rootScope.$on).toHaveBeenCalled();
+                expect($rootScope.$on.calls.argsFor(1)[0]).toBe('$stateChangeSuccess');
+                const callback = $rootScope.$on.calls.argsFor(1)[1];
+                callback(null, eventData);
             });
             it('should set correct title on $rootScope', () => {
                 expect($rootScope.title).toEqual(`${eventData.data.title} - ${config.mainTitle}`);

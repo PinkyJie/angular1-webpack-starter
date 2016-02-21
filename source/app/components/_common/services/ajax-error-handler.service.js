@@ -2,7 +2,7 @@ class AjaxErrorHandlerService {
     constructor (Error, $q) {
         Object.assign(this, {Error, $q});
     }
-    // directly reject the human readable error message
+    // directly reject with the human readable error message
     catcher (reason) {
         // reason is:
         // 1. either an error $http response

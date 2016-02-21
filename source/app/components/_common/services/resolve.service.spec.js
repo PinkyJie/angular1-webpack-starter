@@ -1,7 +1,7 @@
 import ResolveService from './resolve.service';
 
 // for service, we can directly unit test the class without Angular
-describe('Logger Service', () => {
+describe('Resolve Service', () => {
     let UserService;
     let $q;
     let Resolve;
@@ -18,10 +18,7 @@ describe('Logger Service', () => {
             $q = _$q_;
             $rootScope = _$rootScope_;
             Resolve = _Resolve_;
-            UserService = {
-                isLoggedIn () {},
-                checkLoggedInStatus () {}
-            };
+            UserService = jasmine.createSpyObj('UserService', ['isLoggedIn', 'checkLoggedInStatus']);
             spyOn($q, 'reject').and.callThrough();
         });
     });
@@ -29,7 +26,7 @@ describe('Logger Service', () => {
     describe('login function', () => {
         describe('user has already logged in', () => {
             beforeEach(() => {
-                spyOn(UserService, 'isLoggedIn').and.returnValue(true);
+                UserService.isLoggedIn.and.returnValue(true);
                 Resolve.login(UserService, $q);
             });
 
@@ -42,8 +39,8 @@ describe('Logger Service', () => {
             let deferred;
             beforeEach(() => {
                 deferred = $q.defer();
-                spyOn(UserService, 'isLoggedIn').and.returnValue(false);
-                spyOn(UserService, 'checkLoggedInStatus').and.returnValue(deferred.promise);
+                UserService.isLoggedIn.and.returnValue(false);
+                UserService.checkLoggedInStatus.and.returnValue(deferred.promise);
                 Resolve.login(UserService, $q);
             });
             it('should not reject if UserService\'s checkLoggedInStatus resolves', () => {
