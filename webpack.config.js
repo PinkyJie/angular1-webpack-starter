@@ -105,11 +105,11 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!autoprefixer!stylus')
+                loader: ExtractTextPlugin.extract('vue-style', 'css?sourceMap!autoprefixer!stylus')
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!autoprefixer')
+                loader: ExtractTextPlugin.extract('vue-style', 'css?sourceMap!autoprefixer')
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?]?.*)?$/,
