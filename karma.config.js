@@ -26,7 +26,7 @@ const preLoaders = [
     {test: /\.js$/, loader: 'isparta', include, exclude: /\.spec\.js$/}
 ];
 const loaders = [
-    {test: /\.styl$/, loader: 'style!css!stylus'},
+    {test: /\.styl$/, loader: 'vue-style!css!stylus'},
     {test: /\.jade$/, loader: 'jade'},
     {test: /\.(png|jpg)$/, loader: 'null'}
 ];
