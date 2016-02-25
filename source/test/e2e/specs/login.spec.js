@@ -1,35 +1,5 @@
-import homePage from './home.spec';
+import LoginPage from './page-objects/login.page';
 
-// page object
-class LoginPage extends browser._BasePageObject {
-    constructor () {
-        super('login');
-        this.urlAfterLogin = 'dashboard';
-        this.logoutUrl = 'login?action=logout';
-    }
-
-    _getAllElements () {
-        const $page = $('.login-view');
-        return {
-            loadingView: $page.$('.login-checking'),
-            loginMessage: $page.$('.login-message > p'),
-            emailInput: $page.element(by.model('form.credential.email')),
-            passwordInput: $page.element(by.model('form.credential.password')),
-            loginBtn: $page.$('.btn-login')
-        };
-    }
-
-    loginWithCredential (email, password) {
-        this.ele.emailInput.sendKeys(email);
-        this.ele.passwordInput.sendKeys(password);
-        expect(this.ele.loginBtn.isEnabled()).toBe(true);
-        this.ele.loginBtn.click();
-    }
-}
-
-module.exports = new LoginPage();
-
-// test scenarios
 describe('Login Page:', () => {
     let page;
     beforeEach(() => {
@@ -79,7 +49,7 @@ describe('Login Page:', () => {
             browser._.expectUrlToMatch(page.urlAfterLogin);
             // go back to home page
             page.getHeader().title.click();
-            homePage.ele.getStartedBtn.click();
+            page.homePage.ele.getStartedBtn.click();
             // go to login page will redirect user to dashboard
             browser._.expectUrlToMatch(page.urlAfterLogin);
         });

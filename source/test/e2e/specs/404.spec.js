@@ -1,20 +1,5 @@
-// page object
-class NotFoundPage extends browser._BasePageObject {
-    constructor () {
-        super('404');
-    }
+import NotFoundPage from './page-objects/404.page';
 
-    _getAllElements () {
-        const $page = $('.not-found-view');
-        return {
-            text: $page.$('h2')
-        };
-    }
-}
-
-module.exports = new NotFoundPage();
-
-// test scenarios
 describe('404 Page:', () => {
     let page;
     beforeEach(() => {

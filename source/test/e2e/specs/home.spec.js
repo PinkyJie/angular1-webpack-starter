@@ -1,22 +1,5 @@
-// page object
-class HomePage extends browser._BasePageObject {
-    constructor () {
-        super('');
-    }
+import HomePage from './page-objects/home.page';
 
-    _getAllElements () {
-        const $page = $('.home-view');
-        return {
-            mainTitle: $page.$('.title'),
-            subTitle: $page.$('.subtitle'),
-            getStartedBtn: $page.$('.btn-get-started')
-        };
-    }
-}
-
-export default new HomePage();
-
-// test scenarios
 describe('Home Page:', () => {
     let page;
     beforeEach(() => {

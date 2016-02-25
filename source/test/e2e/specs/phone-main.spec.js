@@ -1,38 +1,5 @@
-import loginPage from './login.spec';
+import PhonePage from './page-objects/phone-main.page';
 
-// page object
-class PhonePage extends browser._BasePageObject {
-    constructor () {
-        super('phone');
-    }
-
-    _getAllElements () {
-        const $page = $('.phone-main-view');
-        return {
-            addNewBtn: $page.$('.btn-add-new'),
-            tableHeader: $page.$$('.heading th'),
-            phoneItem: {
-                view: $page.$$('.phone-item'),
-                cell: 'td',
-                firstBtn: '.btn-first',
-                secondBtn: '.btn-second',
-                icon: 'i'
-            }
-        };
-    }
-
-    // overrite load function to support login
-    load () {
-        super.load();
-        browser._.expectUrlToMatch(loginPage.url);
-        loginPage.loginWithCredential('f@f', 'f');
-        browser._.expectUrlToMatch(this.url);
-    }
-}
-
-module.exports = new PhonePage();
-
-// test scenarios
 describe('Phone Main Page:', () => {
     let page;
     beforeEach(() => {

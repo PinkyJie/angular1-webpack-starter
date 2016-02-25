@@ -1,45 +1,5 @@
-import loginPage from './login.spec';
-import PhoneForm from './components/phone-form';
-import phonePage from './phone-main.spec';
+import PhoneAddPage from './page-objects/phone-add.page';
 
-// page object
-class PhoneAddPage extends browser._BasePageObject {
-    constructor () {
-        super('phone/add');
-        this.data = {
-            phone: {
-                Model: '',
-                OS: 'Choose OS Type',
-                Price: '',
-                'Screen Size': '',
-                Manufacturer: '',
-                'Release Date': '',
-                date: ''
-            }
-        };
-    }
-
-    _getAllElements () {
-        const $page = $('.phone-add-view');
-        const $header = $page.$('.card-header');
-        return {
-            title: $header.$('.title'),
-            form: new PhoneForm($page)
-        };
-    }
-
-    // overrite load function to support login
-    load () {
-        super.load();
-        browser._.expectUrlToMatch(loginPage.url);
-        loginPage.loginWithCredential('f@f', 'f');
-        browser._.expectUrlToMatch(this.url);
-    }
-}
-
-module.exports = new PhoneAddPage();
-
-// test scenarios
 describe('Phone Add Page:', () => {
     let page;
     beforeEach(() => {
@@ -109,9 +69,9 @@ describe('Phone Add Page:', () => {
             };
             page.ele.form.assertEditingForm(newPhone, true);
             // back to phone main page
-            browser._.expectUrlToMatch(phonePage.url);
+            browser._.expectUrlToMatch(page.phonePage.url);
             // check last item is the new added item
-            const phoneList = phonePage.ele.phoneItem;
+            const phoneList = page.phonePage.ele.phoneItem;
             expect(phoneList.view.count()).toEqual(6);
             const lastItem = phoneList.view.get(5);
             const expectedItem = [newPhone.Model, newPhone.OS, newPhone.Price];

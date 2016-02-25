@@ -1,4 +1,5 @@
-class PhoneForm {
+// phone form component object
+class PhoneFormComp {
     constructor (parentElement) {
         const $form = parentElement.$('.phone-form-view');
         this.fields = ['Model', 'OS', 'Price', 'Screen Size', 'Manufacturer', 'Release Date'];
@@ -171,4 +172,4 @@ class PhoneForm {
     }
 }
 
-export default PhoneForm;
+export default PhoneFormComp;
