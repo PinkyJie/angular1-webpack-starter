@@ -55,7 +55,7 @@ describe('Phone Main Page:', () => {
         it('should show correct table', () => {
             // table header
             const headerText = ['Model', 'OS', 'Price', 'Action'];
-            browser._.isSmallScreen().then((isSmall) => {
+            browser._.isMobile().then((isSmall) => {
                 page.ele.tableHeader.each((th, index) => {
                     if (isSmall && (index === 1 || index === 2)) {
                         expect(th.isDisplayed()).toBe(false);
@@ -70,7 +70,7 @@ describe('Phone Main Page:', () => {
             // first row
             const first = phoneList.view.get(0);
             const expectedFirst = ['iPhone 6', 'iOS', '5288'];
-            browser._.isSmallScreen().then((isSmall) => {
+            browser._.isMobile().then((isSmall) => {
                 first.$$(phoneList.cell).each((td, index) => {
                     if (index === 3) {
                         const firstBtn = td.$(phoneList.firstBtn);
@@ -93,7 +93,7 @@ describe('Phone Main Page:', () => {
             browser._.expectUrlToMatch('phone/1');
             // back to phone List
             const sidebar = page.getSidebar();
-            browser._.isSmallScreen().then((isSmall) => {
+            browser._.isMobile().then((isSmall) => {
                 if (isSmall) {
                     sidebar.sidebarSmBtn.click();
                 }
@@ -103,7 +103,7 @@ describe('Phone Main Page:', () => {
             // third row
             const third = phoneList.view.get(2);
             const expectedThird = ['Nexus 6', 'Android', '4400'];
-            browser._.isSmallScreen().then((isSmall) => {
+            browser._.isMobile().then((isSmall) => {
                 third.$$(phoneList.cell).each((td, index) => {
                     if (index === 3) {
                         return;

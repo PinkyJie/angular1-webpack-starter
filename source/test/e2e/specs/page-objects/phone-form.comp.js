@@ -33,12 +33,14 @@ class PhoneFormComp {
             expect(input).toHaveClass('invalid');
             expect(errorIcon.isDisplayed()).toBe(true);
             expect(errorMsg.isDisplayed()).toBe(false);
-            // simulate mouse hover
-            browser.actions().mouseMove(errorIcon).perform();
+            // use click to simulate mouse hover
+            // mouse move action not support on Safari
+            // browser.actions().mouseMove(errorIcon).perform();
+            errorIcon.click();
             expect(errorMsg.isDisplayed()).toBe(true);
             expect(errorMsg.getText()).toEqual(message);
-            // rollback mouse hover
-            browser.actions().mouseMove(input).perform();
+            // make mouse on other place
+            $('body').click();
         } else {
             expect(input).not.toHaveClass('invalid');
             expect(errorIcon.isDisplayed()).toBe(false);

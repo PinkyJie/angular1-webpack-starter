@@ -95,7 +95,7 @@ if (args.ci) {
             build: `${args.buildId}`,
             'tunnel-identifier': `${args.jobId}`,
             browserName: 'Safari',
-            appiumVersion: '1.4.16',
+            appiumVersion: '1.5.0',
             deviceName: 'iPhone 5s',
             deviceOrientation: 'portrait',
             platformVersion: '9.1',
@@ -109,8 +109,9 @@ if (args.ci) {
             build: `${args.buildId}`,
             'tunnel-identifier': `${args.jobId}`,
             browserName: 'Browser',
-            appiumVersion: '1.4.16',
+            appiumVersion: '1.5.0',
             deviceName: 'Android Emulator',
+            deviceType: 'phone',
             deviceOrientation: 'portrait',
             platformVersion: '4.4',
             platformName: 'Android',
@@ -128,7 +129,8 @@ if (args.ci) {
         {
             browserName: 'chrome',
             chromeOptions: {
-                args: ['--window-size=375,627']
+                // https://sites.google.com/a/chromium.org/chromedriver/capabilities
+                args: ['--window-size=375,627', '--user-agent=Android']
             }
         }
     ];

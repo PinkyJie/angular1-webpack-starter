@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ev
 
-# run unit test (--travis: use phantomjs browser)
+# run unit test (--ci: use phantomjs browser)
 npm test -- --ci
 
 # apply /#/ style router for SPA

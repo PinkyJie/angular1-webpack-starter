@@ -75,7 +75,7 @@ describe('Phone Add Page:', () => {
             expect(phoneList.view.count()).toEqual(6);
             const lastItem = phoneList.view.get(5);
             const expectedItem = [newPhone.Model, newPhone.OS, newPhone.Price];
-            browser._.isSmallScreen().then((isSmall) => {
+            browser._.isMobile().then((isSmall) => {
                 lastItem.$$(phoneList.cell).each((td, index) => {
                     if (index === 3) {
                         // ignore the last cell

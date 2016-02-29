@@ -100,7 +100,7 @@ class BasePageObject {
             expect(header.title.getText()).toEqual('Aio Angular App');
             expect(header.menus.isPresent()).toBe(true);
             // user name
-            browser._.isSmallScreen().then((isSmall) => {
+            browser._.isMobile().then((isSmall) => {
                 if (isSmall) {
                     expect(header.userName.isDisplayed()).toBe(false);
                 } else {
@@ -113,7 +113,7 @@ class BasePageObject {
             header.dropdownButton.click();
             expect(header.dropdownContent.isDisplayed()).toBe(true);
             // username/divider in dropdown
-            browser._.isSmallScreen().then((isSmall) => {
+            browser._.isMobile().then((isSmall) => {
                 if (isSmall) {
                     expect(header.dropdownUserName.getText()).toEqual('PinkyJie');
                     expect(header.dropdownDivider.isDisplayed()).toBe(true);
@@ -135,7 +135,7 @@ class BasePageObject {
         // sidebar section
         const sidebar = this.getSidebar();
         if (config.sidebar) { // has sidebar
-            browser._.isSmallScreen().then((isSmall) => {
+            browser._.isMobile().then((isSmall) => {
                 if (isSmall) {
                     expect(sidebar.sidebarSmBtn.isDisplayed()).toBe(true);
                     sidebar.sidebarSmBtn.click();
@@ -196,14 +196,31 @@ class BasePageObject {
 }
 
 class E2EHelper {
-    isSmallScreen () {
-        return browser.driver.manage().window().getSize().then((size) => {
-            return size.width < 600;
-        });
+    isMobile () {
+        return browser.executeScript('return /Android|iPhone/.test(window.navigator.userAgent)');
     }
 
     gotoUrl (url) {
         browser.get(`${browser.baseUrl}/${url}`);
+    }
+
+    waitForElementToShow (cssSelector) {
+        const self = this;
+        const ele = $(cssSelector);
+        return browser.wait(() => {
+            return ele.isPresent().then((isPresent) => {
+                if (!isPresent) {
+                    return false;
+                }
+                return ele.isDisplayed()
+                    .then((isDisplayed) => {
+                        return isDisplayed;
+                    }, () => {
+                        // just retry
+                        return self.waitForElementToShow(cssSelector);
+                    });
+            });
+        }, browser.params.timeout);
     }
 
     chooseDate (input, picker, date) {
@@ -256,7 +273,8 @@ const customMatchers = {
                 return {
                     pass: actual.getAttribute('class').then((classes) => {
                         return classes.split(' ').indexOf(expected) !== -1;
-                    })
+                    }),
+                    message: `Element does not contain class '${expected}'.`
                 };
             }
         };
