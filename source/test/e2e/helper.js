@@ -240,6 +240,7 @@ class E2EHelper {
     clearDate (input, picker) {
         // trigger date picker modal
         browser.actions().click(input).perform();
+        this.waitForElementToShow('.picker__clear');
         // click Clear button
         $('.picker__clear').click();
         // check if hide
