@@ -32,7 +32,6 @@ class PhoneFormComp {
         if (isError) {
             expect(input).toHaveClass('invalid');
             expect(errorIcon.isDisplayed()).toBe(true);
-            expect(errorMsg.isDisplayed()).toBe(false);
             // use click to simulate mouse hover
             // mouse move action not support on Safari
             // browser.actions().mouseMove(errorIcon).perform();

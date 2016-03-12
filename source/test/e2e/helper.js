@@ -223,12 +223,23 @@ class E2EHelper {
         }, browser.params.timeout);
     }
 
+    openDatePickerModal (input) {
+        // open datepicker and wait for modal to show
+        input.click();
+        return browser.wait(() => {
+            const getHeightScript = 'return document.getElementsByClassName("picker__holder")[0].offsetHeight > 0';
+            return browser.executeScript(getHeightScript).then((hasHeight) => {
+                if (!hasHeight) {
+                    $('body').click();
+                }
+                return hasHeight;
+            });
+        }, browser.params.timeout);
+    }
+
     chooseDate (input, picker, date) {
         // trigger date picker modal
-        browser.actions().click(input).perform();
-        // check if opened
-        expect(picker).toHaveClass('picker--opened');
-        expect(picker).toHaveClass('picker--focused');
+        this.openDatePickerModal(input);
         // click target date field
         $(`[aria-label="${date}"]`).click();
         // click Close button
@@ -239,8 +250,7 @@ class E2EHelper {
 
     clearDate (input, picker) {
         // trigger date picker modal
-        browser.actions().click(input).perform();
-        this.waitForElementToShow('.picker__clear');
+        this.openDatePickerModal(input);
         // click Clear button
         $('.picker__clear').click();
         // check if hide
