@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var jade = require('jade');
+var autoprefixer = require('autoprefixer');
 var args = require('yargs').argv;
 
 // parameters
@@ -16,7 +16,6 @@ var entryJs = isMock ?
     base + 'source/app/index.js';
 var appName = isMock ? 'appTest' : 'app';
 
-var template = jade.compileFile('./source/app/index.jade')({app: appName});
 var plugins = [
     new webpack.ProvidePlugin({
         $: "jquery",
@@ -31,10 +30,10 @@ var plugins = [
     new webpack.optimize.CommonsChunkPlugin('vendor', isProd ? 'vendor.[hash].js' : 'vendor.js'),
     new ExtractTextPlugin(isProd ? '[name].[hash].css' : '[name].css'),
     new HtmlWebpackPlugin({
-        templateContent: template,
-        inject: 'body',
+        template: 'jade!./source/app/index.jade',
         chunks: ['app', 'vendor'],
-        favicon: 'favicon.ico'
+        favicon: 'favicon.ico',
+        appName: appName
     }),
     new CopyWebpackPlugin([
         { from: 'node_modules/babel-core/browser-polyfill.min.js', to: 'polyfill.js'}
@@ -105,11 +104,11 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                loader: ExtractTextPlugin.extract('vue-style', 'css?sourceMap!autoprefixer!stylus')
+                loader: ExtractTextPlugin.extract('vue-style', 'css?sourceMap!postcss!stylus')
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('vue-style', 'css?sourceMap!autoprefixer')
+                loader: ExtractTextPlugin.extract('vue-style', 'css?sourceMap')
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?]?.*)?$/,
@@ -135,5 +134,8 @@ module.exports = {
         },
         host: '0.0.0.0',
         port: 8080
+    },
+    postcss: function () {
+        return [autoprefixer];
     }
 };
