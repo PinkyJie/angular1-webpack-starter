@@ -15,7 +15,6 @@ Still wanna use **Gulp + ES5**? Check the [generator-aio-angular](https://github
 ## Preview
 
 Check out the [demo site](http://pinkyjie.com/angular1-webpack-starter/#/).
-You can also check the unit test coverage report [here](http://pinkyjie.com/angular1-webpack-starter/coverage).
 
 > The dome site is a pure front-end implementation, so you can use any email/password to login, see [mock file](source/test/e2e/mocks/e2e.user.js) for detail. It is hosted on Github pages, no back-end support, so we use `#` style URL.
 
@@ -53,6 +52,13 @@ Then open your browser with URL `http://localhost:8080/webpack-dev-server/`.
 * E2E Test: `npm run e2e`
     * run `npm run webdriver-update` first
     * make sure a local mock server is running
+
+Check the [Unit test coverage report](http://pinkyjie.com/angular1-webpack-starter/coverage).
+
+Check the E2E test report:
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/sd4399340.svg)](https://saucelabs.com/u/sd4399340)
+
 
 ## Building
 
