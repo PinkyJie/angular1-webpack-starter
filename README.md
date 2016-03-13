@@ -55,7 +55,7 @@ Then open your browser with URL `http://localhost:8080/webpack-dev-server/`.
 
 Check the [Unit test coverage report](http://pinkyjie.com/angular1-webpack-starter/coverage).
 
-Check the E2E test report:
+Check the E2E test report: [![Sauce Test Status](https://saucelabs.com/buildstatus/sd4399340)](https://saucelabs.com/u/sd4399340)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/sd4399340.svg)](https://saucelabs.com/u/sd4399340)
 
@@ -78,6 +78,10 @@ Every push will trigger a build on Travis, it will automatically:
 Check [.travis.yml](.travis.yml) and [publish-to-gh-pages.sh](publish-to-gh-pages.sh) for detail implementation.
 
 Check [Travis build log](https://travis-ci.org/PinkyJie/angular1-webpack-starter) for build results.
+
+## Blog series
+
+http://pinkyjie.com/tags/angular1-webpack-starter/
 
 ## License
 
