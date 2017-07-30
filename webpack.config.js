@@ -104,11 +104,11 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                loader: ExtractTextPlugin.extract('vue-style', 'css?sourceMap!postcss!stylus')
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!stylus')
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('vue-style', 'css?sourceMap')
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
             },
             {
                 test: /\.(woff|woff2|ttf|eot|svg)(\?]?.*)?$/,
